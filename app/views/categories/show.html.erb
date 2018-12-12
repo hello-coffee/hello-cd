@@ -1,2 +1,20 @@
-<h1>Categories#show</h1>
-<p>Find me in app/views/categories/show.html.erb</p>
+<div class="container">
+	<div class="row">
+		<div class="col-lg-3">
+			<!-- 部分テンプレが入る -->
+		</div>
+		<section class="col-lg-9">
+			<h1>カテゴリ名</h1>
+			<% @products.each do |product| %>
+			<div class="jacket-image">
+				<%= product.image %>
+			</div>
+			<div>
+				<%= producut.title %>
+				<p>/</p>
+				<%= producut.artist_id.name %>
+			</div>
+			<% end %>
+		</section>
+	</div>
+</div>
