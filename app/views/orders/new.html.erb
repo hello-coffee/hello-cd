@@ -1,2 +1,62 @@
-<h1>Orders#new</h1>
-<p>Find me in app/views/orders/new.html.erb</p>
+<h3>お届け先選択</h3>
+<div class="container">
+	<div class="row">
+		<div class="col-lg-6">
+			<!-- ラジオボタンと登録済みのお届け先という言葉が入る -->
+			<%= @user.last_name %>
+			<%= @user.first_name %>
+			<%= @user.last_name_kana %>
+			<%= @user.first_name_kana %>
+			<%= @user.post_code %>
+			<%= @user.address %>
+			<%= @user.tel %>
+			<%= @user.email %>
+		</div>
+		<div class="col-lg-6">
+			<%= form_for(@user) do |f| %>
+			<!-- ここにラジオボタンと登録住所以外のお届け先という言葉が入る -->
+				<h4>氏名</h4>
+				<%= f.text_field :last_name %>
+				<%= f.text_field :first_name %>
+				<h4>カナ</h4>
+				<%= f.text_field :last_name_kana %>
+				<%= f.text_field :first_name_kana %>
+				<h4>郵便番号</h4>
+				<%= f.text_field :post_code %>
+				<h4>住所</h4>
+				<%= f.text_field :address %>
+				<h4>電話番号</h4>
+				<%= f.text_field :tel %>
+				<h4>メールアドレス</h4>
+				<%= f.email_field :email %>
+			<% end %>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-lg-4">
+			<h3>決済方法</h3>
+			<p>お支払い方法</p>
+			<%= form_for(@order) do |f| %>
+				<label><%= f.radio_button :pay, "カード" %> カード </label>
+				<label><%= f.radio_button :pay, "コンビニ" %> コンビニ </label>
+				<label><%= f.radio_button :pay, "代金引き換え" %> 代金引き換え </label>
+			<% end %>
+		</div>
+		<div class="col-lg-8">
+			<p>購入内容</p>
+			　<% @cart_items.each do |cart_item| %>
+			　<%= cart_item.title %>
+			　<%= cart_item.artist_name %>
+			　<%= cart_item.quantity %>
+			　<%= cart_item.price %>
+			　<% end %>
+			<p>商品の小計</p>
+			<!-- ここに商品の小計金額をいれたい -->
+			<p>配送料・手数料</p>
+			<p>¥0</p>
+			<h6>合計</h6>
+			<!-- ここに全ての合計金額をいれたい -->
+		</div>
+	</div>
+	<%= link_to "購入", user_path, class: "btn btn-default active" %>
+</div>

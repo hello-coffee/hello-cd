@@ -1,2 +1,47 @@
-<h1>Carts#show</h1>
-<p>Find me in app/views/carts/show.html.erb</p>
+<%= "#{@user.name}さんの買い物かご" %>
+<div class="container">
+	<div class="row">
+		<div class="col-lg-12">
+			<table class="table">
+				<thead>
+					<tr>
+						<th></th>
+						<th></th>
+						<th></th>
+						<th></th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<% @products.each do |product| %>
+					<tr>
+						<td><%= attachment_image_tag product, :image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %></td>
+						<td><%= product.title %>
+							<%= product.artist_name %>
+						</td>
+						<td><%= product.price %></td>
+						<td><% form_for %>
+							<%= f.label :"数量選択" %>
+ 							<%= f.select :quantity, [["1", "1"], ["2", "2"], ["3", "3"], ["4", "4"], ["5", "5"], class: "form-control" %>
+							<% end %>
+						</td>
+						<td><%= link_to "削除", cart_path, class: "btn btn-default active" %></td>
+					</tr>
+					<% end %>
+				</tbody>
+			</table>
+		</div>
+		<div class="row">
+			<div class="col-lg-12">
+				<h4>合計</h4>
+				<!-- ここに合計金額を計算して入れたい -->
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-12">
+				<%= link_to "戻る", products_path, class: "btn btn-default active" %>
+				<%= link_to "購入へ進む", new_order_path, class: "btn btn-default active" %>
+			</div>
+		</div>
+	</div>
+</div>
