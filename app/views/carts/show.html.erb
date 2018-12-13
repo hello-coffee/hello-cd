@@ -17,12 +17,13 @@
 					<tr>
 						<td><%= attachment_image_tag product, :image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %></td>
 						<td><%= product.title %>
-							<%= product.artist_name %>
+							<%= product.artist_id.artist.name %>
 						</td>
 						<td><%= product.price %></td>
 						<td><% form_for %>
 							<%= f.label :"数量選択" %>
  							<%= f.select :quantity, [["1", "1"], ["2", "2"], ["3", "3"], ["4", "4"], ["5", "5"], class: "form-control" %>
+ 							<!-- ↑ここのプルダウンの中身をどうやって持ってくるか不明 -->
 							<% end %>
 						</td>
 						<td><%= link_to "削除", cart_path, class: "btn btn-default active" %></td>
