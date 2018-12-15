@@ -1,5 +1,5 @@
-
-			<!-- 部分テンプレが入る -->
+<!-- 部分テンプレが入る -->
+<%= render 'top/template',search: @search ,result: @result ,artists: @artists ,categories: @categories %>
 
 <div class="container">
 	<div class="row">
@@ -16,6 +16,7 @@
 			</div>
 				<% end %>
 			<!-- ここにページャ -->
+			<%= paginate @products %>
 		</section>
 	</div>
 </div>
