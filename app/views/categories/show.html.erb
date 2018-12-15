@@ -1,4 +1,4 @@
-<!-- 部分テンプレが入る -->
+
 <%= render 'top/template',search: @search ,result: @result ,artists: @artists ,categories: @categories %>
 
 <div class="container">
@@ -12,10 +12,9 @@
 			<div>
 				<%= producut.title %>
 				<p>/</p>
-				<%= producut.artist_id.name %>
+				<%= producut.artist_id.artist_name %>
 			</div>
 				<% end %>
-			<!-- ここにページャ -->
 			<%= paginate @products %>
 		</section>
 	</div>
