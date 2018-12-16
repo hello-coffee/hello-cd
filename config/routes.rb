@@ -35,11 +35,11 @@ Rails.application.routes.draw do
     get '/guide' => 'top#guide'
 
 
-    resources :users, only: [:show, :update, :destroy, :edit,]
+    resources :users, only: [:show, :update, :destroy, :edit]
 
     resources :artists, only: [:show]
 
-     get '/users/:id/favorite_artists' => 'users#favorite_artists'
+    get 'users/:id/favorite_artists' => 'users#favorite_artists'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

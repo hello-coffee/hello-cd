@@ -1,5 +1,9 @@
-<h3>お届け先入力</h3>
 <div class="container">
+	<div class="row">
+		<div class="col-lg-12">
+			<h3>お届け先入力</h3>
+		</div>
+	</div>
 	<div class="row">
 		<div class="col-lg-6">
 			<%= form_for(@address) do |f| %>
@@ -32,26 +36,26 @@
 			<h3>決済方法</h3>
 			<p>お支払い方法</p>
 			<%= form_for(@order) do |f| %>
-				<label><%= f.radio_button :pay, "カード" %> カード </label>
-				<label><%= f.radio_button :pay, "コンビニ" %> コンビニ </label>
-				<label><%= f.radio_button :pay, "代金引き換え" %> 代金引き換え </label>
+				<label><%= f.radio_button :pay, "カード" %> カード </label><br>
+				<label><%= f.radio_button :pay, "コンビニ" %> コンビニ </label><br>
+				<label><%= f.radio_button :pay, "代金引き換え" %> 代金引き換え </label><br>
 			<% end %>
 		</div>
 		<div class="col-lg-8">
-			<p>購入内容</p>
-			　<% @cart_items.each do |cart_item| %>
-			　<%= cart_item.title %>
-			　<%= cart_item.artist_name %>
-			　<%= cart_item.quantity %>
-			　<%= cart_item.price %>
-			　<% end %>
-			<p>商品の小計</p>
-			<!-- ここに商品の小計金額をいれたい -->
-			<p>配送料・手数料</p>
-			<p>¥0</p>
-			<h6>合計</h6>
-			<!-- ここに全ての合計金額をいれたい -->
+			<h3>購入内容</h3>
+				<% sum = 0 %>
+					<% @cart.cart_items.each do |cart.cart_item| %>
+						<%= cart.cart_item.title %>
+						<%= cart.cart_item.artist.name %>
+						<%= cart.cart_item.quantity %>
+						<%= cart.cart_item.price %>
+					<% end %>
+ 				<% sum += cart.cart_item.price * cart_items.quantity %>
+				<%= "商品の小計" + sum + "円" %>
+				<%= 配送料・手数料：0円 %>
+				<%= "合計：" + sum + "円" %>
 		</div>
 	</div>
 	<%= link_to "購入", user_path, class: "btn btn-default active" %>
 </div>
+
