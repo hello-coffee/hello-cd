@@ -21,3 +21,4 @@ class OrdersController < ApplicationController
     @orders = Orders.page(params:[page]).per(10)
   end
 end
+
