@@ -1,6 +1,11 @@
 class CartsController < ApplicationController
   def show
-  	user_id = User.find(params[:id])
   	@cart = Carts.find_by(user_id: current_user.id)
+  	if
+  		@    .save
+  		redirect_to new_oder_path
+  	else
+  		render :show
+  	end
   end
 end
