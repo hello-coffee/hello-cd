@@ -4,4 +4,5 @@ class FavoriteArtistsController < ApplicationController
 
   def destroy
   end
+
 end

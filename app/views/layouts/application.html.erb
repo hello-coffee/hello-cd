@@ -10,6 +10,69 @@
   </head>
 
   <body>
+    <% if user_signed_in? %>
+
+    <header>
+      <div class="container" style="padding: 20px 0;">
+       <div class="row">
+        <nav class="nav navbar-nav navbar-left col-sm-2">ロゴ</nav>
+        <nav class="nav navbar-nav well well-sm col-sm-7">
+          <h1 style="text-align: center;">ようこそ　ooさん!</h1>
+        </nav>
+        <nav class="nav navbar-nav navbar-right btn btn-info btn-lg col-sm-2" style="padding: 5px;">
+          <%= link_to "購入ガイド", guide_path %>
+        </nav>
+       </div>
+      </div>
+
+      <div class="container well well-md" style="width:100%;">
+        <nav style="padding-right: 10%;">
+
+             <li class="nav navbar-nav navbar-right btn btn-default btn-lg", style="padding: 10px;">
+              <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+            </li>
+            <li class="nav navbar-nav navbar-right btn btn-default btn-lg", style="padding: 10px;">
+              <%= link_to "マイページ", user_path(current_user.id) %>
+            </li>
+            <li class="nav navbar-nav navbar-right btn btn-default btn-lg", style="padding: 10px;">
+
+
+            <li class="nav navbar-nav navbar-right btn btn-default btn-lg", style="padding: 10px;">
+              <%= link_to "カート", cart_path(current_user.id) %>
+            </li>
+
+        </nav>
+      </div>
+    </header>
+
+          <% else %>
+
+    <header>
+      <div class="container" style="padding: 20px 0;">
+      <div class="row">
+        <nav class="nav navbar-nav navbar-left col-sm-2">ロゴ</nav>
+        <nav class="nav navbar-nav navbar-right btn btn-info btn-lg col-sm-2" style="padding: 10px;">
+          <%= link_to "購入ガイド", guide_path %>
+        </nav>
+      </div>
+      </div>
+
+        <div class="container well well-md" style="width:100%;">
+        <nav style="padding-right: 10%;">
+
+          <li class="nav navbar-nav navbar-right btn btn-default btn-lg", style="padding: 10px;" >
+            <%= link_to "新規登録", new_user_registration_path %>
+          </li>
+          <li class="nav navbar-nav navbar-right btn btn-default btn-lg", style="padding: 10px;">
+            <%= link_to "ログイン", new_user_session_path %>
+          </li>
+
+          <% end %>
+
+        </nav>
+      </div>
+    </header>
+
     <%= yield %>
   </body>
 </html>
