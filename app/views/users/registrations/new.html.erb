@@ -1,28 +1,99 @@
-<h2>Sign up</h2>
+<h2 style="text-align:center;">新規登録</h2>
+
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+<form class="form-inline text-center"></form>
 
-  <div class="field">
-    <%= f.label :password %>
+<form class="form-inline text-center">
+  <div class="form-group">
+   <div>
+    <%= f.label :last_name, "氏" %><br />
+    <%= f.text_field :last_name %>
+   </div>
+  </div>
+  <div class="form-group">
+   <div>
+    <%= f.label :first_name, "名" %><br />
+    <%= f.text_field :first_name %>
+   </div>
+  </div>
+</form>
+
+<form class="form-inline text-center">
+  <div class="form-group">
+   <div>
+    <%= f.label :last_name_kana, "氏(カナ)" %><br />
+    <%= f.text_field :last_name_kana %>
+   </div>
+  </div>
+  <div class="form-group">
+   <div>
+    <%= f.label :first_name_kana, "名(カナ)" %><br />
+    <%= f.text_field :first_name_kana %>
+   </div>
+  </div>
+</form>
+
+<form class="form-inline text-center">
+  <div class="form-group">
+   <div>
+    <%= f.label :post_code, "郵便番号" %><br />
+    <%= f.text_field :post_code %>
+   </div>
+  </div>
+  <div class="form-group">
+   <div>
+    <%= f.label :address, "住所" %><br />
+    <%= f.text_field :address %>
+   </div>
+  </div>
+</form>
+
+<form class="form-inline text-center">
+  <div class="form-group">
+   <div>
+    <%= f.label :tel, "電話番号" %><br />
+    <%= f.text_field :tel %>
+   </div>
+  </div>
+</form>
+
+<form class="form-inline text-center">
+  <div class="form-group">
+   <div>
+    <%= f.label :email, "メールアドレス" %><br />
+    <%= f.text_field :email %>
+   </div>
+  </div>
+</form>
+
+
+  <form class="form-inline text-center">
+  <div class="form-group">
+   <div>
+    <%= f.label :password, "パスワード" %>
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
     <% end %><br />
     <%= f.password_field :password, autocomplete: "new-password" %>
+   </div>
   </div>
+</form>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
+<form class="form-inline text-center">
+  <div class="form-group">
+   <div>
+     <%= f.label :password_confirmation, "パスワード確認" %><br />
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+   </div>
   </div>
+</form>
 
-  <div class="actions">
-    <%= f.submit "Sign up" %>
+
+  <div class="actions" style="text-align:center;">
+    <%= f.submit "新規登録" %>
   </div>
 <% end %>
 
