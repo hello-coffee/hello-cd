@@ -1,2 +1,190 @@
-<h1>Products#show</h1>
-<p>Find me in app/views/products/show.html.erb</p>
+<div class='container'>
+<div class='row'>
+
+	<div class="search_form">
+		<!-- 検索フォーム -->
+	</div>
+
+    <div class='col-lg-3' style="margin-top: 150px; margin-bottom: 150px">
+    	<!-- カテゴリー一覧 -->
+    	<!-- ランキング -->
+    </div>
+
+    <div class='col-lg-9' style="margin-top: 150px; margin-bottom: 150px">
+
+<!-- 商品情報 -->
+        <div class="disc_list row" style="margin-top: 20px; border-top: 5px solid #333333;">
+            <div class='col-md-4'>
+                <div class="jacket_image" style="width: 100%; height: 300px; margin: 30px 0; background-color: lightblue;">
+                	<div class="jacket_image_text" style="width: 100%; margin: 0 auto; text-align: center; padding-top: 150px" >
+                	    ジャケット画像
+                	</div>
+                </div>
+            </div>
+
+            <div class='col-md-8'>
+
+	            	<div class="product_name" style="text-align: center">
+	            		<h2>商品名</h2>
+	            	</div>
+
+	                <div class="product_info" style="width: 100%; margin-top: 20px; margin-left: 20px">
+	                    <div class="field row" style="width: 100%; margin-bottom: 10px;">アーティスト
+	                    </div>
+	                    <div class="field row" style="width: 100%; margin-bottom: 10px;">レーベル
+	                    </div>
+	                    <div class="field row" style="width: 100%; margin-bottom: 10px;">ジャンル
+	                    </div>
+
+	                </div>
+
+	                <div class="disc_button" style="width: 100%; margin-top: 20px; text-align: center;">
+			                <button type="submit" name="example" value="ボタン" style="">
+			                	アーティストをお気に入りに追加
+			                </button>
+			        </div>
+
+
+
+
+                <div class="line" style="width: 100%; margin: 10px 0; border-top: 3px solid #333333;"></div>
+
+		        <div class="disc_info" style="margin-top: 20px; margin-left: 20px;">
+                    <div class="disc_name" style="margin-bottom: 10px; border: 1px solid #333333; text-align: center; display: inline-block; padding: 0 5px;">
+                    	disc1
+                    </div>
+
+                    <div class="field row" style="margin: 10px 20px; border-bottom: 1px solid #333333;">song 1
+                    </div>
+                    <div class="field row" style="margin: 10px 20px; border-bottom: 1px solid #333333;">song 2
+                    </div>
+                    <div class="field row" style="margin: 10px 20px; border-bottom: 1px solid #333333;">song 3
+                    </div>
+
+
+                    <div class="disc_button" style="text-align: center">
+			            <div class='col-lg-6'>
+			                <button type="submit" name="example" value="ボタン" style="width: 100px; margin: 20px 40px;">編集</button>
+			            </div>
+			            <div class='col-lg-6'>
+			                <button type="submit" name="example" value="ボタン" style="width: 100px; margin: 20px 40px;">削除</button>
+			            </div>
+			        </div>
+		        </div>
+            </div>
+        </div>
+
+<!-- 価格、在庫、買い物かご、お気に入り登録 -->
+        <div class="form_list row" style="border-top: 5px solid #333333;">
+
+            <div class="marchandise_info" style="margin: 0 20px; text-align: center;">
+                <div class="col-lg-3 field row" style="margin-top: 20px; margin-bottom: 40px; margin-right: 10px; ">
+                	価格
+                </div>
+                <div class="col-lg-3 field row" style="margin-top: 20px; margin-bottom: 40px; margin-right: 10px;">
+                	在庫数
+                </div>
+                <div class="col-lg-3 field row" style="margin-top: 20px; margin-bottom: 40px; margin-right: 10px;">
+			        <form>数量選択
+						<select name="数量選択">
+							<option value="1" selected>1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+						</select>
+					</form>
+                </div>
+                <div class="col-lg-3 field row" style="margin-top: 15px; margin-bottom: 40px; margin-right: 10px; font-size: 20px">
+                	<button type="submit" name="example" value="ボタン" style="">買い物かごに追加</button>
+                </div>
+	        </div>
+	    </div>
+
+
+<!-- 口コミ -->
+        <div class="review row" style="border-top: 5px solid #333333;">
+
+        	<div class="col-lg-8">
+    		<h2>口コミ</h2>
+            	<div class="review" style="width: 100%; margin: 20px;">
+                    <div class="product_info" style="">
+	                    <div class="col-lg-4 field row">
+	                    	<div class="review_user" style="margin: 10px;">
+	                    		・投稿者
+	                    	</div>
+	                    </div>
+	                    <div class="col-lg-8 field row">
+	                    	<div class="review_user" style="margin: 10px;">
+	                    		・件名
+	                    	</div>
+	                    </div>
+	                </div>
+
+	                <div class="col-lg-12 line" style="width: 90%; margin-left: 20px; border-top: 1px solid #333333;">
+	                </div>
+
+		            <div class="col-lg-12 product_review" style="width: 100%; margin: 10px; border-bottom: 2px solid #333333;">
+		            	<p>口コミ内容</p>
+			        </div>
+                </div>
+
+                <div class="review_line" style="width: 100%; margin: 20px;">
+                </div>
+
+                    <div class="field row" style="margin: 10px 20px;">
+                    </div>
+
+            	<div class="review" style="width: 100%; margin: 20px;">
+                    <div class="product_info" style="">
+	                    <div class="col-lg-4 field row">
+	                    	<div class="review_user" style="margin: 10px;">
+	                    		・投稿者
+	                    	</div>
+	                    </div>
+	                    <div class="col-lg-8 field row">
+	                    	<div class="review_user" style="margin: 10px;">
+	                    		・件名
+	                    	</div>
+	                    </div>
+	                </div>
+
+	                <div class="col-lg-12 line" style="width: 90%; margin-left: 20px; border-top: 1px solid #333333;">
+	                </div>
+
+		            <div class="col-lg-12 product_review" style="width: 100%; margin: 10px; border-bottom: 2px solid #333333;">
+		            	<p>口コミ内容</p>
+			        </div>
+                </div>
+                    <div class="field row" style="margin: 10px 20px;">
+                    </div>
+
+        	</div>
+
+        	<div class="col-lg-4" style="margin-top: 20px; text-align: center;">
+        		<div class="review_button" style="width: 100%;">
+                	<button type="submit" name="example" value="ボタン" style="">口コミを書く</button>
+                </div>
+        	</div>
+
+                    <div class="disc_button" style="text-align: center">
+			            <div class='col-lg-9'>
+			                <button type="submit" name="example" value="ボタン" style="width: 100px; margin: 20px 40px;">1 2 3</button>
+			            </div>
+			        </div>
+        </div>
+
+<!-- 戻る -->
+        <div class="review row" style="border-top: 5px solid #333333;">
+
+                    <div class="disc_button" style="text-align: center">
+			            <div class='col-lg-12'>
+			                <button type="submit" name="example" value="ボタン" style="width: 100px; margin: 20px 40px;">戻る</button>
+			            </div>
+			        </div>
+        </div>
+
+
+    </div>
+</div>
+</div>
