@@ -1,4 +1,5 @@
 class OrdersController < ApplicationController
+
   def new
   end
 
@@ -6,5 +7,6 @@ class OrdersController < ApplicationController
   end
 
   def index
+    @orders = Orders.page(params:[page]).per(10)
   end
 end
