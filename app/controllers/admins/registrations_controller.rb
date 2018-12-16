@@ -8,6 +8,12 @@ def after_sign_in_path_for(resource)
   users_path
 end
 
+def new
+  @user = current_user
+end
+
+
+
   # GET /resource/sign_up
   # def new
   #   super
