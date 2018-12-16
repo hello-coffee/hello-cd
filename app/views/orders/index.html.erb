@@ -1,17 +1,2 @@
 <h1>Orders#index</h1>
-<div class="container">
-    <h2 class="text-center">購入履歴一覧(最新10件)</h2>
-        <% @orders.each do |orders| %>
-            <div class="row">
-                <%= orders.use_id %>
-                <%= orders.created_at %>
-                <%= orders.cart_id %>
-                <!--<div>ここに小計が入る予定</div>-->
-                <%= orders.total_price %>
-                <!--<%= ここに送付先住所を記載したい %>-->
-                <%= orders.status %>
-                <!--↑プルダウンメニューでステータスを変更できる様にしたい-->
-            </div>
-        <% end %>
-        <%= paginate @orders %>
-</div>
+<div>ここに購入履歴一覧が表示されます</div>

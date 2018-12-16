@@ -1,2 +1,56 @@
-<h1>Orders#new</h1>
-<p>Find me in app/views/orders/new.html.erb</p>
+<h3>お届け先入力</h3>
+<div class="container">
+	<div class="row">
+		<div class="col-lg-6">
+			<%= form_for(@address) do |f| %>
+				<h5>氏名</h5>
+				<%= f.text_field :last_name %>
+				<%= f.text_field :first_name %>
+				<h5>カナ</h5>
+				<%= f.text_field :last_name_kana %>
+				<%= f.text_field :first_name_kana %>
+				<h5>郵便番号</h5>
+				<%= f.text_field :post_code %>
+				<h5>住所</h5>
+				<%= f.text_field :address %>
+				<h5>電話番号</h5>
+				<%= f.text_field :tel %>
+				<h5>メールアドレス</h5>
+				<%= f.email_field :email %>
+			<% end %>
+		</div>
+		<div class="col-lg-6">
+			<h3>登録済み住所</h3>
+			<%= form_for(@address) do |f| %>
+ 				<%= f.label :address %>
+ 				<%= f.collection_select :address, Addresses.all, :user_id, :address %>
+			<% end %>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-lg-4">
+			<h3>決済方法</h3>
+			<p>お支払い方法</p>
+			<%= form_for(@order) do |f| %>
+				<label><%= f.radio_button :pay, "カード" %> カード </label>
+				<label><%= f.radio_button :pay, "コンビニ" %> コンビニ </label>
+				<label><%= f.radio_button :pay, "代金引き換え" %> 代金引き換え </label>
+			<% end %>
+		</div>
+		<div class="col-lg-8">
+			<p>購入内容</p>
+				<% sum = 0 %>
+					<% @cart.cart_items.each do |cart.cart_item| %>
+						<%= cart.cart_item.title %>
+						<%= cart.cart_item.artist.name %>
+						<%= cart.cart_item.quantity %>
+						<%= cart.cart_item.price %>
+					<% end %>
+ 				<% sum += cart.cart_item.price * cart_items.quantity %>
+				<%= "商品の小計" + sum + "円" %>
+				<%= 配送料・手数料：0円 %>
+				<%= "合計：" + sum + "円" %>
+		</div>
+	</div>
+	<%= link_to "購入", user_path, class: "btn btn-default active" %>
+</div>

@@ -1,0 +1,22 @@
+
+<%= render 'top/template',search: @search ,result: @result ,artists: @artists ,categories: @categories %>
+
+<div class="container">
+	<div class="row">
+		<section class="col-lg-9 col-lg-offset-3">
+			<h1>アーティストの商品一覧</h1>
+				<% @products.each do |product| %>
+			<div class="jacket-image">
+				<%= product.image %>
+			</div>
+			<div>
+				<%= producut.title %>
+				<p>/</p>
+				<%= producut.artist_id.artist_name %>
+			</div>
+				<% end %>
+			<%= paginate @products %>
+		</section>
+	</div>
+</div>
+

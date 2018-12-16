@@ -1,0 +1,39 @@
+<!-- 変数の＠は全てとる予定です -->
+
+<div class="container">
+	<div class="row">
+		<div class="col-lg-10 col-lg-offset-1">
+			<!-- 検索のアクションはとりあえずartsitsコントローラにかいた -->
+				<!-- form_forのRansack版 -->
+			<%= search_form_for @search do |f| %>
+  				<!-- nameカラムに対して部分一致検索ができる -->
+  				<%= f.label :artist_name_cont, "アーティスト名を含む" %>
+  				<%= f.search_field :artist_name_cont %>
+  				<!-- 検索ボタン -->
+  				<div class="actions"><%= f.submit "検索" %></div>
+			<% end %>
+			<!-- ↓検索結果の表示画面だが、これは各ページに書くべきなのか？ -->
+			<% if @result.any? %>
+ 				<%= render @artists %>
+			<% end %>
+			<% if @result.nil? %>
+    			<%= render @search %>
+			<% end %>
+		</div>
+	</div>
+</div>
+<div class="container">
+	<div class="row">
+		<div class="col-lg-3">
+			<div class="category-box">
+				<p>カテゴリ</p>
+					<% @categories.each do |category| %>
+					<%= link_to category.category_name, なんとか_path(category) %>
+			</div>
+			<div class="ranking-box">
+				<p>デイリーランキング</p>
+				<!-- redisというgemを使うがそのやり方不明。コントローラーも不明 -->
+			</div>
+		</div>
+	</div>
+</div>

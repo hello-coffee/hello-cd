@@ -1,2 +1,89 @@
-<h1>Products#new</h1>
-<p>Find me in app/views/products/new.html.erb</p>
+<div class='container'>
+<div class='row'>
+
+    <div class='col-md-8 col-md-offset-2' style="margin-top: 150px; margin-bottom: 150px">
+    <h1 style="margin-top: 10px; margin-bottom: 30px; text-align: center;">管理者ページ　新しい商品を追加</h1>
+
+        <div class="form_list row" style="border-top: 1px solid #333333;">
+
+            <form method="post" action="example.cgi" style="width: 100%; margin-top: 40px; margin-bottom: 30px; ">
+                <div class="field row">アーティスト名
+                    <p><input type="text" name="name" style="width: 100%; margin-bottom: 10px;"></p>
+                </div>
+                <div class="field row">商品名
+                    <p><input type="text" name="name" style="width: 100%; margin-bottom: 10px;"></p>
+                </div>
+                <div class="field row">ジャケット画像
+                    <div class="input_file" style="margin-bottom: 10px;">
+                        <div class="preview" style="background-image: url(/hoge.jpg);">
+                            <input accept="image/*" id="imgFile" type="file">
+                        </div>
+                    </div>
+                </div>
+                <div class="field row">レーベル
+                    <p><input type="text" name="name" style="width: 100%; margin-bottom: 10px;"></p>
+                </div>
+                <div class="field row">ジャンル
+                    <p><input type="text" name="name" style="width: 100%; margin-bottom: 10px;"></p>
+                </div>
+
+            </form>
+
+        </div>
+
+        <div class="disc_list row" style="margin-top: 20px; border-top: 1px solid #333333;">
+
+            <div class="disc row" style="margin-top: 20px;">DISCリスト
+                <button type="submit" name="example" value="ボタン" style="margin-left: 20px;">DISCを追加</button>
+            </div>
+
+            <div class='col-md-3'>
+                <form method="post" action="example.cgi" style="width: 100%; margin-top: 20px; margin-bottom: 40px">
+                    <div class="field row">DISC名
+                        <p><input type="text" name="name" style="width: 100%; margin-bottom: 10px;"></p>
+                    </div>
+                </form>
+            </div>
+
+            <div class='col-md-9'>
+                <form method="post" action="example.cgi" style="width: 100%; margin-top: 20px; margin-left: 20px">
+                    <div class="field row">曲名リスト
+                        <p><input type="text" name="name" style="width: 100%; margin-bottom: 10px;"></p>
+                    </div>
+                    <div class="field row">
+                        <p><input type="text" name="name" style="width: 100%; margin-bottom: 10px;"></p>
+                    </div>
+                    <div class="field row">
+                        <p><input type="text" name="name" style="width: 100%; margin-bottom: 10px;"></p>
+                    </div>
+                    <div class="field row">
+                        <p><input type="text" name="name" style="width: 100%; margin-bottom: 10px;"></p>
+                    </div>
+                </form>
+
+                <div class="disc" style="width: 100%; margin-bottom: 20px; text-align: center;">
+                    <button type="submit" name="example" value="ボタン">曲名を追加</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="product_entry row" style="margin-top: 20px; border-top: 1px solid #333333;">
+            <form method="post" action="example.cgi" style="width: 30%; margin-top: 20px; margin-bottom: 40px; margin-right: 10px;  float: left;">
+                <div class="field row">価格
+                        <p><input type="text" name="name" style="width: 80%; margin-bottom: 10px;"></p>
+                </div>
+            </form>
+            <form method="post" action="example.cgi" style="width: 30%; margin-top: 20px; margin-bottom: 40px; margin-right: 10px; float: left;">
+                <div class="field row">在庫数
+                        <p><input type="text" name="name" style="width: 80%; margin-bottom: 10px;"></p>
+                </div>
+            </form>
+            <div class=" row" style="float: left;">
+                <button type="submit" name="example" value="ボタン" style="margin: 40px; font-size: 30px;">商品情報を追加</button>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+</div>
