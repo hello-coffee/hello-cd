@@ -34,6 +34,7 @@ Rails.application.routes.draw do
 
     get '/guide' => 'top#guide'
 
+
     resources :users, only: [:show, :update, :destroy, :edit]
 
     resources :artists, only: [:show]
