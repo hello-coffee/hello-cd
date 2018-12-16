@@ -1,5 +1,6 @@
 class CartsController < ApplicationController
   def show
+
       @product = Products.find(params[:id])
 
       @current_stock_array = []
