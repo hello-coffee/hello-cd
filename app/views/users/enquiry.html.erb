@@ -1,0 +1,28 @@
+<!--見た目だけのページなので最後に作成予定--!>
+
+<div class="container">
+    <div class="row">
+        <h1>お問い合わせページ</h1>
+            <%= form_for(@enquiry) do | enquiry | %>
+            <br>
+            <h4>名前</h4>
+            <br>
+            <% = enquiry.text_field :name %>
+            <br>
+            <h4>メールアドレス</h4>
+            <br>
+            <%=  enquiry.email_field :mail %>
+            <br>
+            <h4>件名</h4>
+            <br>
+            <%=  enquiry.text_field :subject %>
+            <br>
+            <h4>内容</h4>
+            <br>
+            <%=  enquiry.text_area :body %>
+            <br>
+            <br>
+            <% end %>
+    </div>
+    <p class="text-center"><%= link_to "送信", root_path, class: 'btn btn-default' %></p>
+</div>

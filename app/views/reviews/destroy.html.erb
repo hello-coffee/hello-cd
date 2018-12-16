@@ -1,2 +1,22 @@
 <h1>Reviews#destroy</h1>
-<p>Find me in app/views/reviews/destroy.html.erb</p>
+
+<div class="container">
+    <h1 class="text-center">管理者ページ 口コミ管理</h1>
+    <p>※投稿を削除すると復元できません。</p>
+    <p>管理者権限で投稿を削除する場合は内容ををご確認の上、削除をクリックして下さい</p>
+    <br>
+    <br>
+    <p class="text-center">商品名</p>
+    <%= collection_select(:page, :name, @articles, :id, :title, :prompt => "商品選択してください") %>
+    
+    <p>投稿された口コミ一覧(最新10件表示)</p>
+    
+    <!--ここに、商品ごとに投稿された口コミを一覧で表示したい-->
+    <!--jqueryを使ったりするのでちょっと大変かもしれない--!>
+    
+    <%= link_to "削除", review_destroy_path(@reviews.id), method: :delete, data: {confirm: "本当に削除しますか？"} %>
+    <% end %>
+    
+   <% = paginate @Reviews %>
+   
+</div>

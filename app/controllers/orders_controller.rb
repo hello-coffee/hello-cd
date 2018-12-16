@@ -1,4 +1,5 @@
 class OrdersController < ApplicationController
+
   def new
   	@adderess = Addresses.find(params[:id])
   	@orders = Order.all
@@ -17,5 +18,6 @@ class OrdersController < ApplicationController
   end
 
   def index
+    @orders = Orders.page(params:[page]).per(10)
   end
 end
