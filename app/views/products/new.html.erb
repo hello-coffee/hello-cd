@@ -21,18 +21,18 @@
             </div>
 
             <div class="field row">
-                <%= f.label :レーベル %>
+                <%= f.label :label %>
                 <%= f.text_field :label, class:"col-xs-12 book_body" %>
             </div>
 
 <!-- discのフォーム -->
-
-            <%= f.fields_for :discss do |d| %>
+            <%= f.fields_for :discs do |d| %>
                 <div class="field row">
                     <%= d.label :ディスク名 %>
                     <%= d.text_field :disc_name, class:"col-xs-12 disc_name" %>
                 </div>
             <% end %>
+<!-- discのフォーム -->
 
             <div class="actions row">
                 <%= f.submit 'Create product', class:"btn btn-primary col-xs-12" %>
@@ -44,57 +44,7 @@
 
         </div>
 
-        <div class="disc_list row" style="margin-top: 20px; border-top: 1px solid #333333;">
 
-            <div class="disc row" style="margin-top: 20px;">DISCリスト
-                <button type="submit" name="example" value="ボタン" style="margin-left: 20px;">DISCを追加</button>
-            </div>
-
-            <div class='col-md-3'>
-                <form method="post" action="example.cgi" style="width: 100%; margin-top: 20px; margin-bottom: 40px">
-                    <div class="field row">DISC名
-                        <p><input type="text" name="name" style="width: 100%; margin-bottom: 10px;"></p>
-                    </div>
-                </form>
-            </div>
-
-            <div class='col-md-9'>
-                <form method="post" action="example.cgi" style="width: 100%; margin-top: 20px; margin-left: 20px">
-                    <div class="field row">曲名リスト
-                        <p><input type="text" name="name" style="width: 100%; margin-bottom: 10px;"></p>
-                    </div>
-                    <div class="field row">
-                        <p><input type="text" name="name" style="width: 100%; margin-bottom: 10px;"></p>
-                    </div>
-                    <div class="field row">
-                        <p><input type="text" name="name" style="width: 100%; margin-bottom: 10px;"></p>
-                    </div>
-                    <div class="field row">
-                        <p><input type="text" name="name" style="width: 100%; margin-bottom: 10px;"></p>
-                    </div>
-                </form>
-
-                <div class="disc" style="width: 100%; margin-bottom: 20px; text-align: center;">
-                    <button type="submit" name="example" value="ボタン">曲名を追加</button>
-                </div>
-            </div>
-        </div>
-
-        <div class="product_entry row" style="margin-top: 20px; border-top: 1px solid #333333;">
-            <form method="post" action="example.cgi" style="width: 30%; margin-top: 20px; margin-bottom: 40px; margin-right: 10px;  float: left;">
-                <div class="field row">価格
-                        <p><input type="text" name="name" style="width: 80%; margin-bottom: 10px;"></p>
-                </div>
-            </form>
-            <form method="post" action="example.cgi" style="width: 30%; margin-top: 20px; margin-bottom: 40px; margin-right: 10px; float: left;">
-                <div class="field row">在庫数
-                        <p><input type="text" name="name" style="width: 80%; margin-bottom: 10px;"></p>
-                </div>
-            </form>
-            <div class=" row" style="float: left;">
-                <button type="submit" name="example" value="ボタン" style="margin: 40px; font-size: 30px;">商品情報を追加</button>
-            </div>
-        </div>
 
 
     </div>
