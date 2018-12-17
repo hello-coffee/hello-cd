@@ -9,8 +9,10 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
+
   <body>
-    <% if user_signed_in? %>
+
+<% if user_signed_in? %>
 
     <header>
       <div class="container" style="padding: 20px 0;">
@@ -28,38 +30,66 @@
       <div class="container well well-md" style="width:100%;">
         <nav style="padding-right: 10%;">
 
-            <li class="nav navbar-nav navbar-right btn btn-default btn-lg", style="padding: 10px;">
-              <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-            </li>
-            <li class="nav navbar-nav navbar-right btn btn-default btn-lg", style="padding: 10px;">
-              <%= link_to "マイページ", user_path(current_user.id) %>
-            </li>
-            <li class="nav navbar-nav navbar-right btn btn-default btn-lg", style="padding: 10px;">
-
-
-            <li class="nav navbar-nav navbar-right btn btn-default btn-lg", style="padding: 10px;">
-              <%= link_to "カート", cart_path(current_user.id) %>
-            </li>
+          <li class="nav navbar-nav navbar-right btn btn-default btn-lg", style="padding: 10px;">
+            <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+          </li>
+          <li class="nav navbar-nav navbar-right btn btn-default btn-lg", style="padding: 10px;">
+            <%= link_to "マイページ", user_path(current_user.id) %>
+          </li>
+          <li class="nav navbar-nav navbar-right btn btn-default btn-lg", style="padding: 10px;">
+            <%= link_to "お気に入り", favorite_artists_url(current_user.id) %>
+          </li>
+          <li class="nav navbar-nav navbar-right btn btn-default btn-lg", style="padding: 10px;">
+            <%= link_to "カート", cart_path(current_user.id) %>
+          </li>
 
         </nav>
       </div>
     </header>
 
-          <% else %>
+
+
+<% elsif admin_signed_in? %>
 
     <header>
       <div class="container" style="padding: 20px 0;">
-      <div class="row">
+       <div class="row">
+        <nav class="nav navbar-nav navbar-left col-sm-2">ロゴ</nav>
+        <nav class="nav navbar-nav well well-sm col-sm-7">
+          <h1 style="text-align: center;">ようこそ管理者さん!</h1>
+        </nav>
+       </div>
+      </div>
+
+      <div class="container well well-md" style="width:100%;">
+        <nav style="padding-right: 10%;">
+
+          <li class="nav navbar-nav navbar-right btn btn-default btn-lg", style="padding: 10px;">
+            <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
+          </li>
+          <li class="nav navbar-nav navbar-right btn btn-default btn-lg", style="padding: 10px;">
+            <%= link_to "マイページ", admin_path(current_admin.id) %>
+          </li>
+        </nav>
+      </div>
+    </header>
+
+
+
+<% else %>
+
+    <header>
+      <div class="container" style="padding: 20px 0;">
+       <div class="row">
         <nav class="nav navbar-nav navbar-left col-sm-2">ロゴ</nav>
         <nav class="nav navbar-nav navbar-right btn btn-info btn-lg col-sm-2" style="padding: 10px;">
           <%= link_to "購入ガイド", guide_path %>
         </nav>
-      </div>
+       </div>
       </div>
 
-        <div class="container well well-md" style="width:100%;">
+      <div class="container well well-md" style="width:100%;">
         <nav style="padding-right: 10%;">
-
           <li class="nav navbar-nav navbar-right btn btn-default btn-lg", style="padding: 10px;" >
             <%= link_to "新規登録", new_user_registration_path %>
           </li>
@@ -67,7 +97,7 @@
             <%= link_to "ログイン", new_user_session_path %>
           </li>
 
-          <% end %>
+<% end %>
 
         </nav>
       </div>
@@ -76,20 +106,30 @@
     <%= yield %>
 
   </body>
-   <footer>
 
-    <% if admin_signed_in? %>
+
+  <footer>
+
+<% if admin_signed_in? %>
 
       <div class="container well well-lg" style="width:100%;">
-         <div class="row" style="height: 80px;">
-          <div class="col-sm-3 btn btn-default" style="height: 80px;">管理者のページへ</div>
-          <div class="col-sm-3 btn btn-info" style="height: 80px;">購入情報一覧ページへ</div>
-          <div class="col-sm-3 btn btn-primary" style="height: 80px;">口コミ管理ページへ</div>
-          <div class="col-sm-3 btn btn-danger" style="height: 80px;">商品追加</div>
-         </div>
+        <div class="row" style="height: 80px;">
+          <div class="col-sm-3 btn btn-default" style="height: 80px;">
+            <% link_to "管理者ページへ", users_path %>
+          </div>
+          <div class="col-sm-3 btn btn-info" style="height: 80px;">
+            <% link_to "購入情報一覧ページへ", orders_path %>
+          </div>
+          <div class="col-sm-3 btn btn-primary" style="height: 80px;">
+            <% link_to "口コミ管理ページへ", reviews_path %>
+          </div>
+          <div class="col-sm-3 btn btn-danger" style="height: 80px;">
+            <% link_to "商品追加", products_new_path %>
+          </div>
+        </div>
       </div>
 
-      <% else %>
+<% else %>
 
     <div class="container well well-sm" style="width:100%;">
         <nav class="nav navbar-nav navbar-left nav-pills nav-stacked col-sm-1">
@@ -105,7 +145,7 @@
         </nav>
     </div>
 
-    <% end %>
+<% end %>
 
     <div class="container well well-sm" style="width:100%; text-align: center;">© 2018 hello!coffee. All Rights Reserved.
     </div>
