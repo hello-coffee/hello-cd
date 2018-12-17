@@ -13,15 +13,17 @@
 ActiveRecord::Schema.define(version: 2018_12_15_061033) do
 
   create_table "addresses", force: :cascade do |t|
-    t.string "name"
-    t.string "name_kana"
+    t.string "last_name"
+    t.string "first_name"
+    t.string "last_name_kana"
+    t.string "first_name_kana"
     t.string "post_code"
     t.string "address"
     t.string "tel"
     t.string "email"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "user_id"
   end
 
   create_table "admins", force: :cascade do |t|
