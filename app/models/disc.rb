@@ -1,7 +1,8 @@
 class Disc < ApplicationRecord
 
-	belong to :product
+	belongs_to :product
 
     has_many :songs, dependent: :destroy
+    accepts_nested_attributes_for :songs
 
 end
