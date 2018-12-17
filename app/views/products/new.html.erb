@@ -6,21 +6,10 @@
 
         <div class="form_list row" style="border-top: 1px solid #333333;">
 
-        <%= form_for(@artist) do |f| %>
-            <div class="field row">
-                <%= f.label :アーティスト名 %>
-                <%= f.text_field :artist_name, class:"col-xs-12 book_title" %>
-            </div>
-        <% end %>
 
-        <%= form_for(@category) do |f| %>
-            <div class="field row">
-                <%= f.label :ジャンル %>
-                <%= f.text_field :category_name, class:"col-xs-12 book_title" %>
-            </div>
-        <% end %>
-
+<!-- productのフォーム -->
         <%= form_for(@product) do |f| %>
+
             <div class="field row">
                 <%= f.label :商品名 %>
                 <%= f.text_field :title, class:"col-xs-12 book_title" %>
@@ -36,12 +25,20 @@
                 <%= f.text_field :label, class:"col-xs-12 book_body" %>
             </div>
 
+<!-- discのフォーム -->
+
+            <%= f.fields_for :discss do |d| %>
+                <div class="field row">
+                    <%= d.label :ディスク名 %>
+                    <%= d.text_field :disc_name, class:"col-xs-12 disc_name" %>
+                </div>
+            <% end %>
+
             <div class="actions row">
                 <%= f.submit 'Create product', class:"btn btn-primary col-xs-12" %>
             </div>
-
         <% end %>
-
+<!-- productのフォーム -->
 
 
 
