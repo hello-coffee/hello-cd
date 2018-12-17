@@ -17,7 +17,7 @@
             <div class='col-md-4'>
                 <div class="jacket_image" style="width: 100%; height: 300px; margin: 30px 0; background-color: lightblue;">
                 	<div class="jacket_image_text" style="width: 100%; margin: 0 auto; text-align: center; padding-top: 150px" >
-                	    ジャケット画像
+                	    <%= attachment_image_tag @product, :profile_image, fallback: "no_image.jpg", size: "50x50"  %>
                 	</div>
                 </div>
             </div>
@@ -25,18 +25,30 @@
             <div class='col-md-8'>
 
 	            	<div class="product_name" style="text-align: center">
-	            		<h2>商品名</h2>
+	            		<h2>商品名 <%= @product.title %></h2>
 	            	</div>
 
-	                <div class="product_info" style="width: 100%; margin-top: 20px; margin-left: 20px">
-	                    <div class="field row" style="width: 100%; margin-bottom: 10px;">アーティスト
-	                    </div>
-	                    <div class="field row" style="width: 100%; margin-bottom: 10px;">レーベル
-	                    </div>
-	                    <div class="field row" style="width: 100%; margin-bottom: 10px;">ジャンル
-	                    </div>
+                    <div class='col-md-3'>
+		                <div class="product_info" style="width: 100%; margin-top: 20px; margin-left: 20px">
+		                    <div class="field row" style="width: 100%; margin-bottom: 10px;">アーティスト
+		                    </div>
+		                    <div class="field row" style="width: 100%; margin-bottom: 10px;">レーベル
+		                    </div>
+		                    <div class="field row" style="width: 100%; margin-bottom: 10px;">ジャンル
+		                    </div>
+		                </div>
+	            	</div>
 
-	                </div>
+                    <div class='col-md-9'>
+		                <div class="product_info" style="width: 100%; margin-top: 20px; margin-left: 20px">
+		                    <div class="field row" style="width: 100%; margin-bottom: 10px;">「アーティスト名」
+		                    </div>
+		                    <div class="field row" style="width: 100%; margin-bottom: 10px;"><%= @product.label %>
+		                    </div>
+		                    <div class="field row" style="width: 100%; margin-bottom: 10px;">「ジャンル名」
+		                    </div>
+		                </div>
+	            	</div>
 
 	                <div class="disc_button" style="width: 100%; margin-top: 20px; text-align: center;">
 			                <button type="submit" name="example" value="ボタン" style="">
@@ -51,8 +63,12 @@
 
 		        <div class="disc_info" style="margin-top: 20px; margin-left: 20px;">
                     <div class="disc_name" style="margin-bottom: 10px; border: 1px solid #333333; text-align: center; display: inline-block; padding: 0 5px;">
-                    	disc1
+		                <% @discs.each do |disc| %>
+		                    <%= disc.disc_name %>
+		                <% end %>
                     </div>
+
+
 
                     <div class="field row" style="margin: 10px 20px; border-bottom: 1px solid #333333;">song 1
                     </div>
