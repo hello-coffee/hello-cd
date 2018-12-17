@@ -14,4 +14,10 @@ class User < ApplicationRecord
 
     has_many :orders, dependent: :destroy
 
+	has_many :favorite_artists
+	has_many :artists, :through => :favorite_artists
+
+	has_many :carts
+
+
 end

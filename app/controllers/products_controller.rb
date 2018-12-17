@@ -4,6 +4,9 @@ class ProductsController < ApplicationController
     end
 
     def show
+        @product = Product.find(params[:id])
+        @discs = @product.discs
+        #@discs = Disc.all
     end
 
     def update
@@ -23,14 +26,14 @@ class ProductsController < ApplicationController
     end
 
     def create
-        @product = Product.new(product_params) #paramsでは、フォームで入力されたデータが投稿データとして許可されているパラメータかチェックしている
+        @product = Product.new(product_params)
         @product.save
         redirect_to product_path(@product.id)
     end
 
     private
         def product_params
-            params.require(:product).permit(:artist_id, :title, :image, :price, :label, :category_id, :stock, :deleted_at, [:id, :disc_name, :product_id])
+            params.require(:product).permit(:artist_id, :title, :image, :price, :label, :categoty_id, :deleted_at, :stock, discs_attributes: [:id, :disc_name, :product_id])
         end
 
 end
