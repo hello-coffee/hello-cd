@@ -1,5 +1,5 @@
 
-<%= render 'top/template',search: @search ,result: @result ,artists: @artists ,categories: @categories %>
+<%#= render 'top/template',search: @search ,result: @result ,artists: @artists ,categories: @categories %>
 
 <div class="container">
 	<div class="row">
@@ -7,12 +7,12 @@
 			<h1>アーティストの商品一覧</h1>
 				<% @products.each do |product| %>
 			<div class="jacket-image">
-				<%= product.image %>
+				<%#= product.image %>
 			</div>
 			<div>
-				<%= producut.title %>
+				<%= product.title %>
 				<p>/</p>
-				<%= producut.artist_id.artist_name %>
+				<%= product.artist.artist_name %>
 			</div>
 				<% end %>
 			<%= paginate @products %>
