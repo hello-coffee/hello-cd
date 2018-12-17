@@ -1,10 +1,11 @@
 class UsersController < ApplicationController
 
   def favorite_artists
+    @user = current_user
+    @user.artists
   end
 
   def show
-    @user = current_user
   end
 
   def update
@@ -14,6 +15,12 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = current_user
   end
+
+  private
+
+  def artist_params
+    params.require(:artist).permit(:artist_name)
+  end
+
 end
