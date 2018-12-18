@@ -1,19 +1,23 @@
 
-<%= render 'top/template',search: @search ,result: @result ,artists: @artists ,categories: @categories %>
+<%#= render 'top/template',search: @search ,result: @result ,artists: @artists ,categories: @categories %>
 
 <div class="container">
 	<div class="row">
-		<section class="col-lg-9 col-lg-offset-3">
+		<section class="col-lg-6 col-lg-offset-3">
 			<h1>カテゴリ名</h1>
 				<% @products.each do |product| %>
-			<div class="jacket-image">
-				<%= product.image %>
-			</div>
-			<div>
-				<%= producut.title %>
-				<p>/</p>
-				<%= producut.artist_id.artist_name %>
-			</div>
+					<div class="inline-block">
+						<div class="col-lg-4">
+							<div class="jacket-image">
+								<%#= product.image %>
+							</div>
+							<div>
+								<%= product.title %>
+								<p>/</p>
+								<%= product.artist.artist_name %>
+							</div>
+						</div>
+					</div>
 				<% end %>
 			<%= paginate @products %>
 		</section>

@@ -1,0 +1,19 @@
+<!-- 変数の＠は全てとる予定 -->
+
+<div class="container">
+	<div class="row">
+		<div class="col-lg-3">
+			<div class="category-box">
+				<p>カテゴリ</p>
+					<% categories.each do |category| %>
+					<%= link_to category.category_name, category_path(category) %>
+					<% end %>
+			</div>
+			<div class="ranking-box">
+				<p>デイリーランキング</p>
+				<!-- redisというgemを使うがそのやり方不明。コントローラーも不明 -->
+			</div>
+		</div>
+	</div>
+</div>
+
