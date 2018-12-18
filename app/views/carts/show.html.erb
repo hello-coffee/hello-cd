@@ -1,4 +1,4 @@
-<%= "＃{@user.last_name}さんの買い物かご" %>
+<h3><%= current_user.last_name %>さんの買い物かご</h3>
 <div class="container">
 	<div class="row">
 		<div class="col-lg-12">
@@ -13,25 +13,28 @@
 					</tr>
 				</thead>
 				<tbody>
-					<% sum = 0 %>
-					<% @cart.cart_items.each do |cart.cart_item| %>
+					<%# sum = 0 %>
+					<% @artists.each do |artist| %>
+						<% artist.products.each do |product| %>
 					<tr>
-						<td><%= attachment_image_tag cart.cart_item, :image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %></td>
-						<td><%= cart.cart_item.title %>
-							<%= cart.cart_item.artist.name %>
+						<td><%#= attachment_image_tag product.image_id, :image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %></td>
+						<td><%= product.title %><br>
+							<%= artist.artist_name %>
 						</td>
-						<td><%= cart.cart_item.price %></td>
-						<td><% form_for @product do |f| %>
-    						<%= f.label :stock, "数量選択" %>
+						<td><%= product.price %></td>
+						<td>
+							<% form_for(@stock) do |f| %>
+    						<%= f.label :数量選択 %>
    							<%= f.select :stock, @current_stock_array %>
 							<% end %>
 						</td>
 						<td><%= link_to "削除", cart_path, class: "btn btn-default active" %></td>
 					</tr>
+						<% end %>
 					<% end %>
 				</tbody>
- 				<% sum += cart.cart_item.price * cart_items.quantity %>
-				<%= "合計" + sum + "円" %>
+ 				<%# sum += cart.cart_item.price * cart_items.quantity %>
+				<%#= "合計" + sum + "円" %>
 			</table>
 		</div>
 		<div class="row">

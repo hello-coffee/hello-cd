@@ -1,0 +1,20 @@
+<!-- 変数の＠は全てとる予定 -->
+
+<!-- 検索のアクションはとりあえずartsitsコントローラにかいた -->
+<!-- form_forのRansack版 -->
+	<%= search_form_for search,url:artists_path do |f| %>
+  	<!-- nameカラムに対して部分一致検索ができる -->
+  		<%= f.label :artist_name_cont, "アーティスト名検索" %>
+  		<%= f.search_field :artist_name_cont %>
+<div style="display:inline-flex">
+  	<!-- 検索ボタン -->
+  		<div class="actions"><%= f.submit "検索" %></div>
+	<% end %>
+</div>
+<!-- ↓検索結果の表示画面だが、これは各ページに書くべきなのか？ -->
+<%# if result.any? %>
+<%#= render result %>
+<%# end %>
+<%# if result.nil? %>
+<%#= render artists %>
+<%# end %>

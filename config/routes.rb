@@ -37,7 +37,7 @@ Rails.application.routes.draw do
 
     resources :users, only: [:show, :update, :destroy, :edit]
 
-    resources :artists, only: [:show]
+    resources :artists, only: [:index, :show]
 
     get '/favorite_artists' => 'users#favorite_artists'
 
