@@ -1,15 +1,22 @@
 <!-- 変数の＠は全てとる予定 -->
-
+<div class="container">
+	<div class="row">
+		<div class="col-lg-8 col-lg-offset-2">
 <!-- 検索のアクションはとりあえずartsitsコントローラにかいた -->
 <!-- form_forのRansack版 -->
-	<%= search_form_for search,url:artists_path do |f| %>
+			<%= search_form_for search,url:artists_path do |f| %>
   	<!-- nameカラムに対して部分一致検索ができる -->
-  		<%= f.label :artist_name_cont, "アーティスト名検索" %>
-  		<%= f.search_field :artist_name_cont %>
-<div style="display:inline-flex">
+  				<%= f.label :artist_name_cont, "アーティスト・商品検索" %>
+  				<%= f.search_field :artist_name_or_products_title_cont, placeholder: "アーティスト名か商品名を入力してください", :size => 8.5*8.5 %>
+				<div style="display:inline-flex">
   	<!-- 検索ボタン -->
-  		<div class="actions"><%= f.submit "検索" %></div>
-	<% end %>
+  					<div class="actions">
+  					<%= f.submit "検索", class:"btn btn-default active" %>
+  					</div>
+			<% end %>
+				</div>
+		</div>
+	</div>
 </div>
 <!-- ↓検索結果の表示画面だが、これは各ページに書くべきなのか？ -->
 <%# if result.any? %>
