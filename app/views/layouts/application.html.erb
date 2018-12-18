@@ -12,44 +12,32 @@
 
   <body>
 
-<% if user_signed_in? %>
+  <% if user_signed_in? %>
 
     <header>
       <div class="container" style="padding: 20px 0;">
        <div class="row">
-        <nav class="nav navbar-nav navbar-left col-sm-2">ロゴ</nav>
+        <%= link_to "ロゴ", products_path, class:"nav navbar-nav navbar-left col-sm-2" %>
         <nav class="nav navbar-nav well well-sm col-sm-7">
           <h1 style="text-align: center;">ようこそ<%= current_user.last_name %>さん!</h1>
         </nav>
-        <nav class="nav navbar-nav navbar-right btn btn-info btn-lg col-sm-2" style="padding: 5px;">
-          <%= link_to "購入ガイド", guide_path %>
-        </nav>
+        <%= link_to "購入ガイド", guide_path, class:"nav navbar-nav navbar-right btn btn-info btn-lg col-sm-2" %>
        </div>
       </div>
 
       <div class="container well well-md" style="width:100%;">
         <nav style="padding-right: 10%;">
-
-          <li class="nav navbar-nav navbar-right btn btn-default btn-lg", style="padding: 10px;">
-            <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-          </li>
-          <li class="nav navbar-nav navbar-right btn btn-default btn-lg", style="padding: 10px;">
-            <%= link_to "マイページ", user_path(current_user.id) %>
-          </li>
-          <li class="nav navbar-nav navbar-right btn btn-default btn-lg", style="padding: 10px;">
-            <%= link_to "お気に入り", favorite_artists_path %>
-          </li>
-          <li class="nav navbar-nav navbar-right btn btn-default btn-lg", style="padding: 10px;">
-            <%= link_to "カート", cart_path(current_user.id) %>
-          </li>
-
+            <%= link_to "　ログアウト", destroy_user_session_path, method: :delete, class:"nav navbar-nav navbar-right btn btn-default btn-lg" %>
+            <%= link_to "　マイページ", user_path(current_user), class:"nav navbar-nav navbar-right btn btn-default btn-lg" %>
+            <%= link_to "　お気に入り", favorite_artists_path, class:"nav navbar-nav navbar-right btn btn-default btn-lg" %>
+            <%= link_to "　　カート　", cart_path(current_user), class:"nav navbar-nav navbar-right btn btn-default btn-lg" %>
         </nav>
       </div>
     </header>
 
 
 
-<% elsif admin_signed_in? %>
+  <% elsif admin_signed_in? %>
 
     <header>
       <div class="container" style="padding: 20px 0;">
@@ -63,47 +51,35 @@
 
       <div class="container well well-md" style="width:100%;">
         <nav style="padding-right: 10%;">
-
-          <li class="nav navbar-nav navbar-right btn btn-default btn-lg", style="padding: 10px;">
-            <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
-          </li>
-          <li class="nav navbar-nav navbar-right btn btn-default btn-lg", style="padding: 10px;">
-            <%= link_to "マイページ", admin_path(current_admin.id) %>
-          </li>
+          <%= link_to "　ログアウト", destroy_admin_session_path, method: :delete, class:"nav navbar-nav navbar-right btn btn-default btn-lg" %>
+          <%= link_to "　マイページ", admin_path(current_admin), class:"nav navbar-nav navbar-right btn btn-default btn-lg" %>
         </nav>
       </div>
     </header>
 
 
 
-<% else %>
+  <% else %>
 
     <header>
       <div class="container" style="padding: 20px 0;">
-       <div class="row">
-        <nav class="nav navbar-nav navbar-left col-sm-2">ロゴ</nav>
-        <nav class="nav navbar-nav navbar-right btn btn-info btn-lg col-sm-2" style="padding: 10px;">
-          <%= link_to "購入ガイド", guide_path %>
-        </nav>
-       </div>
+        <div class="row">
+          <%= link_to "ロゴ", products_path, class:"nav navbar-nav navbar-left col-sm-2" %>
+          <%= link_to "購入ガイド", guide_path, class:"nav navbar-nav navbar-right btn btn-info btn-lg col-sm-2" %>
+        </div>
       </div>
 
       <div class="container well well-md" style="width:100%;">
         <nav style="padding-right: 10%;">
-          <li class="nav navbar-nav navbar-right btn btn-default btn-lg", style="padding: 10px;" >
-            <%= link_to "新規登録", new_user_registration_path %>
-          </li>
-          <li class="nav navbar-nav navbar-right btn btn-default btn-lg", style="padding: 10px;">
-            <%= link_to "ログイン", new_user_session_path %>
-          </li>
-
-<% end %>
-
+            <%= link_to "　新規登録", new_user_registration_path, class:"nav navbar-nav navbar-right btn btn-default btn-lg" %>
+            <%= link_to "　ログイン", new_user_session_path, class:"nav navbar-nav navbar-right btn btn-default btn-lg" %>
+  <% end %>
         </nav>
       </div>
     </header>
 
-    <%= yield %>
+
+  <%= yield %>
 
   </body>
 
@@ -112,20 +88,12 @@
 
 <% if admin_signed_in? %>
 
-      <div class="container well well-lg" style="width:100%;">
-        <div class="row" style="height: 80px;">
-          <div class="col-sm-3 btn btn-default" style="height: 80px;">
-            <% link_to "管理者ページへ", users_path %>
-          </div>
-          <div class="col-sm-3 btn btn-info" style="height: 80px;">
-            <% link_to "購入情報一覧ページへ", orders_path %>
-          </div>
-          <div class="col-sm-3 btn btn-primary" style="height: 80px;">
-            <% link_to "口コミ管理ページへ", reviews_path %>
-          </div>
-          <div class="col-sm-3 btn btn-danger" style="height: 80px;">
-            <% link_to "商品追加", products_new_path %>
-          </div>
+      <div class="container well well-md" style="width:100%;">
+        <div class="row" style="height: 50px;">
+            <%= link_to "管理者ページへ",admin_path(current_admin), class:"col-sm-3 btn btn-default btn-lg" %>
+            <%= link_to "購入情報一覧ページへ", orders_path, class:"col-sm-3 btn btn-info btn-lg" %>
+            <%= link_to "口コミ管理ページへ", reviews_path, class:"col-sm-3 btn btn-primary btn-lg" %>
+            <%= link_to "商品追加", new_product_path, class:"col-sm-3 btn btn-danger btn-lg" %>
         </div>
       </div>
 
@@ -139,9 +107,8 @@
         <nav class="nav navbar-nav navvar-left">
           <p>渋谷<br>0120-123-456<br>aaa@aaa<br></p>
         </nav>
-        <nav class="nav navbar-nav navbar-right col-sm-1" style="padding-right: 14%;">
-          <div class="btn btn-warning btn-lg" style="padding-right: 10px;"><%= link_to "問い合わせ", contact_path %>
-          </div>
+        <nav style="padding-right: 50px;">
+          <%= link_to "　問い合わせ", contact_path, class:"nav navbar-nav navbar-right btn btn-warning btn-lg" %>
         </nav>
     </div>
 
