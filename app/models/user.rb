@@ -2,10 +2,11 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+         :recoverable, :rememberable
+  acts_as_paranoid
 
-    has_many :favorite_artists
-    has_many :artists, through: :favorite_artists
+  has_many :favorite_artists
+  has_many :artists, through: :favorite_artists
 
 	has_many :reviews, dependent: :destroy
 	has_many :products, :through => :reviews
@@ -18,6 +19,5 @@ class User < ApplicationRecord
 	has_many :artists, :through => :favorite_artists
 
 	has_many :carts
-
 
 end

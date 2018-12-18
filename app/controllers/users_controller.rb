@@ -1,26 +1,42 @@
 class UsersController < ApplicationController
 
+ before_action :authenticate_user!
+
   def favorite_artists
     @user = current_user
-    @user.artists
+    @favorite_artists = FavoriteArtist.where(user_id: @user.id)
+    puts @favorite_artists
   end
 
   def show
   end
 
+  def edit
+    @user = User.find(params[:id])
+  end
+
   def update
+    @user = User.find(params[:id])
+    @user.update(user_params)
+    redirect_to user_path(@user.id)
   end
 
   def destroy
-  end
-
-  def edit
+    @user = User.find(params[:id])
+    @user.destroy
+    redirect_to products_path
   end
 
   private
 
   def artist_params
     params.require(:artist).permit(:artist_name)
+  end
+
+private
+
+  def user_params
+    params.require(:user).permit(:last_name, :first_name, :last_name_kana, :first_name_kana, :post_code, :address, :tell, :emil)
   end
 
 end
