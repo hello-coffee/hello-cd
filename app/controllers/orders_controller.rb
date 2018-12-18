@@ -1,7 +1,7 @@
 class OrdersController < ApplicationController
 
   def new
-  	@adderess = Addresses.find(params[:id])
+  	@address = Addresses.find(params[:id])
   	@orders = Order.all
   	@cart = Carts.find_by(user_id: current_user.id)
   	@order = Order.new

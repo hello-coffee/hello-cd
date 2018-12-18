@@ -1,29 +1,27 @@
 <div class="well well-lg">
  	<div style="padding-left:20px;">
 		<h1>登録情報一覧</h1>
-		<nav style="padding-right: 10%;">
-          <li class="nav navbar-nav navbar-right btn btn-danger btn-lg", style="padding: 10px;">
-            <%= link_to "退会" %>
-          </li>
-          <li class="nav navbar-nav navbar-right btn btn-info btn-lg", style="padding: 10px;">
-            <%= link_to "編集", edit_user_path(@user) %>
-          </li>
+		<nav style="padding-right: 2%;">
+        <nav>
+          <%= link_to "退会", user_path(current_user), :method => :delete, "data-confirm" => "後悔しませんか？",class:"nav navbar-nav navbar-right btn btn-danger btn-lg col-sm-2" %>
         </nav>
-        <nav style="padding-right: 9%;">
-          <br>
-          <br>
-          <br>
-          <li class="nav navbar-nav navbar-right btn btn-default btn-lg", style="padding: 5px;">
-            <%= link_to "パスワード変更", new_user_password_url%>
-          </li>
-   		</nav>
+        <nav>
+          <%= link_to "編集", edit_user_path(current_user), class:"nav navbar-nav navbar-right btn btn-info btn-lg col-sm-2" %>
+        </nav>
+    </nav>
+    <nav style="padding-right: 6%;">
+        <br>
+        <br>
+        <br>
+          <%= link_to "　パスワード変更", new_user_password_url, class:"nav navbar-nav navbar-right btn btn-default btn-sm col-md-3"%>
+   	</nav>
 		<div>
-	 		<p>郵便番号　〒<%= @user.post_code %></p>
-	  		<p>住所　　　<%= @user.address %></p>
-	  		<p>氏名　　　<%= @user.last_name %><%= @user.first_name %></p>
-	  		<p>　　　　　<%= @user.last_name_kana %><%= @user.first_name_kana %></p>
-	  		<p>電話番号　<%= @user.tel %></p>
-	  		<p>メールアドレス　<%= @user.email %></p>
+	 		<p>郵便番号　〒<%= current_user.post_code %></p>
+	  		<p>住所　　　<%= current_user.address %></p>
+	  		<p>氏名　　　<%= current_user.last_name %><%= current_user.first_name %></p>
+	  		<p>　　　　　<%= current_user.last_name_kana %><%= current_user.first_name_kana %></p>
+	  		<p>電話番号　<%= current_user.tel %></p>
+	  		<p>メールアドレス　<%= current_user.email %></p>
 		</div>
   	</div>
 </div>
