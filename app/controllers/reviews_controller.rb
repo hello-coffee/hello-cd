@@ -1,7 +1,12 @@
 class ReviewsController < ApplicationController
   
   def new
-    @new_review = Review.new
+    @new_review = Review.new(
+      content: params[:contene]
+      userid: @current_user.id
+      )
+      # 投稿時にuser_idを紐つけたい
+      # ↑参照記事 https://qiita.com/you8/items/63ad0b9c07da4323fe26
   end
 
   def create

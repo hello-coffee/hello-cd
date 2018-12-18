@@ -33,6 +33,8 @@ Rails.application.routes.draw do
     get '/contact' => 'top#contact'
 
     get '/guide' => 'top#guide'
+    
+    root 'products#index'
 
 
     resources :users, only: [:show, :update, :destroy, :edit]
