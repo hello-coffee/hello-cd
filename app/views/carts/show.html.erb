@@ -14,23 +14,21 @@
 				</thead>
 				<tbody>
 					<%# sum = 0 %>
-					<% @artists.each do |artist| %>
-						<% artist.products.each do |product| %>
+					<% @cart.cart_items.each do |cart_item| %>
 					<tr>
-						<td><%#= attachment_image_tag product.image_id, :image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %></td>
-						<td><%= product.title %><br>
-							<%= artist.artist_name %>
+						<td><%#= attachment_image_tag cart_item.product.image_id, :image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %></td>
+						<td><%= cart_item.product.title %><br>
+							<%= @artist(cart_item.product.artist_id) %>
 						</td>
-						<td><%= product.price %></td>
+						<td><%= cart_item.product.price %>円</td>
 						<td>
 							<% form_for(@stock) do |f| %>
     						<%= f.label :数量選択 %>
    							<%= f.select :stock, @current_stock_array %>
 							<% end %>
 						</td>
-						<td><%= link_to "削除", cart_path, class: "btn btn-default active" %></td>
+						<td><%= link_to "削除", cart_path, class: "btn btn-default active btn btn-danger", method: :delete, "data-confirm" => "買い物かごから削除していいですか?" %></td>
 					</tr>
-						<% end %>
 					<% end %>
 				</tbody>
  				<%# sum += cart.cart_item.price * cart_items.quantity %>

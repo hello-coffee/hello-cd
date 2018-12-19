@@ -72,4 +72,5 @@ gem 'jquery-rails'
 gem 'ransack'
 gem 'nested_form_fields'
 gem "paranoia"
+gem 'pry-byebug'
 
