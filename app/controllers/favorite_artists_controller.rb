@@ -14,7 +14,6 @@ class FavoriteArtistsController < ApplicationController
   	@favorite_artist = FavoriteArtist.find(params[:id])
     @favorite_artist.destroy
       redirect_to favorite_artists_path
-    end
   end
 
 end
