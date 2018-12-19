@@ -5,14 +5,20 @@ class UsersController < ApplicationController
   def favorite_artists
     @user = current_user
     @favorite_artists = FavoriteArtist.where(user_id: @user.id)
-    puts @favorite_artists
   end
 
   def show
+    @user = User.find(params[:id])
+    if current_user.id != @user.id
+          redirect_to user_path(current_user)
+    end
   end
 
   def edit
     @user = User.find(params[:id])
+    if current_user.id != @user.id
+          redirect_to user_path(current_user)
+    end
   end
 
   def update
@@ -36,7 +42,7 @@ class UsersController < ApplicationController
 private
 
   def user_params
-    params.require(:user).permit(:last_name, :first_name, :last_name_kana, :first_name_kana, :post_code, :address, :tell, :emil)
+    params.require(:user).permit(:last_name, :first_name, :last_name_kana, :first_name_kana, :post_code, :address, :tel, :emil)
   end
 
 end
