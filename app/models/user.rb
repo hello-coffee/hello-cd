@@ -5,9 +5,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable
   acts_as_paranoid
 
-  has_many :favorite_artists
-  has_many :artists, through: :favorite_artists
-
 	has_many :reviews, dependent: :destroy
 	has_many :products, :through => :reviews
 

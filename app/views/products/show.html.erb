@@ -55,51 +55,56 @@
 
 	                <div class="disc_button" style="width: 100%; margin-top: 20px; text-align: center;">
 			                <button type="submit" name="example" value="ボタン" style="">
-			                	アーティストをお気に入りに追加
+			                	<%= link_to "アーティストをお気に入りに追加", add_artist_path(artist_url), method: :post %>
 			                </button>
 			        </div>
                 <div class="line" style="width: 100%; margin: 10px 0; border-top: 3px solid #333333;"></div>
 
 <!-- ディスク情報 始まり-->
+
+	        <!-- track-info -->
+	        <div class="track-list">
+	            <h3 class="productContent">収録内容</h3>
+	            <% @discs.each do |disc| %>
+	            <ul>
+	                <li>
+	                    <h3 class="productContent"><%= disc.disc_name %></h3>
+	                    <table class="table table-striped">
+	                        <thead>
+	                            <tr>
+	                                <th style="width: 100px;">No.</th>
+	                                <th>収録曲</th>
+	                            </tr>
+	                        </thead>
+
+	                        <tbody>
+	                            <% disc.songs.each.with_index(1) do |song, i| %>
+	                                <tr>
+	                                    <td><%= i %></td>
+	                                    <td colspan="2">
+	                                        <%= song.song_name %>
+	                                    </td>
+	                                </tr>
+	                            <% end %>
+	                        </tbody>
+	                    </table>
+	                </li>
+	            </ul>
+	            <% end %>
+        	</div>
+
+
 		        <div class="disc_info" style="margin-top: 20px; margin-left: 20px;">
 
-<!-- ディスク名 始まり-->
-                    <div class="disc_name" style="margin-bottom: 10px; border: 1px solid #333333; text-align: center; display: inline-block; padding: 0 5px;">
-		                <% @discs.each do |disc| %>
-		                    <%= disc.disc_name %>
-		                <% end %>
-                    </div>
-<!-- ディスク名 終わり-->
-
-<!-- 曲名一覧 始まり-->
-                    <div class="song_list field row">
-				        <% @discs.each do |disc| %>
-							    <table class="table-hover col-xs-12">
-			                        <tbody>
-			                            <tr>
-			                                <th></th>
-			                            </tr>
-				                    	<td>
-								            <% disc.songs.each do |song| %>
-				                    		<div class="field row" style="margin: 10px 20px; border-bottom: 1px solid #333333;">
-				                    			曲名    <%= song.song_name %>
-				                    		</div>
-					                    <% end %>
-				                    	</td>
-			                        </tbody>
-			                    </table>
-		                <% end %>
-                    </div>
-<!-- 曲名一覧 終わり-->
-
                     <div class="disc_button" style="text-align: center">
-			            <div class='col-lg-6' style="width: 100px; margin: 20px 40px;">
-                        	<%= link_to "Edit", edit_product_path(@product.id), class:"btn-sm btn-success edit_product_#{@product.id}" %>
-			            </div>
-			            <div class='col-lg-6' style="width: 100px; margin: 20px 40px;">
-							<%= link_to "Destroy", product_path(@product.id), "data-confirm" => "本当に消しますか?", class:"btn-sm btn-danger destroy_product_#{@product.id}", method: :delete %>
+                        <div class='col-lg-6' style="width: 100px; margin: 20px 40px;">
+                            <%= link_to "Edit", edit_product_path(@product.id), class:"btn-sm btn-success edit_product_#{@product.id}" %>
                         </div>
-			        </div>
+                        <div class='col-lg-6' style="width: 100px; margin: 20px 40px;">
+                            <%= link_to "Destroy", product_path(@product.id), "data-confirm" => "本当に消しますか?", class:"btn-sm btn-danger destroy_product_#{@product.id}", method: :delete %>
+                        </div>
+                    </div>
+
 		        </div>
 <!-- ディスク情報 終わり-->
 

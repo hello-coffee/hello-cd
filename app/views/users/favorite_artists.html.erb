@@ -4,9 +4,13 @@
 
 <% @favorite_artists.each do |favorite_artist| %>
 	<% artist = Artist.find(favorite_artist.artist_id) %>
-            <div class="name3"><%= link_to artist.artist_name, artist_path(artist) %>
-            </div>
-            <div class="name2"><%= link_to "お気に入り解除", favorite_artists_path, :method => :delete %>
-            </div>
+		<div class="well">
+            <h2><%= link_to artist.artist_name, artist_path(artist), class:"col-sm-offset-1 label label-default" %>
+				<button type="button" class="col-sm-offset-5">
+      				<%= link_to "　お気に入り解除　",favorite_artist_path(favorite_artist), method: :delete, class:"btn btn-outline-primary" %>
+     			</button>
+     		</h2>
+     	</div>
+
     <% end %>
 </div>
