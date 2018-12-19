@@ -7,77 +7,64 @@
         <div class="form_list row" style="margin-top: 30px; margin-bottom: 30px; border-top: 1px solid #333333;"></div>
 
 <!-- productのフォーム 始まり-->
-        <%= form_for(@product) do |product| %>
+        <%= form_for(@product) do |f| %>
 
             <div class="field row" style="margin-top: 20px;">
-                <%= product.label :商品名 %>
-                <%= product.text_field :title, class:"col-xs-12 book_title" %>
+                <%= f.label :商品名 %>
+                <%= f.text_field :title, class:"col-xs-12 book_title" %>
             </div>
 
             <div class="field row" style="margin-top: 20px;">
-                <%= product.label :ジャケット画像 %>
-                <%= product.attachment_field :image, class:"user_image" %>
+                <%= f.label :ジャケット画像 %>
+                <%= f.attachment_field :image, class:"user_image" %>
             </div>
 
             <div class="field row" style="margin-top: 20px;">
-                <%= product.label :レーベル %>
-                <%= product.text_field :label, class:"col-xs-12 book_body" %>
+                <%= f.label :レーベル %>
+                <%= f.text_field :label, class:"col-xs-12 book_body" %>
             </div>
 
         <div class="disc_list row" style="margin-top: 30px; margin-bottom: 30px; border-top: 1px solid #333333;"></div>
 
-            <div class="disc row" style="margin-top: 20px;">DISCリスト
-                <button type="" name="example" value="ボタン" style="margin-left: 20px;">DISCを追加</button>
-            </div>
-<!-- discのフォーム 始まり-->
-            <div class="field_box" style="width: 100%; margin-top: 20px; margin-bottom: 20px; display:inline-block;">
-                <%= product.fields_for :discs do |disc| %>
-                    <div class="col-md-3 field row">
-                        <table class="table-hover col-xs-12">
-                            <tbody>
-                                <tr>
-                                    <th>ディスク名</th>
-                                </tr>
-                                <td><%= disc.text_field :disc_name, class:"col-xs-12 disc_name" %></td>
-                            </tbody>
-                        </table>
+
+
+
+<!--  -->
+            <div class="disc">
+            <h3>DISCリスト</h3>
+                <div id="discs">
+                    <%= f.fields_for :discs do |disc| %>
+                        <%= render 'disc_fields', f: disc %>
+                    <% end %>
+                    <div id="links">
+                         <%= link_to_add_association 'DISCを追加',f, :discs, class: 'btn btn-primary', role: 'button'  %>
                     </div>
-<!-- sondのフォーム 始まり-->
-                    <div class="col-md-9 field row">
-                        <table class="table-hover col-xs-12" style="height: 100%;">
-                            <tbody>
-                                <tr>
-                                    <th>曲名</th>
-                                    <th></th>
-                                </tr>
-                                    <%= disc.nested_fields_for :songs, wrapper_tag: :tr do |song| %>
-                                        <td><%= song.text_field :song_name, class:"col-xs-12 disc_name" %></td>
-                                        <td><%= song.remove_nested_fields_link 'Delete', class: 'btn btn-danger', role: 'button' %></td>
-                                    <% end %>
-                            </tbody>
-                        </table>
-                        <div class="disc" style="width: 100%; text-align: center;">
-                            <%= disc.add_nested_fields_link :songs, 'Add new', class: 'btn btn-primary', role: 'button' %>
-                        </div>
-                    </div>
-<!-- sondのフォーム 終わり-->
-                <% end %>
+                </div>
+
             </div>
-<!-- discのフォーム 終わり-->
+<!--  -->
+
+
+
+
+
+
+
+
 
         <div class="disc_list row" style="margin-top: 30px; margin-bottom: 30px; border-top: 1px solid #333333;"></div>
 
 
             <div class="col-md-4 field row" style="margin-top: 20px;">
-                <%= product.label :価格 %>
-                <%= product.text_field :price, class:"col-xs-12 book_title" %>
+                <%= f.label :価格 %>
+                <%= f.text_field :price, class:"col-xs-12 book_title" %>
             </div>
             <div class="col-md-4 field row" style="margin-top: 20px;">
-                <%= product.label :在庫数 %>
-                <%= product.text_field :stock, class:"col-xs-12 book_title" %>
+                <%= f.label :在庫数 %>
+                <%= f.text_field :stock, class:"col-xs-12 book_title" %>
             </div>
             <div class="col-md-4 actions row" style="margin-top: 20px; float: right;">
-                <%= product.submit '商品情報を追加', class:"btn btn-primary btn-lg" %>
+                <%= f.submit '商品情報を追加', class:"btn btn-primary btn-lg" %>
             </div>
         <% end %>
 <!-- productのフォーム 終わり-->
