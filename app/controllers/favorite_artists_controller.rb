@@ -12,8 +12,9 @@ class FavoriteArtistsController < ApplicationController
 
   def destroy
   	@favorite_artist = FavoriteArtist.find(params[:id])
-    @favorite_artist.destroy
-      redirect_to favorite_artists_path
+    if @favorite_artist.destroy
+       redirect_to favorite_artists_path
+    end
   end
 
 end

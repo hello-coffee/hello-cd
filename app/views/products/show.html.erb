@@ -55,7 +55,7 @@
 
 	                <div class="disc_button" style="width: 100%; margin-top: 20px; text-align: center;">
 			                <button type="submit" name="example" value="ボタン" style="">
-			                	アーティストをお気に入りに追加
+			                	<%= link_to "アーティストをお気に入りに追加", add_artist_path(artist_url), method: :post %>
 			                </button>
 			        </div>
                 <div class="line" style="width: 100%; margin: 10px 0; border-top: 3px solid #333333;"></div>
