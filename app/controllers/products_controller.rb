@@ -33,11 +33,15 @@ class ProductsController < ApplicationController
 
     def new
         # @artist = Artist.new
-        @product = Product.new
-        disc = @product.discs.build
+        # @product = Product.new
+        # disc = @product.discs.build
         # @product.discs.build
-        disc.songs.build
+        # disc.songs.build
         # @product.discs.songs.build #追加
+
+        @product = Product.new
+        @disc = @product.discs.build
+        @song = @disc.songs.build
     end
 
     def create
@@ -48,7 +52,7 @@ class ProductsController < ApplicationController
 
     private
         def product_params
-            params.require(:product).permit(:artist_id, :title, :image, :price, :label, :categoty_id, :deleted_at, :stock, discs_attributes: [:id, :disc_name, :product_id, songs_attributes: [:id, :disc_id, :song_name, :song_sort]])
+            params.require(:product).permit(:artist_id, :title, :image, :price, :label, :categoty_id, :deleted_at, :stock, discs_attributes: [:id, :disc_name, :product_id, :_destroy, songs_attributes: [:id, :disc_id, :song_name, :song_sort, :_destroy]])
         end
 
 end
