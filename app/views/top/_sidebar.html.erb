@@ -6,7 +6,7 @@
 			<div class="category-box">
 				<p>カテゴリ</p>
 					<% categories.each do |category| %>
-					<%= link_to category.category_name, category_path(category) %>
+					<%= link_to category.category_name, category_path(category.id) %>
 					<% end %>
 			</div>
 			<div class="ranking-box">

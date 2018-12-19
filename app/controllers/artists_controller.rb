@@ -5,7 +5,7 @@ class ArtistsController < ApplicationController
   end
 
   def show
-		# 検索オブジェクト
+		  # 検索オブジェクト
   		@search = Artist.ransack(params[:q])
   		# 検索結果
   		@result = @search.result(distinct: true).includes(:products)

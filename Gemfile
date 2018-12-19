@@ -71,5 +71,5 @@ gem "refile-mini_magick"
 gem 'jquery-rails'
 gem 'ransack'
 gem "paranoia"
+gem 'pry-byebug'
 gem 'cocoon'
-

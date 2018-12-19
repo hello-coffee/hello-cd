@@ -1,9 +1,17 @@
-
-<%#= render 'top/template',search: @search ,result: @result ,artists: @artists ,categories: @categories %>
+<div class="container">
+	<div class="row">
+		<div class="col-lg-12">
+			<%= render 'top/search',search: @search ,result: @result ,artists: @artists %>
+		</div>
+	</div>
+</div>
 
 <div class="container">
 	<div class="row">
-		<section class="col-lg-6 col-lg-offset-3">
+		<div class="col-lg-3">
+			<%= render 'top/sidebar',categories: @categories %>
+		</div>
+		<section class="col-lg-9">
 			<h1>カテゴリ名</h1>
 				<% @products.each do |product| %>
 					<div class="inline-block">
@@ -23,3 +31,4 @@
 		</section>
 	</div>
 </div>
+
