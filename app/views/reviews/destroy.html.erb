@@ -14,8 +14,11 @@
     <!--ここに、商品ごとに投稿された口コミを一覧で表示したい-->
     <!--jqueryを使ったりするのでちょっと大変かもしれない--!>
     
-    <%= link_to "削除", review_destroy_path(@reviews.id), method: :delete, data: {confirm: "本当に削除しますか？"} %>
+    <% if @admin == current_admin %>
+            <%= link_to "削除", review_destroy_path(@reviews.id), method: :delete %>
     <% end %>
+    
+    <!--もし、管理者だったらボタンを表示したい-->
     
    <% = paginate @Reviews %>
    

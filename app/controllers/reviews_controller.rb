@@ -1,31 +1,55 @@
 class ReviewsController < ApplicationController
   
-  def new
-    @new_review = Review.new
+  before_action :find_review, only: [:show, :edit, :update, :destroy]
+  
+  def index
+     @review = Review.order(created_at: :desc) 
   end
+  
+  def show
+    
+  end
+  
+  
+  def new
+    @review = Review.new
+  end
+  
 
   def create
-    review = Review.new(review_params)
-    review.save
-    redirect_to 'Product_top_path'
+    @review = Review.new(review_params)
+    if @new_review.save
+      redirect_to 'Products_show_path'
+    else
+      redirect_to :@new
+    end
   end
-
-  def index
+  
+  def update
+    if @review.update(review_params)
+      redirect_to @review
+    else
+      redirect_to :@new
+   end
   end
 
   def destroy
-    @reviews = Review.order(created_at: :asc) 
-    
-    @reviewslist = Reviewspage(params[:pages]).per(10)
-    @reviews.destroy
-    redirect_to reviews_destroypath
+   if @review.destroy
+       redirect_to root_path
+   else
+       redirect_to root_path
+    end
+  end
+
+
+  
+private
+  
+  def find_review
+      @review = Review.find(parans[:id])
   end
   
-  
-  private
-  
-  def post_params
-      params.require(:review).permit(:subject, :review)
+  def review_params
   end
   
 end
