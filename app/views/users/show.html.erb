@@ -54,7 +54,7 @@
         <th>　商品名</th>
           <td><%= cart_item.product.title %></td>
         <th>アーティスト名</th>
-          <td></td>
+          <td><%= cart_item.product.artist.artist_name %></td>
         <th>購入枚数</th>
           <td><%= cart_item.quantity %>枚</td>
         </tr>
@@ -84,12 +84,11 @@
       </tr>
       <tr>
         <th>ステータス</th>
-          <td>未配送</td>
+          <td><%= I18n.t("order_status.#{cart.order.status}") %></td>
           <td></td>
           <td></td>
           <td></td>
           <td></td>
-      </tr>
     </table>
     <% end %>
    <% end %>
