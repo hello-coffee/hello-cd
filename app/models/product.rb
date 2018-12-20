@@ -1,8 +1,8 @@
 class Product < ApplicationRecord
 	attachment :image
 
-    belongs_to :artist
-    # belongs_to :category
+    belongs_to :artist, optional: true, inverse_of: :products
+    belongs_to :category, optional: true, inverse_of: :products
 
     has_many :discs, dependent: :destroy, inverse_of: :product
     # has_many :songs, dependent: :destroy, :through => :disc
