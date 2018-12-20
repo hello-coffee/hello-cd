@@ -11,7 +11,7 @@
 			<%= render 'top/sidebar',categories: @categories %>
 		</div>
 		<section class="col-lg-9">
-			<h1>アーティストの商品一覧</h1>
+			<h1><%= @artist.artist_name %>の商品一覧</h1>
 				<% @products.each do |product| %>
 					<div class="inline-block">
 						<div class="col-lg-4">
@@ -30,3 +30,4 @@
 		</section>
 	</div>
 </div>
+
