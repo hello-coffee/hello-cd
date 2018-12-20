@@ -13,6 +13,7 @@ class CartsController < ApplicationController
     end
 
     #以下は在庫数
+
     #@stock = current_user.carts.first.cart_items.product.id
     #@cart_item.new
     #@stock_array = []

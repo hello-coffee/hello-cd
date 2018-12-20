@@ -1,7 +1,8 @@
 class FavoriteArtistsController < ApplicationController
   def create
   	@user_id = current_user.id
-    @artist_id = Artist.find(params[:id]).id
+    @product = find(params[:id])
+    @artist_id = @product.artist_id
     @favorite_artist = FavoriteArtist.new(artist_id: @artist_id, user_id: @user_id)
     if @favorite_artist.save
       redirect_to product_path(params[:id])

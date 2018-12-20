@@ -32,10 +32,11 @@
 	<div style="padding-left:60px;">
 		<h1>購入履歴</h1>
     <% @carts.each do |cart| %>
+    <% cart.cart_items.each do |cart_item| %>
     <table class="table" style="border-style: groove; width: 77%;">
       <tr >
         <th>購入日</th>
-        <th>2018/11/11</th>
+        <th><%= cart.order.created_at %></th>
         <td></td>
         <td></td>
         <td></td>
@@ -51,15 +52,15 @@
       </tr>
       <tr>
         <th>　商品名</th>
-          <td>てすと</td>
+          <td><%= cart_item.product.title %></td>
         <th>アーティスト名</th>
-          <td>テストアーティスト</td>
+          <td></td>
         <th>購入枚数</th>
-          <td>1枚</td>
-      </tr>
+          <td><%= cart_item.quantity %>枚</td>
+        </tr>
       <tr>
         <th>　小計</th>
-          <td>200円</td>
+          <td><%= cart.order.total_price %>円</td>
           <td></td>
           <td></td>
           <td></td>
@@ -67,7 +68,7 @@
       </tr>
       <tr style="border-top-style: double;">
         <th>合計金額</th>
-          <td>200円</td>
+          <td><%= cart.order.total_price %>円</td>
           <td></td>
           <td></td>
           <td></td>
@@ -75,7 +76,7 @@
       </tr>
       <tr>
         <th>送付先</th>
-          <td>東京都渋谷</td>
+          <td><%= cart.order.address %></td>
           <td></td>
           <td></td>
           <td></td>
@@ -90,6 +91,7 @@
           <td></td>
       </tr>
     </table>
+    <% end %>
    <% end %>
 	</div>
 </div>
