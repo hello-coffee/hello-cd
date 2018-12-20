@@ -1,3 +1,4 @@
+
 <style>
 body{
     background-color: #1fde0a;
@@ -68,4 +69,44 @@ p{
 			</div>
         </div>
     </div>
+
+  
+<h1>Products#index</h1>
+<p>Find me in app/views/products/index.html.erb</p>
+<div class='container'>
+<div class='row'>
+
+
+
+    <div class='col-md-8 col-md-offset-2'>
+        <h2>products</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th style="width: 100px;">No.</th>
+                    <th>商品名</th>
+                    <th>レーベル</th>
+                    <th>アーティスト名</th>
+                    <th>カテゴリー名</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <% @products.each.with_index(1)  do |product, i| %>
+                    <tr>
+                        <td><%= i %></td>
+                        <td><%= product.title %></td>
+                        <td><%= product.label %></td>
+                        <td><%= product.artist.artist_name %></td>
+                        <td><%= product.category.category_name %></td>
+	                    <td>
+                            <%= link_to "Destroy", product_path(product.id), class:"btn-mg btn-danger destroy_product_#{product.id}", method: :delete %>
+	                    </td>
+                    </tr>
+                <% end %>
+            </tbody>
+        </table>
+    </div>
+
+</div>
 </div>

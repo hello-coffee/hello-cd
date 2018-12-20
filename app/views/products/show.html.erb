@@ -1,3 +1,4 @@
+
 <div class='container'>
 <div class='row'>
 
@@ -31,24 +32,31 @@
 	            		<h2>商品名 <%= @product.title %></h2>
 	            	</div>
 
-                    <div class='col-md-3'>
+                    <div class='product_info_detail'>
 		                <div class="product_info" style="width: 100%; margin-top: 20px; margin-left: 20px">
-		                    <div class="field row" style="width: 100%; margin-bottom: 10px;">アーティスト
+		                    <div class="field row artist record" style="width: 100%; margin-bottom: 10px;">
+		                    	<div class='col-md-3 artist'>
+		                    		アーティスト
+		                    	</div>
+		                    	<div class='col-md-9 artist'>
+		                    		<%= @product.artist.artist_name %>
+		                    	</div>
 		                    </div>
-		                    <div class="field row" style="width: 100%; margin-bottom: 10px;">レーベル
+		                    <div class="field row abel_name record" style="width: 100%; margin-bottom: 10px;">
+		                    	<div class='col-md-3 label_name'>
+		                    		レーベル
+		                    	</div>
+		                    	<div class='col-md-9 label_name'>
+		                    		<%= @product.label %>
+		                    	</div>
 		                    </div>
-		                    <div class="field row" style="width: 100%; margin-bottom: 10px;">ジャンル
-		                    </div>
-		                </div>
-	            	</div>
-
-                    <div class='col-md-9'>
-		                <div class="product_info" style="width: 100%; margin-top: 20px; margin-left: 20px">
-		                    <div class="field row" style="width: 100%; margin-bottom: 10px;">「アーティスト名」
-		                    </div>
-		                    <div class="field row" style="width: 100%; margin-bottom: 10px;"><%= @product.label %>
-		                    </div>
-		                    <div class="field row" style="width: 100%; margin-bottom: 10px;">「ジャンル名」
+		                    <div class="field row category record" style="width: 100%; margin-bottom: 10px;">
+		                    	<div class='col-md-3 category'>
+		                    		ジャンル
+		                    	</div>
+		                    	<div class='col-md-9 category'>
+		                    		<%= @product.category.category_name %>
+		                    	</div>
 		                    </div>
 		                </div>
 	            	</div>
@@ -98,10 +106,10 @@
 
                     <div class="disc_button" style="text-align: center">
                         <div class='col-lg-6' style="width: 100px; margin: 20px 40px;">
-                            <%= link_to "Edit", edit_product_path(@product.id), class:"btn-sm btn-success edit_product_#{@product.id}" %>
+                            <%= link_to "Edit", edit_product_path(@product.id), class:"btn-lg btn-success edit_product_#{@product.id}" %>
                         </div>
                         <div class='col-lg-6' style="width: 100px; margin: 20px 40px;">
-                            <%= link_to "Destroy", product_path(@product.id), "data-confirm" => "本当に消しますか?", class:"btn-sm btn-danger destroy_product_#{@product.id}", method: :delete %>
+                            <%= link_to "Destroy", product_path(@product.id), "data-confirm" => "本当に消しますか?", class:"btn-lg btn-danger destroy_product_#{@product.id}", method: :delete %>
                         </div>
                     </div>
 
@@ -202,8 +210,8 @@
         	</div>
 
         	<div class="col-lg-4" style="margin-top: 20px; text-align: center;">
-        		<div class="review_button" style="width: 100%;">
-                	<button type="submit" name="example" value="ボタン" style="">口コミを書く</button>
+        		<div class="review_button" style="width: 100%; margin-top: 40px;">
+        			<%= link_to "口コミを書く", new_review_path, class:"btn-warning btn-lg" %>
                 </div>
         	</div>
 
@@ -214,15 +222,7 @@
 			        </div>
         </div>
 
-<!-- 戻る -->
-        <div class="review row" style="border-top: 5px solid #333333;">
 
-                    <div class="disc_button" style="text-align: center">
-			            <div class='col-lg-12'>
-			                <button type="submit" name="example" value="ボタン" style="width: 100px; margin: 20px 40px;">戻る</button>
-			            </div>
-			        </div>
-        </div>
 
 
     </div>

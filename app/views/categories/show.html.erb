@@ -12,7 +12,7 @@
 			<%= render 'top/sidebar',categories: @categories %>
 		</div>
 		<section class="col-lg-9">
-			<h1>カテゴリ名</h1>
+			<h1><%= @category.category_name %></h1>
 				<% @products.each do |product| %>
 					<div class="inline-block">
 						<div class="col-lg-4">

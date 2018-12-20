@@ -1,7 +1,7 @@
-<h3><%= current_user.last_name %>さんの買い物かご</h3>
 <div class="container">
 	<div class="row">
 		<div class="col-lg-12">
+			<h3><%= current_user.last_name %>さんの買い物かご</h3>
 			<table class="table">
 				<thead>
 					<tr>
@@ -13,27 +13,27 @@
 					</tr>
 				</thead>
 				<tbody>
-					<%# sum = 0 %>
 					<% @cart.cart_items.each do |cart_item| %>
 					<tr>
-						<td><%#= attachment_image_tag cart_item.product.image_id, :image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %></td>
+						<td><%#= attachment_image_tag cart_item.product.image_id, :image, :fill, 100, 100, fallback: "no_image.jpg" %></td>
 						<td><%= cart_item.product.title %><br>
-							<%= @artist(cart_item.product.artist_id) %>
+							<%= cart_item.product.artist.artist_name %>
+							<%#= @artist(cart_item.product.artist_id) %>
 						</td>
 						<td><%= cart_item.product.price %>円</td>
 						<td>
-							<% form_for(@stock) do |f| %>
-    						<%= f.label :数量選択 %>
-   							<%= f.select :stock, @current_stock_array %>
-							<% end %>
+							<%# form_for(@cart_item) do |f| %>
+    						<%#= f.label :数量選択 %>
+   							<%#= f.select :quantity, @stock_array %>
+   							<%#= f.submit "確定", class: "btn btn-default active" %>
+							<%# end %>
 						</td>
-						<td><%= link_to "削除", cart_path, class: "btn btn-default active btn btn-danger", method: :delete, "data-confirm" => "買い物かごから削除していいですか?" %></td>
+						<td><%= link_to "削除", cart_path(@cart.id), class: "btn btn-default active btn btn-danger", method: :delete, "data-confirm" => "買い物かごから削除していいですか?" %></td>
 					</tr>
 					<% end %>
 				</tbody>
- 				<%# sum += cart.cart_item.price * cart_items.quantity %>
-				<%#= "合計" + sum + "円" %>
 			</table>
+			<h3>合計<%= @total_price %>円</h3>
 		</div>
 		<div class="row">
 			<div class="col-lg-2 col-lg-offset-5">
@@ -43,3 +43,4 @@
 		</div>
 	</div>
 </div>
+
