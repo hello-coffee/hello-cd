@@ -31,3 +31,8 @@
 
 en:
   hello: "Hello world"
+ja:
+  order_status:
+    ordered: 受付
+    standby: 商品準備中
+    shipped: 出荷済

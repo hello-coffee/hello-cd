@@ -8,4 +8,10 @@ Dir.chdir(APP_ROOT) do
     $stderr.puts "Download Yarn at https://yarnpkg.com/en/docs/install"
     exit 1
   end
+
+  ja:
+  order_status:
+  order:受付
+  standby:商品準備中
+  shipped:出荷
 end

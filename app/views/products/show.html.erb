@@ -81,6 +81,7 @@
 	                        <thead>
 	                            <tr>
 	                                <th style="width: 100px;">No.</th>
+	                                <th>曲順</th>
 	                                <th>収録曲</th>
 	                            </tr>
 	                        </thead>
@@ -89,9 +90,8 @@
 	                            <% disc.songs.each.with_index(1) do |song, i| %>
 	                                <tr>
 	                                    <td><%= i %></td>
-	                                    <td colspan="2">
-	                                        <%= song.song_name %>
-	                                    </td>
+	                                    <td><%= song.song_sort %></td>
+	                                    <td colspan="2"><%= song.song_name %></td>
 	                                </tr>
 	                            <% end %>
 	                        </tbody>
