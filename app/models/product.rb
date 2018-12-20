@@ -5,7 +5,7 @@ class Product < ApplicationRecord
     belongs_to :category, optional: true, inverse_of: :products
 
     has_many :discs, dependent: :destroy, inverse_of: :product
-    # has_many :songs, dependent: :destroy, :through => :disc
+    has_many :songs, dependent: :destroy, :through => :disc
     accepts_nested_attributes_for :discs, allow_destroy: true
 
 	has_many :cart_items, dependent: :destroy

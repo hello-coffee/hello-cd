@@ -12,7 +12,6 @@
 
 <!-- discのフォーム 始まり -->
     <div class="songs">
-          <%= f.label :収録曲 %>
           <%= f.fields_for :songs do |song| %>
               <%= render 'song_fields', f: song %>
           <%end%>
