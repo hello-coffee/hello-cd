@@ -17,7 +17,7 @@
 					<div class="inline-block">
 						<div class="col-lg-4">
 							<div class="jacket-image">
-								<%#= product.image %>
+								<%#= attachment_image_tag @product.image_id, :image, fallback: "no_image.jpg", size: "100x100" %>
 							</div>
 							<div>
 								<%= product.title %>
@@ -26,6 +26,7 @@
 							</div>
 						</div>
 					</div>
+				<% end %>
 			<%= paginate @products %>
 		</section>
 	</div>
