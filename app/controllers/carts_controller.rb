@@ -27,10 +27,15 @@ class CartsController < ApplicationController
   end
 
   def destroy
-    @cart = current_user.carts.first
-    @cart_item = CartItem.find(params[:id])
-    @cart_item.destroy
-    render :show
+    # @cart = Cart.find(params[:id])
+    # @cart_item = @cart.cart_items
+    #@cart_item = current_user.carts.first.cart_item.id
+    #@cart_item = CartItem.find(params[:id])
+    cart_item = CartItem.find(params[:cart_item_id])
+    cart = cart_item.cart
+    cart_item.destroy
+    # render :show
+    redirect_to cart_path(cart)
   end
 
 end

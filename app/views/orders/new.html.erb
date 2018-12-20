@@ -25,7 +25,7 @@
 		</div>
 		<div class="col-lg-6">
 			<h3>登録済み住所</h3>
-			<%= form_for(@address) do |f| %>
+			<%= form_for(@addresses) do |f| %>
  				<%= f.label :登録済み住所 %>
  				<%= f.collection_select :address, Addresses.all, :user_id, :address %>
 			<% end %>
@@ -43,20 +43,16 @@
 		</div>
 		<div class="col-lg-8">
 			<h3>購入内容</h3>
-				<% sum = 0 %>
 					<% @cart.cart_items.each do |cart.cart_item| %>
-						<%= cart.cart_item.title %>
-						<%= cart.cart_item.artist.name %>
+						<%= cart.cart_item.product.title %>
+						<%= cart.cart_item.product.artist.artist_name %>
 						<%= cart.cart_item.quantity %>
-						<%= cart.cart_item.price %>
+						<%= cart.cart_item.product.price %>
 					<% end %>
- 				<% sum += cart.cart_item.price * cart_items.quantity %>
-				<%= "商品の小計" + sum + "円" %>
+ 				<h4>商品の小計<%= @total_price %>円</h4>
 				<%= 配送料・手数料：0円 %>
-				<%= "合計：" + sum + "円" %>
+				<h4>合計<%= @total_price %>円</h4>
 		</div>
 	</div>
 	<%= link_to "購入", user_path, class: "btn btn-default active" %>
 </div>
-
-
