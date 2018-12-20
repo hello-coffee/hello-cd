@@ -1,6 +1,7 @@
 class ProductsController < ApplicationController
 
     def index
+        @products = Product.all
     end
 
     def show
@@ -9,7 +10,8 @@ class ProductsController < ApplicationController
         # disc = @product.discs.build
         # disc.songs.build
         # @disc = @product.disc
-        #@discs = Disc.all
+        # @discs = Disc.all
+        # @artist = Artist.find(params[:id])
     end
 
     def update
@@ -32,7 +34,7 @@ class ProductsController < ApplicationController
     end
 
     def new
-        # @artist = Artist.new
+        @artist = Artist.new
         # @product = Product.new
         # disc = @product.discs.build
         # @product.discs.build
@@ -52,7 +54,13 @@ class ProductsController < ApplicationController
 
     private
         def product_params
-            params.require(:product).permit(:artist_id, :title, :image, :price, :label, :categoty_id, :deleted_at, :stock, discs_attributes: [:id, :disc_name, :product_id, :_destroy, songs_attributes: [:id, :disc_id, :song_name, :song_sort, :_destroy]])
+            params.require(:product).permit(:artist_id, :title, :image, :price, :label, :category_id, :deleted_at, :stock,
+             discs_attributes: [:id, :disc_name, :product_id, :_destroy,
+              songs_attributes: [:id, :disc_id, :song_name, :song_sort, :_destroy]])
         end
+        
+  def artist_params
+      params.require(:artist).permit(:artist_name)
+  end
 
 end
