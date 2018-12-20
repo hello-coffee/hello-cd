@@ -30,8 +30,6 @@ class ArtistsController < ApplicationController
 
   		@artist = Artist.find(params[:id])
   		@products = @artist.products.page(params[:page]).per(9).reverse_order
-        @produts = @artist.produts
-        @discs = @product.discs
 
   		@categories = Category.all
   end
