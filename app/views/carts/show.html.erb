@@ -17,7 +17,7 @@
 					<tr>
 						<td><%#= attachment_image_tag cart_item.product.image_id, :image, :fill, 100, 100, fallback: "no_image.jpg" %></td>
 						<td><%= cart_item.product.title %><br>
-							<%#= cart_item.product.artist.artist_name %>
+							<%= cart_item.product.artist.artist_name %>
 							<%#= @artist(cart_item.product.artist_id) %>
 						</td>
 						<td><%= cart_item.product.price %>円</td>
@@ -43,3 +43,4 @@
 		</div>
 	</div>
 </div>
+

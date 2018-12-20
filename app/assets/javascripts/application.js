@@ -14,6 +14,7 @@
   //= require rails-ujs
   //= require activestorage
   //= require turbolinks
-  //= require_tree .
   //= require bootstrap-sprockets
   //= require cocoon
+  //= requier_tree ../../../vendor/assets/javascripts/.
+  //= require_tree .

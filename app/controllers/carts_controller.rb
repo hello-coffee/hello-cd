@@ -13,16 +13,17 @@ class CartsController < ApplicationController
     end
 
     #以下は在庫数
-    # @stock = current_user.carts.first.cart_items.product.id
-    # @cart_item.new
-    # @stock_array = []
-    # @stocks.stock.times do |quantity|
-    #   if quantity < 10
-    #     @stock_array << [quantity + 1, quantity + 1]
-    #     else
-    #     break
-    #   end
-    # end
+
+    #@stock = current_user.carts.first.cart_items.product.id
+    #@cart_item.new
+    #@stock_array = []
+    #@stocks.stock.times do |quantity|
+      #if quantity < 10
+        #@stock_array << [quantity + 1, quantity + 1]
+        #else
+        #break
+      #end
+    #end
   end
 
   def destroy
