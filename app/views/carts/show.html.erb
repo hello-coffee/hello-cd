@@ -22,11 +22,11 @@
 						</td>
 						<td><%= cart_item.product.price %>円</td>
 						<td>
-							<% form_for(@cart_item) do |f| %>
-    						<%= f.label :数量選択 %>
-   							<%= f.select :quantity, @stock_array %>
-   							<%= f.submit "確定", class: "btn btn-default active" %>
-							<% end %>
+							<%# form_for(@cart_item) do |f| %>
+    						<%#= f.label :数量選択 %>
+   							<%#= f.select :quantity, @stock_array %>
+   							<%#= f.submit "確定", class: "btn btn-default active" %>
+							<%# end %>
 						</td>
 						<td><%= link_to "削除", cart_path(@cart.id), class: "btn btn-default active btn btn-danger", method: :delete, "data-confirm" => "買い物かごから削除していいですか?" %></td>
 					</tr>
