@@ -83,11 +83,12 @@ p{
         <table class="table">
             <thead>
                 <tr>
-                    <th style="width: 100px;">No.</th>
+                    <th>No.</th>
                     <th>商品名</th>
                     <th>レーベル</th>
                     <th>アーティスト名</th>
                     <th>カテゴリー名</th>
+                    <th>id</th>
                     <th></th>
                 </tr>
             </thead>
@@ -99,6 +100,7 @@ p{
                         <td><%= product.label %></td>
                         <td><%= product.artist.artist_name %></td>
                         <td><%= product.category.category_name %></td>
+                        <td><%= product.id %></td>
 	                    <td>
                             <%= link_to "Destroy", product_path(product.id), class:"btn-mg btn-danger destroy_product_#{product.id}", method: :delete %>
 	                    </td>
