@@ -13,7 +13,7 @@
         <br>
         <br>
         <br>
-          <%= link_to "　パスワード変更", new_user_password_url, class:"nav navbar-nav navbar-right btn btn-default btn-sm col-md-3"%>
+          <%= link_to "　パスワード変更", new_user_password_path(current_user), class:"nav navbar-nav navbar-right btn btn-default btn-sm col-md-3"%>
    	</nav>
 		<div>
 	 		<p>郵便番号　〒<%= current_user.post_code %></p>
@@ -36,7 +36,7 @@
     <table class="table" style="border-style: groove; width: 77%;">
       <tr >
         <th>購入日</th>
-        <th><%= cart.order.created_at %></th>
+        <th><%= cart.order[:created_at].strftime("%Y-%m-%d　　%H:%M") %></th>
         <td></td>
         <td></td>
         <td></td>
