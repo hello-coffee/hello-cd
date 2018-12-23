@@ -5,50 +5,52 @@
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-lg-6">
+		<div class="col-lg-6" style="margin-bottom: 50px; border: 2px solid #f7f7f7;">
 			<%= form_for @address, url: orders_path do |f| %>
 				<h5>氏名</h5>
-				<%= f.text_field :last_name %>
-				<%= f.text_field :first_name %>
+				<%= f.text_field :last_name, placeholder:"姓", :size=>"25" %>
+				<%= f.text_field :first_name, placeholder:"名", :size=>"25" %>
 				<h5>カナ</h5>
-				<%= f.text_field :last_name_kana %>
-				<%= f.text_field :first_name_kana %>
+				<%= f.text_field :last_name_kana, placeholder:"姓（カナ）", :size=>"25" %>
+				<%= f.text_field :first_name_kana, placeholder:"名（カナ）", :size=>"25" %>
 				<h5>郵便番号</h5>
-				<%= f.text_field :post_code %>
+				<%= f.text_field :post_code, placeholder:"郵便番号", :size=>"20" %>
 				<h5>住所</h5>
-				<%= f.text_field :address %>
+				<%= f.text_field :address, placeholder:"住所", :size=>"70" %>
 				<h5>電話番号</h5>
-				<%= f.text_field :tel %>
+				<%= f.text_field :tel, placeholder:"電話番号", :size=>"30" %>
 				<h5>メールアドレス</h5>
-				<%= f.email_field :email %>
-			
+				<%= f.email_field :email, placeholder:"メールアドレス", :size=>"50" %>
 		</div>
-		<div class="col-lg-6">
+		<div class="col-lg-6" style="margin-bottom: 50px; border: 2px solid #f7f7f7;">
 			<h3>登録済み住所</h3>
-			<%#= form_for current_user do |f| %>
- 				<%#= f.label :id, "登録済み住所" %>
- 				<%#= f.collection_select :id, Address.all, :user_id, :address %>
-			<%# end %>
+			<%= fields_for current_user do |f| %>
+ 				<%= f.label :id, "登録済み住所" %>
+ 				<%= f.collection_select :id, Address.all, :user_id, :address %>
+			<% end %>
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-lg-4">
-			<h3>決済方法</h3>
-			<p>お支払い方法</p>
+		<h3>決済方法</h3>
+		<div class="col-lg-4" style="border: 2px solid #f7f7f7;">
+			<h4 style="margin: 20px auto;">お支払い方法</h4>
 <!-- 			<form class="new_order" id="new_order" action="/orders" accept-charset="UTF-8" method="post">
 				<input type="radio" name="order[pay]" value=0>カード<br>
 				<input type="radio" name="order[pay]" value=1>コンビニ<br>
 				<input type="radio" name="order[pay]" value=2>代金引き換え<br>
 			</form> -->
-			<%= f.fields_for @order, url: orders_path do |ff| %>
+			<%= fields_for @order do |ff| %>
 				<label><%= ff.radio_button :pay, 0 %> カード </label><br>
-				<label><%= ff.radio_button :pay, 1 %> コンビニ </label><br>
+				<label style="margin: 20px auto;"><%= ff.radio_button :pay, 1 %> コンビニ </label><br>
 				<label><%= ff.radio_button :pay, 2 %> 代金引き換え </label><br>
+				<%= ff.hidden_field :cart_id, :value => @cart.id %>
+				<%= ff.hidden_field :total_price, :value => @total_price %>
 			<% end %>
 		</div>
-		<div class="col-lg-8">
-			<h3>購入内容</h3>
-			<table>
+		<div class="col-lg-8" style="border: 2px solid #f7f7f7;">
+			<h4 class="text-center">購入内容</h4>
+			<div class="table-responsive">
+			<table class="table">
 				<thead>
 					<tr>
 						<th></th>
@@ -61,14 +63,14 @@
 						<tr>
 							<td>
 								<%= cart_item.product.title %>
-								<p>/</p>
+								<p></p>
 								<%= cart_item.product.artist.artist_name %>
 							</td>
 							<td>
-								<h3><%= cart_item.quantity %>枚</h3>
+								<h4><%= cart_item.quantity %>枚</h4>
 							</td>
 							<td>
-								<h3><%= cart_item.product.price %>円</h3>
+								<h4><%= cart_item.product.price %>円</h4>
 							</td>
 						</tr>
 					<% end %>
@@ -101,10 +103,11 @@
 						</tr>
 				</tbody>
 			</table>
+			</div>
 		</div>
 	</div>
 	<!-- <input type="submit" name="commit" value="kounyuu" class="btn btn-primary btn-lg" data-disable-with="kounyuu"> -->
-			<%= f.submit "kounyuu", class:"btn btn-primary btn-lg" %>
+			<%= f.submit "kounyuu", class:"btn btn-primary btn-lg center-block" %>
 			<% end %>
-	<%= link_to "購入", user_path(current_user), class: "btn btn-default active" %>
+	<%#= link_to "購入", user_path(current_user), class: "btn btn-default active" %>
 </div>

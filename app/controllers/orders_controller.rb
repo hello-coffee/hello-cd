@@ -18,20 +18,26 @@ class OrdersController < ApplicationController
   def create
   	if
       @address = Address.new(address_params)
+      @address.user_id = current_user.id
       @order = Order.new(order_params)
   		@address.save
-binding.pry
+#binding.pry
+
       @order.status = 0
       @order.user_id = current_user.id
-      @order.cart_id = current_user.carts.first
+
+
+      #@order.cart_id = current_user.carts.first.id
       # ======「total_priceの計算」==========
-      @price = current_user.carts.first
-      @total_price = 0
-      @price.cart_items.each do |cart_item|
-        @total_price += cart_item.product.price * cart_item.quantity
-      end
+      #@price = current_user.carts.first
+      #@total_price = 0
+      #@price.cart_items.each do |cart_item|
+        #@total_price += cart_item.product.price * cart_item.quantity
+      #end
       # ================
-      @order.total_price = @total_price
+      #@order.total_price = @total_price
+
+
 
   		@order.save
   		redirect_to user_path(current_user.id)
@@ -47,7 +53,7 @@ binding.pry
   private
 
     def address_params
-      params.require(:address).permit(:last_name, :first_name, :last_name_kana, :first_name_kana, :post_code, :address, :tel, :email)
+      params.require(:address).permit(:last_name, :first_name, :last_name_kana, :first_name_kana, :post_code, :address, :tel, :email, :user_id)
     end
 
     def order_params
