@@ -1,17 +1,17 @@
 class ReviewsController < ApplicationController
 
+
   def index
      @reviews = Review.all
   end
-  
+
   def show
   end
-  
+
   def new
     @review = Review.new
     @product = Product.find(params[:product_id])
   end
-  
 
   def create
     review = Review.new(review_params)
@@ -20,7 +20,6 @@ class ReviewsController < ApplicationController
     review.save
     redirect_to product_path(review.product.id)
   end
-  
 
   def destroy
     review = Review.find(params[:id])
@@ -29,11 +28,11 @@ class ReviewsController < ApplicationController
   end
 
 
-  
+
 private
-  
-  def review_params
-    params.require(:review).permit(:subject, :review, :product_id)
-  end
-  
+
+      def review_params
+          params.require(:review).permit(:subject, :review, :user_id, :product_id)
+      end
+
 end
