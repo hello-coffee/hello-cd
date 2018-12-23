@@ -100,15 +100,15 @@
 <% else %>
 
     <div class="container well well-sm" style="width:100%;">
-        <nav class="nav navbar-nav navbar-left nav-pills nav-stacked col-sm-1">
-          <div class="btn btn-default">地図</div>
-          <p>Hello CD</p>
+        <nav class="nav navbar-nav navbar-left nav-pills nav-stacked col-sm-1" style="padding-top:30px;">
+          <div class="btn btn-default"><%= image_tag "2.jpg", :size =>'100x100' %></div>
+          <h4>　Hello CD</h4>
         </nav>
-        <nav class="nav navbar-nav navvar-left">
-          <p>渋谷<br>0120-123-456<br>aaa@aaa<br></p>
+        <nav class="nav navbar-nav navbar-left"  style="margin-left:25px; padding-top:30px;">
+          <p><br>アクセス<br>東京都渋谷区<br>神南1丁目19-10<br>tel: 0120-123-456<br>email: aaa@aaa<br></p>
         </nav>
-        <nav style="padding-right: 50px;">
-          <%= link_to "　問い合わせ", contact_path, class:"nav navbar-nav navbar-right btn btn-warning btn-lg" %>
+        <nav style="padding-right: 50px; padding-top: 40px;">
+          <%= link_to "　問い合わせ", contact_path, class:"nav navbar-nav navbar-right btn btn-warning btn-lg", style:"height: 80px; text-align: center; line-height:350%;" %>
         </nav>
     </div>
 
