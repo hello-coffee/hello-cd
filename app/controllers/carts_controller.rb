@@ -12,7 +12,7 @@ class CartsController < ApplicationController
       @total_price += cart_item.product.price * cart_item.quantity
     end
 
-    #以下は在庫数
+    #以下は在庫数(商品詳細ページで対応することになった)
 
     #@stock = current_user.carts.first.cart_items.product.id
     #@cart_item.new

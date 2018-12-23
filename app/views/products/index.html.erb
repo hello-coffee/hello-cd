@@ -1,52 +1,29 @@
 
 <style>
-body{
-    background-color: #1fde0a;
-}
-
 p{
     text-align: center;
 }
+
     
 </style>
 
-<link href="./app/assets/stylesheet/skippr.css" rel="stylesheet" media="all" type="text/css" />
-<script src="./app/assets/javascripts/skippr.min.js" type="text/javascript"></script>
-<script>
-	$(document).ready(function(){
-		$("#skippr-slider").skippr({
-			transition: 'slide',
-			autoPlay: true,
-		});
-	});
-</script>
 
-
-<h1>ここはTOPページです</h1>
-<div id="slider">
-	<div id="skippr-slider">
-		<div style="background-image: url(.app/public/img/001.jpg)">
-		</div>
-	</div>
-</div>
-
-
-<head><link href="./app/assets/stylesheet/skippr.css" rel="stylesheet" media="all" type="text/css" /></head>
-<script src="./app/assets/javascripts/skippr.min.js" type="text/javascript"></script>
-<script>
-	$(document).ready(function(){
-		$("skippr-slider").skippr({
-			transition: 'slide',
-			autoPlay: true,
-		});
-	});
-</script>
-
-
-
-
-
+<p>ここはTOPページです</p>
 <div class="container">
+	<div class="row">
+		<div class="img_top">
+       		<%= image_tag '001.jpg', :size =>'1500x400' %>
+        </div>
+    </div>
+        
+        <script>
+        	$(document).ready(function(){
+        		$("#skippr-slider").skippr({
+        			transition: 'slide',
+        			autoPlay: true,
+        		});
+        	});
+        </script>
 	
 	<div class="row">
 		<div class="col-md-12">
@@ -56,7 +33,7 @@ p{
 	
 	<div class="row">
 		<div class="col-md-3">
-		    <p>ここにはサイドバー(カテゴリーとランキング)が入る予定</p>
+		   
         </div>
         
 		<div class="col-md-9">
@@ -69,6 +46,7 @@ p{
 			</div>
         </div>
     </div>
+
 
   
 <h1>Products#index</h1>
@@ -111,4 +89,8 @@ p{
     </div>
 
 </div>
+
 </div>
+    
+
+ 
