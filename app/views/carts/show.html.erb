@@ -21,6 +21,7 @@
 						</td>
 						<td><%= cart_item.buy_price %>円</td>
 						<td>
+							<%= cart_item.quantity %>枚
 							<%# form_for(@cart_item) do |f| %>
     						<%#= f.label :数量選択 %>
    							<%#= f.select :quantity, @stock_array %>
