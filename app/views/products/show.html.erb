@@ -171,7 +171,7 @@
         	<div class="col-lg-8">
     		<h2>口コミ</h2>
 
-	            <% @product.reviews.each do |review| %>
+	            <% @reviews.each do |review| %>
 
 	                    <div class="col-lg-5 field row">
 	                    	<div class="review_user" style="margin: 10px;">
@@ -198,19 +198,18 @@
 
 	            <% end %>
 
+                <div class="disc_button" style="text-align: center">
+		            <div class=''>
+		            	<%= paginate @reviews, class: "paginate" %>
+			        </div>
+		        </div>
         	</div>
 
         	<div class="col-lg-4" style="margin-top: 20px; text-align: center;">
         	    <div class="review_button" style="width: 100%; margin-top: 40px;">
-        			    <%= link_to "口コミを書く",new_product_reviews_path(@product.id), class:"btn-warning btn-lg" %>
-              </div>
+        			<%= link_to "口コミを書く",new_product_reviews_path(@product.id), class:"btn-warning btn-lg" %>
+                </div>
         	</div>
-
-              <div class="disc_button" style="text-align: center">
-			            <div class='col-lg-9'>
-			                <button type="submit" name="example" value="ボタン" style="width: 100px; margin: 20px 40px;">1 2 3</button>
-			            </div>
-			        </div>
 
         </div>
     </div>
