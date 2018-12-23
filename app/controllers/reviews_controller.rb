@@ -18,7 +18,7 @@ class ReviewsController < ApplicationController
     review.product_id = params[:product_id]
     review.user_id = current_user.id
     review.save
-    redirect_to reviews_path
+    redirect_to product_path(review.product.id)
   end
   
 
