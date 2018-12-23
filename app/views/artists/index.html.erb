@@ -14,15 +14,23 @@
                 <tr>
                     <th style="width: 100px;">No.</th>
                     <th>アーティスト名</th>
-                    <th colspan="3"></th>
+                    <th>id</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
                 <% @artists.each.with_index(1)  do |artist, i| %>
                     <tr>
                         <td><%= i %></td>
-                        <td><%= artist.artist_name %></td>
-                        <td></td>
+                        <td>
+                            <%= link_to artist_path(artist.id), class:"user_#{artist.id}" do %>
+                                <%= artist.artist_name %>
+                            <% end %>
+                        </td>
+                        <td><%= artist.id %></td>
+                        <td>
+                            <%= link_to "Destroy", artist_path(artist.id), class:"btn-mg btn-danger destroy_artist_#{artist.id}", method: :delete %>
+                        </td>
                     </tr>
                 <% end %>
             </tbody>

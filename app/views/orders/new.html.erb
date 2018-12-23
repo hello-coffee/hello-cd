@@ -6,7 +6,7 @@
 	</div>
 	<div class="row">
 		<div class="col-lg-6">
-			<%= form_for(@address) do |f| %>
+			<%= form_for @address, url: orders_path do |f| %>
 				<h5>氏名</h5>
 				<%= f.text_field :last_name %>
 				<%= f.text_field :first_name %>
@@ -21,42 +21,90 @@
 				<%= f.text_field :tel %>
 				<h5>メールアドレス</h5>
 				<%= f.email_field :email %>
-			<% end %>
+			
 		</div>
 		<div class="col-lg-6">
 			<h3>登録済み住所</h3>
-			<%= form_for(@address) do |f| %>
- 				<%= f.label :登録済み住所 %>
- 				<%= f.collection_select :address, Addresses.all, :user_id, :address %>
-			<% end %>
+			<%#= form_for current_user do |f| %>
+ 				<%#= f.label :id, "登録済み住所" %>
+ 				<%#= f.collection_select :id, Address.all, :user_id, :address %>
+			<%# end %>
 		</div>
 	</div>
 	<div class="row">
 		<div class="col-lg-4">
 			<h3>決済方法</h3>
 			<p>お支払い方法</p>
-			<%= form_for(@order) do |f| %>
-				<label><%= f.radio_button :pay, "カード" %> カード </label><br>
-				<label><%= f.radio_button :pay, "コンビニ" %> コンビニ </label><br>
-				<label><%= f.radio_button :pay, "代金引き換え" %> 代金引き換え </label><br>
+<!-- 			<form class="new_order" id="new_order" action="/orders" accept-charset="UTF-8" method="post">
+				<input type="radio" name="order[pay]" value=0>カード<br>
+				<input type="radio" name="order[pay]" value=1>コンビニ<br>
+				<input type="radio" name="order[pay]" value=2>代金引き換え<br>
+			</form> -->
+			<%= f.fields_for @order, url: orders_path do |ff| %>
+				<label><%= ff.radio_button :pay, 0 %> カード </label><br>
+				<label><%= ff.radio_button :pay, 1 %> コンビニ </label><br>
+				<label><%= ff.radio_button :pay, 2 %> 代金引き換え </label><br>
 			<% end %>
 		</div>
 		<div class="col-lg-8">
 			<h3>購入内容</h3>
-				<% sum = 0 %>
-					<% @cart.cart_items.each do |cart.cart_item| %>
-						<%= cart.cart_item.title %>
-						<%= cart.cart_item.artist.name %>
-						<%= cart.cart_item.quantity %>
-						<%= cart.cart_item.price %>
+			<table>
+				<thead>
+					<tr>
+						<th></th>
+						<th></th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<% @cart.cart_items.each do |cart_item| %>
+						<tr>
+							<td>
+								<%= cart_item.product.title %>
+								<p>/</p>
+								<%= cart_item.product.artist.artist_name %>
+							</td>
+							<td>
+								<h3><%= cart_item.quantity %>枚</h3>
+							</td>
+							<td>
+								<h3><%= cart_item.product.price %>円</h3>
+							</td>
+						</tr>
 					<% end %>
- 				<% sum += cart.cart_item.price * cart_items.quantity %>
-				<%= "商品の小計" + sum + "円" %>
-				<%= 配送料・手数料：0円 %>
-				<%= "合計：" + sum + "円" %>
+						<tr>
+							<td></td>
+							<td>
+ 								<h4>商品の小計</h4>
+ 							</td>
+ 							<td>
+ 								<h4><%= @total_price %>円</h4>
+ 							</td>
+ 						</tr>
+ 						<tr>
+ 							<td></td>
+ 							<td>
+								<h4><%= "配送料・手数料" %></h4>
+							</td>
+							<td>
+								<h4><%= "0円" %></h4>
+							</td>
+						</tr>
+						<tr>
+							<td></td>
+							<td>
+								<h3>合計</h3>
+							</td>
+							<td>
+								<h3><%= @total_price %>円</h3>
+							</td>
+						</tr>
+				</tbody>
+			</table>
 		</div>
 	</div>
-	<%= link_to "購入", user_path, class: "btn btn-default active" %>
+	<!-- <input type="submit" name="commit" value="kounyuu" class="btn btn-primary btn-lg" data-disable-with="kounyuu"> -->
+			<%= f.submit "kounyuu", class:"btn btn-primary btn-lg" %>
+			<% end %>
+	<%= link_to "購入", user_path(current_user), class: "btn btn-default active" %>
 </div>
-
-

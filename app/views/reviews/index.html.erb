@@ -19,6 +19,7 @@
     <p class="text-center">商品名</p>
     
 
+
      
     <p class="text-center">投稿された口コミ一覧</p>
     <!--ここに、商品ごとに投稿された口コミを一覧で表示する-->
@@ -28,4 +29,45 @@
         <tr class="tr-tag">内容：<%= review.review %></tr>
         <tr class="tr-tag"><%= link_to "削除", review_path(review), method: :delete %></tr>
     <% end %>
+
+    <!--もし、管理者だったらボタンを表示したい-->
+    
+    
+</div>
+
+
+<!-- 確認用に作成 -->
+<div class='container'>
+<div class='row'>
+
+    <div class='col-md-8 col-md-offset-2'>
+        <h2>レビュー一覧</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>No.</th>
+                    <th>件名</th>
+                    <th>内容</th>
+                    <th>id</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <% @reviews.each.with_index(1)  do |review, i| %>
+                    <tr>
+                        <td><%= i %></td>
+                        <td><%= review.subject %></td>
+                        <td><%= review.review %></td>
+                        <td><%= review.id %></td>
+                        <td>
+                            <%= link_to "Destroy", review_path(review.id), class:"btn-mg btn-danger destroy_review_#{review.id}", method: :delete %>
+                        </td>
+                    </tr>
+                <% end %>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
 </div>

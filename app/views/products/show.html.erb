@@ -29,7 +29,7 @@
 <!-- 商品情報右側 始まり-->
             <div class='col-md-8'>
 	            	<div class="product_name" style="text-align: center">
-	            		<h2>商品名 <%= @product.title %></h2>
+	            		<h3>商品名： <%= @product.title %></h3>
 	            	</div>
 
                     <div class='product_info_detail'>
@@ -63,7 +63,7 @@
 
 	                <div class="disc_button" style="width: 100%; margin-top: 20px; text-align: center;">
 			                <button type="submit" name="example" value="ボタン" style="">
-			                	<%= link_to "アーティストをお気に入りに追加", add_artist_path(artist_url), method: :post %>
+			                	<%= link_to "アーティストをお気に入りに追加", add_artist_path(@artist.id), method: :post %>
 			                </button>
 			        </div>
                 <div class="line" style="width: 100%; margin: 10px 0; border-top: 3px solid #333333;"></div>
@@ -80,18 +80,16 @@
 	                    <table class="table table-striped">
 	                        <thead>
 	                            <tr>
-	                                <th style="width: 100px;">No.</th>
-	                                <th>収録曲</th>
+	                                <th style="width: 100px;">曲順</th>
+	                                <th style="width: 100px;" colspan="4">収録曲</th>
 	                            </tr>
 	                        </thead>
 
 	                        <tbody>
 	                            <% disc.songs.each.with_index(1) do |song, i| %>
 	                                <tr>
-	                                    <td><%= i %></td>
-	                                    <td colspan="2">
-	                                        <%= song.song_name %>
-	                                    </td>
+	                                    <td><%= song.song_sort %></td>
+	                                    <td colspan="4"><%= song.song_name %></td>
 	                                </tr>
 	                            <% end %>
 	                        </tbody>
@@ -105,11 +103,11 @@
 		        <div class="disc_info" style="margin-top: 20px; margin-left: 20px;">
 
                     <div class="disc_button" style="text-align: center">
-                        <div class='col-lg-6' style="width: 100px; margin: 20px 40px;">
-                            <%= link_to "Edit", edit_product_path(@product.id), class:"btn-lg btn-success edit_product_#{@product.id}" %>
+                        <div class='col-md-6' style="margin: 30px auto">
+                            <%= link_to "編集", edit_product_path(@product.id), class:"btn-lg btn-success edit_product_#{@product.id}" %>
                         </div>
-                        <div class='col-lg-6' style="width: 100px; margin: 20px 40px;">
-                            <%= link_to "Destroy", product_path(@product.id), "data-confirm" => "本当に消しますか?", class:"btn-lg btn-danger destroy_product_#{@product.id}", method: :delete %>
+                        <div class='col-md-6' style="margin: 30px auto">
+                            <%= link_to "削除", product_path(@product.id), "data-confirm" => "本当に消しますか?", class:"btn-lg btn-danger destroy_product_#{@product.id}", method: :delete %>
                         </div>
                     </div>
 
@@ -132,19 +130,36 @@
                 <div class="col-lg-3 field row" style="margin-top: 30px; margin-bottom: 30px; margin-right: 10px; font-size: 16px">
                 	在庫数 : <%= @product.stock %>個
                 </div>
-                <div class="col-lg-3 field row" style="margin-top: 30px; margin-bottom: 30px; margin-right: 10px; font-size: 16px">
-			        <form>数量選択
-						<select name="数量選択">
-							<option value="1" selected>1</option>
-							<option value="2">2</option>
-							<option value="3">3</option>
-							<option value="4">4</option>
-							<option value="5">5</option>
-						</select>
-					</form>
-                </div>
-                <div class="col-lg-3 field row" style="margin-top: 25px; margin-right: 10px; font-size: 20px">
-                	<button type="submit" name="example" value="ボタン" style="">買い物かごに追加</button>
+                <div class="col-lg-6 field row" >
+                        <%= form_for @cart_item, url: create_cart_item_path(@product.id, current_user.carts.ids), method: :post do |f| %>
+                            <!-- 購入枚数制限 -->
+                            <% if @product.stock > 10 %>
+                                <div class='col-md-6'style="margin-top: 30px; margin-bottom: 30px; font-size: 16px">
+                                <strong>最大10枚まで購入可能</strong>
+	                                <%= f.select :quantity, [[1, 1], [2, 2], [3, 3], [4, 4], [5, 5],[6, 6],[7, 7], [8, 8], [9, 9], [10, 10]], class: "form-control col-md-1", id: "number" %> 枚
+	                            </div>
+                                <div class='col-md-6'style="margin-top: 30px; margin-bottom: 30px; font-size: 16px">
+	                                <%= f.submit "カートに入れる", class: "btn-lg btn-primary col-md-offset-2"%>
+	                            </div>
+                            <% elsif 10 >= @product.stock && @product.stock >= 1 %>
+                                <% ar = {} %>
+                                <% @product.stock.times do |i| %>
+                                    <% i += 1 %>
+                                    <% ar.store(i, i) %>
+                                <% end %>
+                                <div class='col-md-6'style="margin-top: 30px; margin-bottom: 30px; font-size: 16px">
+	                                <span class="title-name">購入枚数<span class="partition"> </span></span>
+	                                <%= f.select :quantity, options_for_select(ar), class: "form-control", id: "number" %> 枚
+	                            </div>
+	                            <div class='col-md-6' style="margin-top: 20px; margin-bottom: 20px; font-size: 16px">
+                                	<%= f.submit "カートに入れる", class: "btn-lg btn-primary"%>
+                                </div>
+                            <% else %>
+                                <%= link_to root_path do %>
+                                    <p class="btn btn-primary col-md-offset-5">入荷準備中です。暫くお待ち下さい。</p>
+                                <% end %>
+                            <% end %>
+                        <% end %>
                 </div>
 	        </div>
 	    </div>
@@ -155,7 +170,35 @@
 
         	<div class="col-lg-8">
     		<h2>口コミ</h2>
-            	<div class="review" style="width: 100%; margin: 20px;">
+
+	            <% @product.reviews.each do |review| %>
+
+	                    <div class="col-lg-5 field row">
+	                    	<div class="review_user" style="margin: 10px;">
+	                    		<h4 class="review_user">・投稿者　<%= review.user.last_name %></h3>
+	                    	</div>
+	                    </div>
+	                    <div class="col-lg-7 field row">
+	                    	<div class="review_user" style="margin: 10px;">
+	       	                    <h4 class="review_subject">・件名　<%= review.subject %></h3>
+	                    	</div>
+	                    </div>
+	                    <table class="table table-striped">
+	                        <thead>
+	                            <tr>
+	                            </tr>
+	                        </thead>
+
+	                        <tbody>
+	                                <tr>
+	                                    <td colspan="2"><%= review.review %></td>
+	                                </tr>
+	                        </tbody>
+	                    </table>
+
+	            <% end %>
+
+<!--             	<div class="review" style="width: 100%; margin: 20px;">
                     <div class="product_info" style="">
 	                    <div class="col-lg-4 field row">
 	                    	<div class="review_user" style="margin: 10px;">
@@ -205,7 +248,7 @@
 			        </div>
                 </div>
                     <div class="field row" style="margin: 10px 20px;">
-                    </div>
+                </div> -->
 
         	</div>
 
@@ -220,11 +263,10 @@
 			                <button type="submit" name="example" value="ボタン" style="width: 100px; margin: 20px 40px;">1 2 3</button>
 			            </div>
 			        </div>
+
         </div>
-
-
-
-
     </div>
 </div>
 </div>
+
+

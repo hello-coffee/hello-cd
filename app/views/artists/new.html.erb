@@ -1,23 +1,21 @@
 
+<!-- artistのフォーム 始まり1-->
 <div class='container'>
 <div class='row'>
 
     <div class='col-md-8 col-md-offset-2' style="margin-top: 50px; margin-bottom: 150px">
-    <h1 style="margin-top: 10px; margin-bottom: 30px; text-align: center;">管理者ページ　新しい商品を追加</h1>
 
-        <div class="form_list row" style="margin-top: 30px; margin-bottom: 30px; border-top: 1px solid #333333;"></div>
-
-
-<!-- artistのフォーム 始まり-->
-
-            <h1>New Artist</h1>
-            <%= render 'form', artist: @artist %>
-
-
-        </div>
+        <%= form_for(@artist) do |a| %>
+            <div class="field row" style="margin-top: 20px;">
+                <%= a.label :アーティスト名 %>
+                <%= a.text_field :artist_name, class:"col-xs-12 book_title" %>
+            </div>
+            <div class="col-md-4 actions row" style="margin-top: 20px; float: right;">
+                <%= a.submit '追加', class:"btn btn-primary btn-lg" %>
+            </div>
+        <% end %>
 
     </div>
 </div>
 </div>
-
 

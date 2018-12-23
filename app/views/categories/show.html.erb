@@ -17,15 +17,18 @@
 					<div class="inline-block">
 						<div class="col-lg-4">
 							<div class="jacket-image">
-								<%#= product.image %>
+								<%#= limk_to attachment_image_tag product.image_id, product_path(product.id) :image, fallback: "no_image.jpg", size: "100x100" %>
 							</div>
+
 							<div>
-								<%= product.title %>
+								<%= link_to product.title, product_path(product.id) %>
 								<p>/</p>
-								<%= product.artist.artist_name %>
+								<%= link_to product.artist.artist_name, artist_path(product.artist.id) %>
 							</div>
+
 						</div>
 					</div>
+				<% end %>
 			<%= paginate @products %>
 		</section>
 	</div>
