@@ -15,7 +15,7 @@ class ProductsController < ApplicationController
             @favorite_artist = FavoriteArtist.new
             @artist = @product.artist
 
-            @cart_item = @product.cart_items.new
+            @cart_item = CartItem.new
 
         @reviews = @product.reviews.page(params[:page]).reverse_order
 

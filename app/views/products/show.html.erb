@@ -131,7 +131,9 @@
                 	在庫数 : <%= @product.stock %>個
                 </div>
                 <div class="col-lg-6 field row" >
-                        <%= form_for @cart_item, url: create_cart_item_path(@product.id, current_user.carts.ids), method: :post do |f| %>
+
+
+                        <%= form_for@cart_item, url: product_cart_items_path(@product.id), method: :post do |f| %>
                             <!-- 購入枚数制限 -->
                             <% if @product.stock > 10 %>
                                 <div class='col-md-6'style="margin-top: 30px; margin-bottom: 30px; font-size: 16px">

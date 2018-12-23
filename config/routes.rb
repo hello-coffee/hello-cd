@@ -13,7 +13,7 @@ Rails.application.routes.draw do
     }
     resources :admins, only: [:show]
 
-    resources :cart_items, only: [:create, :destroy]
+    
 
     resources :carts, only: [:show, :destroy]
 
@@ -25,6 +25,7 @@ Rails.application.routes.draw do
 
     resources :products, only: [:new, :create, :index, :show, :edit, :update, :destroy] do
       resource :reviews, only: [:new, :create, :index, :destroy]
+      resource :cart_items, only: [:create, :destroy]
     end
 
     resources :reviews, only: [:new, :create, :index, :destroy]
@@ -50,7 +51,10 @@ Rails.application.routes.draw do
 
     get '/favorite_artists' => 'users#favorite_artists'
 
-        post '/products/:product_id/carts/:cart_id' => 'cart_items#create', as: 'create_cart_item'
+        # post '/products/:product_id/carts/:cart_id' => 'cart_items#create', as: 'create_cart_item'
+
+        # post 'carts/:id/confirm' => 'carts#confirm', as: 'confirm'
+
 
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
