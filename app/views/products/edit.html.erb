@@ -2,12 +2,23 @@
 <div class='row'>
 
     <div class='col-md-8 col-md-offset-2' style="margin-top: 50px; margin-bottom: 150px">
-    <h1 style="margin-top: 10px; margin-bottom: 30px; text-align: center;">管理者ページ　新しい商品を追加</h1>
+    <h1 style="margin-top: 10px; margin-bottom: 30px; text-align: center;">管理者ページ　商品を編集</h1>
 
         <div class="form_list row" style="margin-top: 30px; margin-bottom: 30px; border-top: 1px solid #333333;"></div>
 
 <!-- productのフォーム 始まり-->
         <%= form_for(@product) do |f| %>
+
+            <div class="field row" style="margin-top: 20px;">
+                <%= f.label :アーティスト名 %><br>
+                <%= f.collection_select :artist_id, Artist.all, :id, :artist_name, :include_blank => true %>
+            </div>
+
+
+            <div class="field row" style="margin-top: 20px;">
+                <%= f.label :カテゴリー名 %><br>
+                <%= f.collection_select :category_id, Category.all, :id, :category_name, :include_blank => true %>
+            </div>
 
             <div class="field row" style="margin-top: 20px;">
                 <%= f.label :商品名 %>

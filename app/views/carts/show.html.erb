@@ -15,7 +15,7 @@
 				<tbody>
 					<% @cart.cart_items.each do |cart_item| %>
 					<tr>
-						<td><%#= attachment_image_tag @cart_item.product.image_id, :image, fallback: "no_image.jpg", size: "100x100" %></td>
+						<td><%= attachment_image_tag cart_item.product, :image, fallback: "no_image.jpg", size: "100x100"  %></td>
 						<td><%= cart_item.product.title %><br>
 							<%= cart_item.product.artist.artist_name %>
 						</td>

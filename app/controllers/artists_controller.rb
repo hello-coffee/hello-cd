@@ -15,7 +15,7 @@ class ArtistsController < ApplicationController
   def create
       @artist = Artist.new(artist_params)
       @artist.save
-        redirect_to artists_path
+        redirect_to new_product_path
 
       # redirect_to artists_path, notice: ""
 

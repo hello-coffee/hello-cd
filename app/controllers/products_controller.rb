@@ -17,6 +17,8 @@ class ProductsController < ApplicationController
 
             @cart_item = @product.cart_items.new
 
+        @reviews = @product.reviews.page(params[:page]).reverse_order
+
     end
 
     def update
@@ -39,7 +41,8 @@ class ProductsController < ApplicationController
     end
 
     def new
-        # @artist = Artist.new
+        @artist = Artist.new
+        @category = Category.new
         # @product = Product.new
         # disc = @product.discs.build
         # @product.discs.build
