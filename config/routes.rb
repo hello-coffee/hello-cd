@@ -25,8 +25,10 @@ Rails.application.routes.draw do
 
     resources :orders, only: [:new, :create, :index]
 
-    resources :products, only: [:new, :create, :index, :show, :edit, :update, :destroy]
-
+    resources :products, only: [:new, :create, :index, :show, :edit, :update, :destroy] do
+      resource :reviews, only: [:new, :create, :index, :destroy]
+    end
+    
     resources :reviews, only: [:new, :create, :index, :destroy]
 
     get '/searches' => 'searches#search'
@@ -43,6 +45,9 @@ Rails.application.routes.draw do
      end
 
     get '/favorite_artists' => 'users#favorite_artists'
+
+        post '/products/:product_id/carts/:cart_id' => 'cart_items#create', as: 'create_cart_item'
+
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

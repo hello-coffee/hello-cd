@@ -72,3 +72,6 @@ gem 'ransack'
 gem "paranoia"
 gem 'pry-byebug'
 gem 'cocoon'
+gem 'skipper'
+gem 'pry-rails'
+

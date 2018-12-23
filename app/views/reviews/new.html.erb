@@ -1,38 +1,36 @@
 	<div class='container'>
 	
 		<div class="row">
-			<!--<div class="col-md-2"></div>-->
-			<!--<div class="col-md-10">-->
+			<div class="col-md-2"></div>
+			<div class="col-md-10">
 			<h2>口コミ投稿画面</h2>
 			<br>
 			<p>商品名：　○○○の口コミ</p>
 		</div>
 	
 		<div class="row">
-			<!--<div class="col-md-4"></div>-->
-			<!--<div class="col-md-6">-->
-				
-				<%= form_for(@new_review) do |review| =%>
-				 
+			<div class="col-md-4"></div>
+			<div class="col-md-6">
+			
+				<%= form_for [@product, @review] do |f| %>
+	
 				 	<h4>件名を入力してください</h4>	
-				 		<div class="box">
-				 			<%= review.text_field :subject, class:"input-field-size" %>
-				 		</div>
-				 	
+				 		
+				 		<%= f.text_field :subject %>
+				 			
 				 	<h4>口コミ本文を入力してください</h4>
-				 		<div class="box">
-				 			<%= review.text_area :review, class:"input-area-size" %>
-				 		</div>
-				 	<div class="button">
-				 		<%= review.submit "投稿", class:"btn btn-lg btn-block btn-base-1 mt-20" %>
-				 	</div>
+				 		
+				 		<%= f.text_area :review %>
+				 		<br>
+				 		<%= f.submit "投稿" %>
+				 		
 				 		
 				 <% end %>
 				 <br>
 		 </div>
 		<br>
 		<br>
-			<!--<div class="col-md-4"></div>-->
+			<div class="col-md-4"></div>
 	</div>
 		<!--↑２つのrowクラス作ってみました。まだ投稿はできません。M-->
 		
