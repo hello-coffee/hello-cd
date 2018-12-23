@@ -26,7 +26,7 @@
 			<h3>登録済み住所</h3>
 			<%= fields_for current_user do |f| %>
  				<%= f.label :id, "登録済み住所" %>
- 				<%= f.collection_select :id, Address.all, :user_id, :address %>
+ 				<#= f.collection_select :id, Address.all, :user_id, :address %>
 			<% end %>
 		</div>
 	</div>
@@ -107,7 +107,7 @@
 		</div>
 	</div>
 	<!-- <input type="submit" name="commit" value="kounyuu" class="btn btn-primary btn-lg" data-disable-with="kounyuu"> -->
-			<%= f.submit "kounyuu", class:"btn btn-primary btn-lg center-block" %>
+			<%= f.submit "購入", class:"btn btn-primary btn-lg center-block" %>
 			<% end %>
 	<%#= link_to "購入", user_path(current_user), class: "btn btn-default active" %>
 </div>
