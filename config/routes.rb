@@ -24,8 +24,10 @@ Rails.application.routes.draw do
 
     resources :orders, only: [:new, :create, :index]
 
-    resources :products, only: [:new, :create, :index, :show, :edit, :update, :destroy]
-
+    resources :products, only: [:new, :create, :index, :show, :edit, :update, :destroy] do
+      resource :reviews, only: [:new, :create, :index, :destroy]
+    end
+    
     resources :reviews, only: [:new, :create, :index, :destroy]
 
     get '/searches' => 'searches#search'

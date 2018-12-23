@@ -1,55 +1,39 @@
 class ReviewsController < ApplicationController
-  
-  before_action :find_review, only: [:show, :edit, :update, :destroy]
-  
+
   def index
      @reviews = Review.all
   end
   
   def show
-    
   end
-  
   
   def new
     @review = Review.new
+    @product = Product.find(params[:product_id])
   end
   
 
   def create
-    @review = Review.new(review_params)
-    if @new_review.save
-      redirect_to 'Products_show_path'
-    else
-      redirect_to :@new
-    end
+    review = Review.new(review_params)
+    review.product_id = params[:product_id]
+    review.user_id = current_user.id
+    review.save
+    redirect_to product_path(review.product.id)
   end
   
-  def update
-    if @review.update(review_params)
-      redirect_to @review
-    else
-      redirect_to :@new
-   end
-  end
 
   def destroy
-   if @review.destroy
-       redirect_to root_path
-   else
-       redirect_to root_path
-    end
+    review = Review.find(params[:id])
+    review.destroy
+    redirect_to reviews_path
   end
 
 
   
 private
   
-  def find_review
-      @review = Review.find(parans[:id])
-  end
-  
   def review_params
+    params.require(:review).permit(:subject, :review, :product_id)
   end
   
 end
