@@ -1,4 +1,5 @@
 class NewsController < ApplicationController
+  
   def create
   end
 
