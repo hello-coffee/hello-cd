@@ -1,6 +1,15 @@
+<style>
+
+.p-review{
+    text-align: center;
+ }
+ 
+    
+</style>
+
+
 <div class="container">
     <h1>Reviews#index</h1>
-    <p>Find me in app/views/reviews/index.html.erb</p>
     
     
     <h1 class="text-center">口コミ管理</h1>
@@ -9,19 +18,14 @@
     <br>
     <p class="text-center">商品名</p>
     
-    <select>
-                <option>a</option>
-                <option>b</option>
-                <option>c</option>
-              </select>
-     
-    <p class="text-center">投稿された口コミ一覧(最新10件表示)</p>
-    
-    <!--ここに、商品ごとに投稿された口コミを一覧で表示したい-->
-    <!--jqueryを使ったりするのでちょっと大変かもしれないらしい--!>
-    
 
-    <!--もし、管理者だったらボタンを表示したい-->
-    
-    
+     
+    <p class="text-center">投稿された口コミ一覧</p>
+    <!--ここに、商品ごとに投稿された口コミを一覧で表示する-->
+    <!--もし、管理者だったらボタンを表示する-->
+    <% @reviews.each do |review| %>
+        <tr class="tr-tag">件名：<%= review.subject %></tr>
+        <tr class="tr-tag">内容：<%= review.review %></tr>
+        <tr class="tr-tag"><%= link_to "削除", review_path(review), method: :delete %></tr>
+    <% end %>
 </div>
