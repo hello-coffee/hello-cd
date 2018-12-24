@@ -19,18 +19,17 @@ p{
 
 </style>
 
-
-<p>ここはTOPページ products#index</p>
 <div class="container">
 	<div class="row">
-		<div class="img_top">
-		    
+		<div class="img-top" >
+		   <div style= "text-align: center;">TOP products#index</div>
         </div>
     </div>
 
     <div class="row">
         <div class="col-lg-3">
             
+           <%= render 'top/sidebar',categories: @categories %>
             
             
         </div>
@@ -44,30 +43,39 @@ p{
         	</div>
         	
         	<div class="row">
-        		<div class="col-lg-6">
-        			
+        		<div class="col-lg-2"></div>
+        		<div class="col-lg-8">	
         			<div class="row">
-        			    <% @news.each do |n| %>
-        			        <li>
-        			            <%= n.body %>
-                                <%= n.created_at %>
-                                <%= link_to '削除', news_path(n), method: :delete %>
-                            </li>    
-        			    <% end %>
+        			     <div class="news-box" style="border: 1px solid #000000">
+        			        <p style="font-size: 30px; text-align: left; padding: 10px;">NEWS</p>
+        			        <% @news.each do |n| %>
+    			                 <li style="text-align: center; color: blue;">
+    			                    <%= n.body %>
+                                    <%= n.created_at %>
+                                    <%= link_to '削除', news_path(n), method: :delete %>
+                                </li>    
+        			        <% end %>
+        			     </div>
         			</div>
+        		</div>
+        		<div class="col-lg-2"></div>
         			<div class="row">
-                        <div class="col-lg-6">
-                             <% @products.each.with_index(1)  do |product, i| %>
-                                <div class="p-box">
-                                <div class="pi-box">ここにイメージがはいります</div>
-                                商品名/<%= product.title %>
-                                <br>
-                                アーティスト名/<%= product.artist.artist_name %>
-                                </div>
-                            <% end %>
-                        </div>
-        			</div>
-                </div>
+                     <% @products.each do |product| %>
+    					 <div class="col-lg-4">
+    					
+    					    <div class="d-inline-block">
+    					   
+    							<%= attachment_image_tag product, :image, fallback: "no_image.jpg", size: "200x200" %>
+    							<p></p>
+    							<%= link_to product.title, product_path(product.id) %>
+    							<p></p>
+    							<%= link_to product.artist.artist_name, artist_path(product.artist.id) %>
+    						</div>
+    				    </div>
+    			       <% end %>
+            	    </div>
+				</div>
             </div>
-        </div>
+		</div>
     </div>
+</div>

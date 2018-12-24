@@ -3,6 +3,7 @@ class ProductsController < ApplicationController
     def index
         @products = Product.all
         @news = News.all
+        @categories = Category.all
     end
 
     def show
