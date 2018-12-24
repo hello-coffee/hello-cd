@@ -67,7 +67,7 @@ textarea{
     <div class="row">
         <div class="col-md-1"></div>
         <div class="col-md-10">
-            <%= form_for @news do |n| %>
+            <%= form_for @news,url: news_index_path  do |n| %>
             <%= n.text_area :body %>
             <%= n.submit "投稿 ⇧", class:"btnbtnbtn" %>
             <% end %>

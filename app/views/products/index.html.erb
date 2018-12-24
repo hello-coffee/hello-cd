@@ -55,7 +55,7 @@ p{
         			        <% @news.each do |n| %>
     			                 <li style="text-align: center; color: blue;">
     			                    <%= n.body %>
-                                    <%= n.created_at %>
+                                    <%= n.created_at.strftime('%Y/%m/%d')%>
                                     <%= link_to '削除', news_path(n), method: :delete %>
                                 </li>    
         			        <% end %>
@@ -78,6 +78,7 @@ p{
     				    </div>
     			       <% end %>
             	    </div>
+            	    <div style="text-align: center;"><%= paginate (@products) %></div>
 				</div>
             </div>
 		</div>

@@ -47,7 +47,7 @@ class OrdersController < ApplicationController
   end
 
   def index
-    #@orders = Orders.page(params:[page]).per(10)
+    @order = Order.all
   end
 
   private
