@@ -4,7 +4,8 @@ class ProductsController < ApplicationController
         @products = Product.page(params[:page]).per(4).order(:id)
         @news = News.all
         @categories = Category.all
-        @product = Product.all
+        @search = Product.ransack(params[:q])
+        @results = @search.result
     end
 
     def show
