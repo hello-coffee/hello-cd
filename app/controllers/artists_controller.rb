@@ -23,9 +23,9 @@ class ArtistsController < ApplicationController
 
   def show
 		  # 検索オブジェクト
-  		@search = Artist.ransack(params[:q])
+  		#@search = Artist.ransack(params[:q])
   		# 検索結果
-  		@result = @search.result(distinct: true).includes(:products)
+  		#@result = @search.result(distinct: true).includes(:products)
   		#render :index
 
   		@artist = Artist.find(params[:id])

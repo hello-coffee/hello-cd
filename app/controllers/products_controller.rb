@@ -4,6 +4,8 @@ class ProductsController < ApplicationController
         @products = Product.all
         @news = News.all
         @categories = Category.all
+        @search = Product.ransack(params[:q])
+        @results = @search.result
     end
 
     def show
