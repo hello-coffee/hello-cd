@@ -22,15 +22,8 @@ class ArtistsController < ApplicationController
   end
 
   def show
-		  # 検索オブジェクト
-  		#@search = Artist.ransack(params[:q])
-  		# 検索結果
-  		#@result = @search.result(distinct: true).includes(:products)
-  		#render :index
-
   		@artist = Artist.find(params[:id])
   		@products = @artist.products.page(params[:page]).per(9).reverse_order
-
   		@categories = Category.all
   end
 
