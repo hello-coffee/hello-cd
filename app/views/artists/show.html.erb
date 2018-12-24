@@ -15,13 +15,15 @@
 				<% @products.each do |product| %>
 					<div class="inline-block">
 						<div class="col-lg-4">
-							<div class="text-center">
-								<%= attachment_image_tag product, :image, fallback: "no_image.jpg", size: "200x200" %>
-							</div>
-							<div class="text-center">
-								<%= link_to product.title, product_path(product.id) %>
-								<p></p>
-								<%= link_to product.artist.artist_name, artist_path(product.artist.id) %>
+							<%= link_to product_path(product.id) do %>
+								<div class="text-center">
+									<%= attachment_image_tag product, :image, fallback: "no_image.jpg", size: "200x200" %>
+								</div>
+								<div class="text-center">
+									<%= link_to product.title, product_path(product.id) %>
+							<% end %>
+									<p></p>
+									<%= link_to product.artist.artist_name, artist_path(product.artist.id) %>
 							</div>
 						</div>
 					</div>

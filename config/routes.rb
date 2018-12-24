@@ -13,7 +13,7 @@ Rails.application.routes.draw do
     }
     resources :admins, only: [:show]
 
-    
+    resources :sends, only: [:new, :create]
 
     resources :carts, only: [:show, :destroy]
 
