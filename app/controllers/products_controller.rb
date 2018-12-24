@@ -3,6 +3,7 @@ class ProductsController < ApplicationController
     def index
         @products = Product.all
         @news = News.all
+        @categories = Category.all
         @search = Product.ransack(params[:q])
         @results = @search.result
     end
