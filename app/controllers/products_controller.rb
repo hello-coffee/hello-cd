@@ -2,6 +2,7 @@ class ProductsController < ApplicationController
 
     def index
         @products = Product.all
+        @news = News.all
     end
 
     def show
@@ -15,7 +16,9 @@ class ProductsController < ApplicationController
             @favorite_artist = FavoriteArtist.new
             @artist = @product.artist
 
-            @cart_item = @product.cart_items.new
+            @cart_item = CartItem.new
+
+        @reviews = @product.reviews.page(params[:page]).reverse_order
 
     end
 
@@ -39,7 +42,8 @@ class ProductsController < ApplicationController
     end
 
     def new
-        # @artist = Artist.new
+        @artist = Artist.new
+        @category = Category.new
         # @product = Product.new
         # disc = @product.discs.build
         # @product.discs.build

@@ -10,6 +10,11 @@ class CartsController < ApplicationController
     @total_price = 0
     @price.cart_items.each do |cart_item|
       @total_price += cart_item.product.price * cart_item.quantity
+
+
+    @products = Product.all
+    @cart = Cart.find(params[:id])
+    @cart_items = CartItem.all
     end
 
     #以下は在庫数(商品詳細ページで対応することになった)
