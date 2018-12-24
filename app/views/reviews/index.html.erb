@@ -1,44 +1,8 @@
-<style>
-
-.p-review{
-    text-align: center;
- }
- 
-    
-</style>
-
-
-<div class="container">
-    <h1>Reviews#index</h1>
-    
-    
-    <h1 class="text-center">口コミ管理</h1>
-    <p class="text-center">※投稿を削除すると復元できません。投稿を削除する場合は内容ををご確認の上、削除をクリックして下さい</p>
-    <br>
-    <br>
-    <p class="text-center">商品名</p>
-    
-
-
-     
-    <p class="text-center">投稿された口コミ一覧</p>
-    <!--ここに、商品ごとに投稿された口コミを一覧で表示する-->
-    <!--もし、管理者だったらボタンを表示する-->
-    <% @reviews.each do |review| %>
-        <tr class="tr-tag">件名：<%= review.subject %></tr>
-        <tr class="tr-tag">内容：<%= review.review %></tr>
-        <tr class="tr-tag"><%= link_to "削除", review_path(review), method: :delete %></tr>
-    <% end %>
-
-    <!--もし、管理者だったらボタンを表示したい-->
-    
-    
-</div>
-
-
-<!-- 確認用に作成 -->
 <div class='container'>
 <div class='row'>
+     <h1 class="text-center">口コミ管理</h1>
+    <p class="text-center">※投稿を削除すると復元できません。投稿を削除する場合は内容ををご確認の上、削除をクリックして下さい</p>
+    <br>
 
     <div class='col-md-8 col-md-offset-2'>
         <h2>レビュー一覧</h2>

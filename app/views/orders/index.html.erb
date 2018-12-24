@@ -1,2 +1,31 @@
-<h1>Orders#index</h1>
-<div>ここに購入履歴一覧が表示されます</div>
+<div class="container" style="border: 1px solid #000000">
+    <div class="row">
+        <br>
+        <p style="font-size: 20px;">　　購入履歴一覧　(最新10件表示)</p>
+    </div>
+    <div class="row" style="margin: 10px 10px;">
+        <div>
+            <% @order.each do |order| %>
+                <div style="border: 1px solid #000000;">
+                氏名：<%= order.id %>
+                <br>
+                購入日時：<%= order.created_at.strftime('%Y/%m/%d') %>
+                <br>
+                <p>購入内容　　　・<%= order.cart_id %></p>
+                <p>小計　　　：円</p>
+                <br>
+                購入価格総計：<%= order.total_price %>円
+                <br>
+                送付先：<%= order.address %>
+                <br>
+                ステータス：<select>
+                    <option value><%= order.status %></option>
+                </select>
+                <br>
+                <br>
+                </div>
+                <br>
+            <% end  %>
+        </div>
+    </div>
+</div>
