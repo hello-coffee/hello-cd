@@ -1,9 +1,10 @@
 class ProductsController < ApplicationController
 
     def index
-        @products = Product.all
+        @products = Product.page(params[:page]).per(4).order(:id)
         @news = News.all
         @categories = Category.all
+        @product = Product.all
     end
 
     def show
@@ -64,7 +65,7 @@ class ProductsController < ApplicationController
 
     private
         def product_params
-            params.require(:product).permit(:artist_id, :title, :image, :price, :label, :category_id, :deleted_at, :stock,
+            params.require(:product).permit(:artist_id, :title, :image, :price, :label, :category_id, :deleted_at, :stock, :page,
              discs_attributes: [:id, :disc_name, :product_id, :_destroy,
               songs_attributes: [:id, :disc_id, :song_name, :song_sort, :_destroy]])
         end
