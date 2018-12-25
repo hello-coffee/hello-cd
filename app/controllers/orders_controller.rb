@@ -46,6 +46,11 @@ class OrdersController < ApplicationController
       #@order.total_price = @total_price
 
   		@order.save
+
+      @cart = current_user.carts.last
+      @cart.order_id = @order.id
+      @cart.save
+
   		redirect_to user_path(current_user.id)
 
           @cart = Cart.new
