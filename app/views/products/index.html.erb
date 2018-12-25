@@ -28,7 +28,8 @@
     		    <%= attachment_image_tag product, :image, fallback: "no_image.jpg", size: "200x200" %><br>
                 <%= product.title %><br>
               <% end %>
-                <%= link_to product.artist.artist_name, artist_path(product.artist) %>
+                <%= link_to artist_path(product.artist.id) %>
+                <%= link_to '削除', product_path(product.id), method: :delete %>
             </th>
           <% end %>
         </tr>

@@ -1,10 +1,11 @@
 class OrdersController < ApplicationController
 
   def new
-    @address = current_user.carts.address_id
+    # @address = current_user.carts.address_id
     @order = Order.new
      #firstをlastに変える
     @cart = current_user.carts.last
+
 
     @price = current_user.carts.last
     @total_price = 0
@@ -15,7 +16,7 @@ class OrdersController < ApplicationController
     #if redirect.blank?
       #@address = Address.new
     #else
-      #@address = Address.find(parems[:address_id])
+      # @address = Address.find(address_parems)
       #redirect_to 'new', redirect: true, address_id: params[:address_id]
     #end
   end
@@ -55,5 +56,9 @@ class OrdersController < ApplicationController
     def order_params
       params.require(:order).permit(:user_id, :cart_id, :status, :pay, :total_price, :address)
     end
+
+  def address_params
+    params.require(:address).permit(:last_name, :first_name, :last_name_kana, :first_name_kana, :post_code, :address, :tel, :email, :user_id)
+  end
 
 end
