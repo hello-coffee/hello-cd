@@ -6,24 +6,24 @@ class SendsController < ApplicationController
   end
 
   def create
-	if params[:address][:id] != nil
-		p "aaaaa"
-		params[:address][:id]
-		cart.address_id.save
-	else
-		@address = Address.new(address_params)
-  		@address.user_id = current_user.id
-  		unless @address.save
-  			redirect_to new_send_path
-  		else
-  			@address.id
-  			cart.address_id.save
-  		end
-	end
-
-  	redirect_to new_order_path
-
-end
+    @cart = current_user.carts.last
+  	if params[:address][:id] != nil
+  		p "aaaaa"
+  		params[:address][:id]
+  		@cart.save
+      redirect_to new_order_path
+  	else
+  		@address = Address.new(address_params)
+    		@address.user_id = current_user.id
+    		unless @address.save
+    			redirect_to new_send_path
+    		else
+    			@cart.address_id = @address.id
+          @cart.save
+          redirect_to new_order_path
+    		end
+  	 end
+  end
 
  #  	if
  #  		@address = Address.new(address_params)
@@ -40,3 +40,4 @@ end
   	params.require(:address).permit(:last_name, :first_name, :last_name_kana, :first_name_kana, :post_code, :address, :tel, :email, :user_id)
   end
 end
+
