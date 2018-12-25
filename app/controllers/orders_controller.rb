@@ -1,10 +1,14 @@
 class OrdersController < ApplicationController
 
   def new
-    @address = current_user.carts.address_id
+    #@address = current_user.carts.address_id
+    @user = User.find(current_user[:id])
+    @cart = current_user.carts.last
+    #address.id = @cart.address_id
+    @address = Address.find(@cart.address_id)
+
     @order = Order.new
      #firstをlastに変える
-    @cart = current_user.carts.last
 
     @price = current_user.carts.last
     @total_price = 0
@@ -27,8 +31,8 @@ class OrdersController < ApplicationController
 
       @order.status = 0
       @order.user_id = current_user.id
-      @order.address = @address
 
+      #@order.address = @address.address
       #@order.cart_id = current_user.carts.first.id
       # ======「total_priceの計算」==========
       #@price = current_user.carts.first
@@ -57,3 +61,4 @@ class OrdersController < ApplicationController
     end
 
 end
+

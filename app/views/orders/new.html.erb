@@ -24,7 +24,7 @@
 				<label><%= f.radio_button :pay, 2 %> 代金引き換え </label><br>
 				<%= f.hidden_field :cart_id, :value => @cart.id %>
 				<%= f.hidden_field :total_price, :value => @total_price %>
-				<%#= f.hidden_field :address, :value => @address %>
+				<%= f.hidden_field :address, :value => @address.address %>
 		</div>
 		<div class="col-lg-8" style="border: 2px solid #f7f7f7;">
 			<h4 class="text-center">購入内容</h4>
@@ -88,5 +88,4 @@
 			<%= f.submit "購入", class:"btn btn-primary btn-lg center-block" %>
 			<% end %>
 </div>
-
 
