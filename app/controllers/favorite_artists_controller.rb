@@ -1,16 +1,4 @@
 class FavoriteArtistsController < ApplicationController
-  # def create
-    # @user_id = current_user.id
-    # @product = find(params[:id])
-    # @artist_id = @product.artist_id
-    # @favorite_artist = FavoriteArtist.new(artist_id: @artist_id, user_id: @user_id)
-    # if @favorite_artist.save
-    #   redirect_to product_path(params[:id])
-    # else
-    #   redirect_to product_path(params[:id])
-    # end
-  # end
-
 
   def create
       @user_id = current_user.id
