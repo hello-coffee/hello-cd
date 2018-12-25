@@ -20,6 +20,9 @@ class ProductsController < ApplicationController
 
         @reviews = @product.reviews.page(params[:page]).reverse_order
 
+        @favorite_artists = FavoriteArtist.all
+
+
     end
 
     def update
@@ -56,7 +59,11 @@ class ProductsController < ApplicationController
     end
 
     def create
+        # @artist = Artist.new(artist_params)
+        # @artist = Artist.find(params[:artist_id])
+
         @product = Product.new(product_params)
+        # @product.artist_id = @artist.id
         @product.save
         redirect_to product_path(@product.id)
     end
@@ -68,8 +75,8 @@ class ProductsController < ApplicationController
               songs_attributes: [:id, :disc_id, :song_name, :song_sort, :_destroy]])
         end
 
-  # def artist_params
-  #     params.require(:artist).permit(:artist_name)
-  # end
+  def artist_params
+      params.require(:artist).permit(:artist_name)
+  end
 
 end

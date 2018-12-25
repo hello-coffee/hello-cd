@@ -4,7 +4,7 @@
 <div class="nested-fields well well-compact">
     <div class="form-group">
         <%= f.label :DISC名 %><br>
-        <%= f.text_field :disc_name, class:"" %><br>
+        <%= f.text_field :disc_name, :size=>"70", :placeholder => "DISC名を入力して下さい", class:"" %><br>
         <div class="links">
           <%= link_to_remove_association "DISCを削除", f, class: 'btn btn-danger', role: 'button'  %>
         </div>
