@@ -1,6 +1,7 @@
 class OrdersController < ApplicationController
 
   def new
+
     #@address = current_user.carts.address_id
     @user = User.find(current_user[:id])
     @cart = current_user.carts.last
@@ -9,6 +10,7 @@ class OrdersController < ApplicationController
 
     @order = Order.new
      #firstをlastに変える
+
 
     @price = current_user.carts.last
     @total_price = 0

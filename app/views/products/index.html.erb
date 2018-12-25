@@ -29,6 +29,7 @@
                 <%= product.title %><br>
               <% end %>
                 <%= link_to product.artist.artist_name, artist_path(product.artist) %>
+                <%#= link_to '削除', product_path(product.id), method: :delete %>
             </th>
           <% end %>
         </tr>
