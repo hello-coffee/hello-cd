@@ -48,6 +48,10 @@ class OrdersController < ApplicationController
   		@order.save
   		redirect_to user_path(current_user.id)
 
+          @cart = Cart.new
+          @cart.user_id = current_user.id
+          @cart.save
+
     else
   		redirect_to new_order_path
   	end

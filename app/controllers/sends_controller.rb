@@ -10,6 +10,8 @@ class SendsController < ApplicationController
   	if params[:address][:id] != nil
   		p "aaaaa"
   		params[:address][:id]
+      @address = Address.find(params[:address][:id])
+      @cart.address_id = @address.id
   		@cart.save
       redirect_to new_order_path
   	else
