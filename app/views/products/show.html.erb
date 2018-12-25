@@ -18,7 +18,7 @@
 
 <!-- 商品情報左側 始まり-->
             <div class='col-md-4'>
-                <div class="jacket_image" style="width: 100%; height: 270px; margin: 30px 0; background-color: lightblue;">
+                <div class="jacket_image" style="width: 100%; height: 270px; margin: 30px 0;">
                 	<div class="jacket_image_text" style="width: 100%; margin: 0 auto; text-align: center; padding-top: 10px" >
                 	    <%= attachment_image_tag @product, :image, fallback: "no_image.jpg", size: "250x250"  %>
                 	</div>
@@ -39,7 +39,13 @@
 		                    		アーティスト
 		                    	</div>
 		                    	<div class='col-md-9 artist'>
-		                    		<%= @product.artist.artist_name %>
+		                    		<% if @product.artist.favorited_by?(current_user) %>
+		                    		    <i class="fa fa-heart fa-spin" style="color: red;"></i>
+		                    		    <%= @product.artist.artist_name %>
+		                    		    <i class="fa fa-heart fa-spin" style="color: red;"></i>
+		                    		<% else %>
+		                    			<%= @product.artist.artist_name %>
+		                    		<% end %>
 		                    	</div>
 		                    </div>
 		                    <div class="field row abel_name record" style="width: 100%; margin-bottom: 10px;">
@@ -62,9 +68,19 @@
 	            	</div>
 
 	                <div class="disc_button" style="width: 100%; margin-top: 20px; text-align: center;">
+	                    <% if @product.artist.favorited_by?(current_user) %>
 			                <button type="submit" name="example" value="ボタン" style="">
-			                	<%= link_to "アーティストをお気に入りに追加", add_artist_path(@artist.id), method: :post %>
+			                	<i class="fa fa-android fa-spin fa-2x" style="color: #A4C639;"></i>
+			                	お気に入りに追加済み
+			                	<i class="fa fa-android fa-spin fa-2x" style="color: #A4C639;"></i>
 			                </button>
+			            <% else %>
+			                <button type="submit" name="example" value="ボタン" style="">
+			                	<i class="fa fa-android fa-2x" style="color: #A4C639;"></i>
+			                	<%= link_to "アーティストをお気に入りに追加", add_artist_path(@artist.id), method: :post %>
+			                	<i class="fa fa-android fa-2x" style="color: #A4C639;"></i>
+			                </button>
+			            <% end %>
 			        </div>
                 <div class="line" style="width: 100%; margin: 10px 0; border-top: 3px solid #333333;"></div>
 
@@ -124,24 +140,25 @@
         <div class="form_list row" style="border-top: 5px solid #333333;">
 
             <div class="marchandise_info" style="margin: 0 20px; text-align: center;">
-                <div class="col-lg-3 field row" style="margin-top: 30px; margin-bottom: 30px; margin-right: 10px; font-size: 16px">
+                <div class="col-lg-3 field row" style="margin-top: 30px; margin-bottom: 30px; font-size: 16px">
                 	価格 : <%= @product.price %>円
                 </div>
-                <div class="col-lg-3 field row" style="margin-top: 30px; margin-bottom: 30px; margin-right: 10px; font-size: 16px">
+                <div class="col-lg-3 field row" style="margin-top: 30px; margin-bottom: 30px; font-size: 16px">
                 	在庫数 : <%= @product.stock %>個
                 </div>
-                <div class="col-lg-6 field row" >
-
+                <!-- <div class="col-lg-8 field row" style="float: right"> -->
 
                         <%= form_for@cart_item, url: product_cart_items_path(@product.id), method: :post do |f| %>
                             <!-- 購入枚数制限 -->
                             <% if @product.stock > 10 %>
-                                <div class='col-md-6'style="margin-top: 30px; margin-bottom: 30px; font-size: 16px">
-                                <strong>最大10枚まで購入可能</strong>
+                                <div class='col-lg-3'style="margin-top: 20px; margin-bottom: 15px; font-size: 16px">
+                                <span>最大10枚まで購入可能</span><br>
 	                                <%= f.select :quantity, [[1, 1], [2, 2], [3, 3], [4, 4], [5, 5],[6, 6],[7, 7], [8, 8], [9, 9], [10, 10]], class: "form-control col-md-1", id: "number" %> 枚
 	                            </div>
-                                <div class='col-md-6'style="margin-top: 30px; margin-bottom: 30px; font-size: 16px">
-	                                <%= f.submit "カートに入れる", class: "btn-lg btn-primary col-md-offset-2"%>
+                                <div class='col-lg-3'style="margin-top: 15px; margin-bottom: 15px; font-size: 16px; float: right; width: 30%">
+									<%= button_tag :type => "submit", :class =>"btn-lg btn-primary" do %>
+									    <i class="fa fa-cart-arrow-down fa-2x"></i> カートに入れる
+									<% end %>
 	                            </div>
                             <% elsif 10 >= @product.stock && @product.stock >= 1 %>
                                 <% ar = {} %>
@@ -149,20 +166,22 @@
                                     <% i += 1 %>
                                     <% ar.store(i, i) %>
                                 <% end %>
-                                <div class='col-md-6'style="margin-top: 30px; margin-bottom: 30px; font-size: 16px">
+                                <div class='col-lg-3'style="margin-top: 30px; margin-bottom: 30px; font-size: 16px">
 	                                <span class="title-name">購入枚数<span class="partition"> </span></span>
 	                                <%= f.select :quantity, options_for_select(ar), class: "form-control", id: "number" %> 枚
 	                            </div>
-	                            <div class='col-md-6' style="margin-top: 20px; margin-bottom: 20px; font-size: 16px">
-                                	<%= f.submit "カートに入れる", class: "btn-lg btn-primary"%>
-                                </div>
+                                <div class='col-lg-3'style="margin-top: 15px; margin-bottom: 10px; font-size: 16px; float: right; width: 30%">
+									<%= button_tag :type => "submit", :class =>"btn-lg btn-primary" do %>
+									    <i class="fa fa-cart-arrow-down fa-2x"></i> カートに入れる
+									<% end %>
+	                            </div>
                             <% else %>
                                 <%= link_to root_path do %>
                                     <p class="btn btn-primary col-md-offset-5">入荷準備中です。暫くお待ち下さい。</p>
                                 <% end %>
                             <% end %>
                         <% end %>
-                </div>
+                <!-- </div> -->
 	        </div>
 	    </div>
 

@@ -41,9 +41,14 @@
                 <div class="product_form" style="margin-top: 20px;">
                 <%= form_for(@product) do |f| %>
 
+
+
+
                     <div class="field row" style="margin-top: 20px;">
                         <%= f.label :アーティスト名 %><br>
                         <%= f.collection_select :artist_id, Artist.all, :id, :artist_name, :prompt => "アーティストを選択して下さい" %>
+
+<!--                         <input placeholder="アーティスト名を入力して下さい" type="text" name="artist[artist_name]" id="artist_artist_name" /> -->
                     </div>
 
 
@@ -54,7 +59,7 @@
 
                     <div class="field row" style="margin-top: 20px;">
                         <%= f.label :商品名 %>
-                        <%= f.text_field :title, class:"col-xs-12 book_title" %>
+                        <%= f.text_field :title, :placeholder => "商品名を入力して下さい", class:"col-xs-12 book_title" %>
                     </div>
 
                     <div class="field row" style="margin-top: 20px;">
@@ -64,7 +69,7 @@
 
                     <div class="field row" style="margin-top: 20px;">
                         <%= f.label :レーベル %>
-                        <%= f.text_field :label, class:"col-xs-12 book_body" %>
+                        <%= f.text_field :label, :placeholder => "レーベルを入力して下さい", class:"col-xs-12 book_body" %>
                     </div>
 
                 <div class="disc_list row" style="margin-top: 30px; margin-bottom: 30px; border-top: 1px solid #333333;"></div>
@@ -90,11 +95,11 @@
 
                     <div class="col-md-4 field row" style="margin-top: 20px;">
                         <%= f.label :価格 %>
-                        <%= f.text_field :price, class:"col-xs-12 book_title" %>
+                        <%= f.text_field :price, :placeholder => "価格を入力して下さい", class:"col-xs-12 book_title" %>
                     </div>
                     <div class="col-md-4 field row" style="margin-top: 20px;">
                         <%= f.label :在庫数 %>
-                        <%= f.text_field :stock, class:"col-xs-12 book_title" %>
+                        <%= f.text_field :stock, :placeholder => "在庫数を入力して下さい", class:"col-xs-12 book_title" %>
                     </div>
                     <div class="col-md-4 actions row" style="margin-top: 20px; float: right;">
                         <%= f.submit '商品情報を追加', class:"btn btn-primary btn-lg" %>

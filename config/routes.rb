@@ -42,6 +42,7 @@ Rails.application.routes.draw do
     get '/guide' => 'top#guide'
 
     resources :users, only: [:show, :update, :destroy, :edit]
+    
     resources :artists do
         resource :products, only: [:new, :create, :index, :show, :edit, :update, :destroy]
       member do
