@@ -50,6 +50,7 @@ class OrdersController < ApplicationController
 
           @cart = Cart.new
           @cart.user_id = current_user.id
+          @cart.order_id = @order.cart_id
           @cart.save
 
     else

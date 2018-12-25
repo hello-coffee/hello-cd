@@ -18,6 +18,7 @@ class User < ApplicationRecord
     post_code: true
     validates :email,
     presence: true
+
   	acts_as_paranoid
 
 	has_many :reviews, dependent: :destroy
