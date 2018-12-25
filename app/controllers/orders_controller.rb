@@ -62,9 +62,5 @@ class OrdersController < ApplicationController
       params.require(:order).permit(:user_id, :cart_id, :status, :pay, :total_price, :address)
     end
 
-  def address_params
-    params.require(:address).permit(:last_name, :first_name, :last_name_kana, :first_name_kana, :post_code, :address, :tel, :email, :user_id)
-  end
-
 end
 
