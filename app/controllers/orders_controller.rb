@@ -21,7 +21,7 @@ class OrdersController < ApplicationController
     #if redirect.blank?
       #@address = Address.new
     #else
-      # @address = Address.find(address_parems)
+      #@address = Address.find(parems[:address_id])
       #redirect_to 'new', redirect: true, address_id: params[:address_id]
     #end
   end
