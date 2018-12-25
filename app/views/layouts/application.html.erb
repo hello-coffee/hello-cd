@@ -33,7 +33,10 @@
             <%= link_to "　ログアウト", destroy_user_session_path, method: :delete, class:"nav navbar-nav navbar-right btn btn-default btn-lg" %>
             <%= link_to "　マイページ", user_path(current_user), class:"nav navbar-nav navbar-right btn btn-default btn-lg" %>
             <%= link_to "　お気に入り", favorite_artists_path, class:"nav navbar-nav navbar-right btn btn-default btn-lg" %>
-            <%= link_to "　　カート　", cart_path(current_user), class:"nav navbar-nav navbar-right btn btn-default btn-lg" %>
+            <% if current_user.carts.last.present? %>
+              <%= link_to "　　カート　", cart_path(current_user.carts.last), class:"nav navbar-nav navbar-right btn btn-default btn-lg" %>
+            <% else %>
+            <% end %>
         </nav>
       </div>
     </header>

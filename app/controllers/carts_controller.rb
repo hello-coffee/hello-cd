@@ -3,14 +3,17 @@ class CartsController < ApplicationController
   def show
     #下の記述のfirtstをlastに変更する(数カ所ある)
     @cart = current_user.carts.last
+
     #@artist = Artist.find_by(params[:artist_id]).artist_name
-
-    #以下は金額合計
-    @price = current_user.carts.last
-    @total_price = 0
-    @price.cart_items.each do |cart_item|
-      @total_price += cart_item.product.price * cart_item.quantity
-
+    #if @cart.cart_items != nil
+    #if @cart.cart_items.product.id != nil
+        #以下は金額合計
+        @price = current_user.carts.last
+        @total_price = 0
+        @price.cart_items.each do |cart_item|
+          @total_price += cart_item.product.price * cart_item.quantity
+    #else
+    #end
 
     @products = Product.all
     @cart = Cart.find(params[:id])
