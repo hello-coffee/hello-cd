@@ -10,8 +10,13 @@ class CartItemsController < ApplicationController
 	 #  	@cart_item.save
 	 #  	redirect_to cart_path(current_user.carts.ids)
 
-		if Cart.find_by(user_id: current_user)
-			@cart = Cart.find_by(user_id: current_user)
+		if #Cart.find_by(user_id: current_user)
+			#Cart.find_by(user_id: current_user.carts.last)
+			#Cart.find_by(current_user.carts.last)
+			#@cart = Cart.find_by(user_id: current_user)
+			#Cart.present?
+			current_user.carts.last.present?
+		    @cart = current_user.carts.last
 			@cart_item = CartItem.new(cart_item_params)
 			@cart_item.cart_id = @cart.id
 			@cart_item.product_id = @product.id
