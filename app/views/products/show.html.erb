@@ -29,24 +29,25 @@
 
 <!-- 商品情報右側 始まり-->
             <div class='col-md-8'>
-	            	<div class="product_name" style="text-align: center">
-	            		<h3>商品名： <%= @product.title %></h3>
-	            	</div>
 
                     <div class='product_info_detail'>
 		                <div class="product_info" style="width: 100%; margin-top: 20px; margin-left: 20px">
+
+		                    <div class="field row artist record" style="width: 100%; margin-bottom: 10px;">
+		                    	<div class='col-md-3 artist'>
+		                    		<h3><strong>商品名</strong></h3>
+		                    	</div>
+		                    	<div class='col-md-9 artist'>
+									<h3><strong><%= @product.title %></strong></h3>
+		                    	</div>
+		                    </div>
+
 		                    <div class="field row artist record" style="width: 100%; margin-bottom: 10px;">
 		                    	<div class='col-md-3 artist'>
 		                    		アーティスト
 		                    	</div>
 		                    	<div class='col-md-9 artist'>
-		                    		<% if @product.artist.favorited_by?(current_user) %>
-		                    		    <i class="fa fa-heart fa-spin" style="color: red;"></i>
-		                    		    <%= @product.artist.artist_name %>
-		                    		    <i class="fa fa-heart fa-spin" style="color: red;"></i>
-		                    		<% else %>
-		                    			<%= @product.artist.artist_name %>
-		                    		<% end %>
+									<%= @product.artist.artist_name %>
 		                    	</div>
 		                    </div>
 		                    <div class="field row abel_name record" style="width: 100%; margin-bottom: 10px;">
@@ -68,21 +69,22 @@
 		                </div>
 	            	</div>
 
+				<% if user_signed_in? %>
 	                <div class="disc_button" style="width: 100%; margin-top: 20px; text-align: center;">
 	                    <% if @product.artist.favorited_by?(current_user) %>
-			                <button type="submit" name="example" value="ボタン" style="">
-			                	<i class="fa fa-android fa-spin fa-2x" style="color: #A4C639;"></i>
-			                	お気に入りに追加済み
-			                	<i class="fa fa-android fa-spin fa-2x" style="color: #A4C639;"></i>
-			                </button>
+			                	<i class="fa fa-heart fa-2x" style="color: red;"></i>
+			                	<span class="" style=" font-size: 24px;">お気に入りに追加済み</span>
+			                	<i class="fa fa-heart fa-2x" style="color: red;"></i>
 			            <% else %>
-			                <button type="submit" name="example" value="ボタン" style="">
-			                	<i class="fa fa-android fa-2x" style="color: #A4C639;"></i>
-			                	<%= link_to "アーティストをお気に入りに追加", add_artist_path(@artist.id), method: :post %>
-			                	<i class="fa fa-android fa-2x" style="color: #A4C639;"></i>
-			                </button>
+            					<%= link_to add_artist_path(@artist.id), class:"btn btn-danger btn-lg", method: :post do %>
+								    <span class="glyphicon glyphicon-thumbs-up"></span>
+									     アーティストをお気に入りに追加 
+								    <span class="glyphicon glyphicon-thumbs-up"></span>
+            					<% end %>
 			            <% end %>
 			        </div>
+				<% end %>
+
                 <div class="line" style="width: 100%; margin: 10px 0; border-top: 3px solid #333333;"></div>
 
 <!-- ディスク情報 始まり-->
@@ -90,14 +92,12 @@
 	        <!-- track-info -->
 	        <div class="track-list">
 	            <h3 class="productContent">収録内容</h3>
-	            <% @discs.each do |disc| %>
-	            <ul>
-	                <li>
-	                    <h3 class="productContent"><%= disc.disc_name %></h3>
+	            <% @discs.each.with_index(1) do |disc, i| %>
+	                    <h3 class="productContent"><%= i %>. <%= disc.disc_name %></h3>
 	                    <table class="table table-striped">
 	                        <thead>
 	                            <tr>
-	                                <th style="width: 100px;">曲順</th>
+	                                <th style="width: 70px; text-align: center;">曲順</th>
 	                                <th style="width: 100px;" colspan="4">収録曲</th>
 	                            </tr>
 	                        </thead>
@@ -105,29 +105,32 @@
 	                        <tbody>
 	                            <% disc.songs.each.with_index(1) do |song, i| %>
 	                                <tr>
-	                                    <td><%= song.song_sort %></td>
+	                                    <td style="text-align: center;"><%= song.song_sort %></td>
 	                                    <td colspan="4"><%= song.song_name %></td>
 	                                </tr>
 	                            <% end %>
 	                        </tbody>
 	                    </table>
-	                </li>
-	            </ul>
 	            <% end %>
         	</div>
 
 
 		        <div class="disc_info" style="margin-top: 20px; margin-left: 20px;">
 
+		        <% if admin_signed_in? %>
                     <div class="disc_button" style="text-align: center">
                         <div class='col-md-6' style="margin: 30px auto">
-                            <%= link_to "編集", edit_product_path(@product.id), class:"btn-lg btn-success edit_product_#{@product.id}" %>
+                            <%= link_to edit_product_path(@product.id), class:"btn-lg btn-success edit_product_#{@product.id}", method: :get do %>
+                            	<span class="glyphicon glyphicon-wrench"></span> 編集 <span class="glyphicon glyphicon-wrench"></span>
+                            <% end %>
                         </div>
                         <div class='col-md-6' style="margin: 30px auto">
-                            <%= link_to "削除", product_path(@product.id), "data-confirm" => "本当に消しますか?", class:"btn-lg btn-danger destroy_product_#{@product.id}", method: :delete %>
+                            <%= link_to product_path(@product.id), "data-confirm" => "本当に消しますか?", class:"btn-lg btn-danger edit_product_#{@product.id}", method: :delete do %>
+                            	<span class="glyphicon glyphicon-trash"></span> 削除 <span class="glyphicon glyphicon-trash"></span>
+                            <% end %>
                         </div>
                     </div>
-
+                <% end %>
 		        </div>
 <!-- ディスク情報 終わり-->
 
@@ -140,7 +143,7 @@
 <!-- 価格、在庫、買い物かご、お気に入り登録 -->
         <div class="form_list row" style="border-top: 5px solid #333333;">
 
-            <div class="marchandise_info" style="margin: 0 20px; text-align: center;">
+            <div class="marchandise_info" style="margin:; text-align: center;">
                 <div class="col-lg-3 field row" style="margin-top: 30px; margin-bottom: 30px; font-size: 16px">
                 	価格 : <%= @product.price %>円
                 </div>
@@ -156,11 +159,30 @@
                                 <span>最大10枚まで購入可能</span><br>
 	                                <%= f.select :quantity, [[1, 1], [2, 2], [3, 3], [4, 4], [5, 5],[6, 6],[7, 7], [8, 8], [9, 9], [10, 10]], class: "form-control col-md-1", id: "number" %> 枚
 	                            </div>
-                                <div class='col-lg-3'style="margin-top: 15px; margin-bottom: 15px; font-size: 16px; float: right; width: 30%">
-									<%= button_tag :type => "submit", :class =>"btn-lg btn-primary" do %>
-									    <i class="fa fa-cart-arrow-down fa-2x"></i> カートに入れる
-									<% end %>
-	                            </div>
+
+	                        	<% if user_signed_in? %>
+				                    <% if @product.posted_by?(current_user.carts.last) %>
+		                                <div class='col-lg-3'style="margin-top: 24px; margin-bottom: 15px; font-size: 16px; float: right; width: 30%">
+						                	<i class="fa fa-cart-arrow-down fa-2x" style="color: violet;"></i>
+						                	<span class="" style=" font-size: 20px;">カートに追加済み</span>
+						                	<i class="fa fa-cart-arrow-down fa-2x" style="color: violet;"></i>
+			                			</div>
+			            			<% else %>
+		                                <div class='col-lg-3'style="margin-top: 18px; margin-bottom: 15px; font-size: 16px; float: right; width: 30%">
+											<%= button_tag :type => "submit", :class =>"btn-lg btn-primary" do %>
+											    <span class="glyphicon glyphicon-shopping-cart"></span> カートに入れる <span class="glyphicon glyphicon-shopping-cart"></span>
+											<% end %>
+			                            </div>
+		                			<% end %>
+		                        <% elsif admin_signed_in? %>
+		                        <% else %>
+	                                <div class='col-lg-3'style="margin-top: 18px; margin-bottom: 15px; font-size: 16px; float: right; width: 30%">
+										<%= link_to new_user_session_path, class:"btn btn-primary btn-lg", method: :get do %>
+										    <span class="glyphicon glyphicon-shopping-cart"></span> カートに入れる <span class="glyphicon glyphicon-shopping-cart"></span>
+										<% end %>
+		                            </div>
+		                        <% end %>
+
                             <% elsif 10 >= @product.stock && @product.stock >= 1 %>
                                 <% ar = {} %>
                                 <% @product.stock.times do |i| %>
@@ -171,15 +193,38 @@
 	                                <span class="title-name">購入枚数<span class="partition"> </span></span>
 	                                <%= f.select :quantity, options_for_select(ar), class: "form-control", id: "number" %> 枚
 	                            </div>
-                                <div class='col-lg-3'style="margin-top: 15px; margin-bottom: 10px; font-size: 16px; float: right; width: 30%">
-									<%= button_tag :type => "submit", :class =>"btn-lg btn-primary" do %>
-									    <i class="fa fa-cart-arrow-down fa-2x"></i> カートに入れる
-									<% end %>
-	                            </div>
+	                        	<% if user_signed_in? %>
+				                    <% if @product.posted_by?(current_user.carts.last) %>
+		                                <div class='col-lg-3'style="margin-top: 24px; margin-bottom: 15px; font-size: 16px; float: right; width: 30%">
+						                	<i class="fa fa-cart-arrow-down fa-2x" style="color: violet;"></i>
+						                	<span class="" style=" font-size: 20px;">カートに追加済み</span>
+						                	<i class="fa fa-cart-arrow-down fa-2x" style="color: violet;"></i>
+			                			</div>
+			            			<% else %>
+		                                <div class='col-lg-3'style="margin-top: 18px; margin-bottom: 15px; font-size: 16px; float: right; width: 30%">
+											<%= button_tag :type => "submit", :class =>"btn-lg btn-primary" do %>
+											    <span class="glyphicon glyphicon-shopping-cart"></span> カートに入れる <span class="glyphicon glyphicon-shopping-cart"></span>
+											<% end %>
+			                            </div>
+		                			<% end %>
+		                        <% elsif admin_signed_in? %>
+		                        <% else %>
+	                                <div class='col-lg-3'style="margin-top: 18px; margin-bottom: 15px; font-size: 16px; float: right; width: 30%">
+										<%= link_to new_user_session_path, class:"btn btn-primary btn-lg", method: :get do %>
+										    <span class="glyphicon glyphicon-shopping-cart"></span> カートに入れる <span class="glyphicon glyphicon-shopping-cart"></span>
+										<% end %>
+		                            </div>
+		                        <% end %>
                             <% else %>
-                                <%= link_to root_path do %>
-                                    <p class="btn btn-primary col-md-offset-5">入荷準備中です。暫くお待ち下さい。</p>
-                                <% end %>
+                            	<% if admin_signed_in? %>
+                            	<div class="col-lg-6 field row" style="margin-top: 30px; margin-bottom: 30px; font-size: 16px; color: red;">
+                                    <p class=""><span class="glyphicon glyphicon-warning-sign"></span><strong>  在庫がありません。入荷して下さい。<span class="glyphicon glyphicon-warning-sign"></span></p>
+                                </div>
+                                <% else %>
+                            	<div class="col-lg-6 field row" style="margin-top: 30px; margin-bottom: 30px; font-size: 16px; color: red;">
+                                    <p class=""><strong>入荷準備中です。暫くお待ち下さい。</p>
+                                </div>
+                            	<% end %>
                             <% end %>
                         <% end %>
                 <!-- </div> -->
@@ -227,13 +272,24 @@
 		        </div>
         	</div>
 
+	        <% if user_signed_in? %>
         	<div class="col-lg-4" style="margin-top: 20px; text-align: center;">
         	    <div class="review_button" style="width: 100%; margin-top: 40px;">
-        			<%= link_to "口コミを書く",new_product_reviews_path(@product.id), class:"btn-warning btn-lg" %>
+                    <%= link_to new_product_reviews_path(@product.id), class:"btn btn-warning btn-lg", method: :get do %>
+                    	<span class="glyphicon glyphicon-pencil"></span> 口コミを書く <span class="glyphicon glyphicon-pencil"></span>
+                    <% end %>
                 </div>
         	</div>
+        	<% else %>
+        	<% end %>
 
         </div>
+        <div class="" style="margin-top: 20px; text-align: center;">
+	        <%= link_to :back, class: 'btn btn-default' do %>
+				<i class="fa fa-arrow-left"></i>
+	 			<span>戻る</span>
+			<% end %>
+		</div>
     </div>
 </div>
 </div>

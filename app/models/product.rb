@@ -13,4 +13,9 @@ class Product < ApplicationRecord
 
 	has_many :reviews, dependent: :destroy
 	has_many :users, :through => :reviews
+
+        def posted_by?(cart)
+          cart_items.where(cart_id: cart.id).exists?
+        end
+
 end
