@@ -1,32 +1,43 @@
 <div class='container'>
 <div class='row'>
-     <h1 class="text-center">口コミ管理</h1>
+    <h1 class="text-center">口コミ管理</h1>
     <p class="text-center">※投稿を削除すると復元できません。投稿を削除する場合は内容ををご確認の上、削除をクリックして下さい</p>
     <br>
 
     <div class='col-md-8 col-md-offset-2'>
-        <h2>レビュー一覧</h2>
+        <h2 class="text-center" style="margin-bottom: 40px;">口コミ一覧</h2>
         <div>
-    
             <% @products.each do |p| %>
-                <diV>
-                    <%= p.title %> 
-                    <% p.reviews.each do |review| %>
-                    
-                        <%= review.user.last_name %>
-                        <%= review.subject %>
-                        <%= review.review %>
-                        <%= link_to "Destroy", review_path(review.id), class:"btn-mg btn-danger destroy_review_#{review.id}", method: :delete %>
-                    
-        
-                <% end %>
+                <div class="text-center">
+                    <h3 style="margin-bottom: 30px; border: 2px solid #f7f7f7;"><%= p.title %>の口コミ</h3>
                 </div>
-            <% end %>    
-            </tbody>
-        </table>
+                <div class="table-responsive">
+                    <table class="table table-striped" style="table-layout:fixed;">
+                        <thead>
+                            <tr>
+                                <th style="width:15%;">投稿者</th>
+                                <th style="width:30%;">タイトル</th>
+                                <th style="width:45%;">本文</th>
+                                <th style="width:10%;">削除</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <% p.reviews.each do |review| %>
+                            <tr>
+                                <td><%= review.user.last_name %></td>
+                                <td><%= review.subject %></td>
+                                <td><%= review.review %></td>
+                                <td><%= link_to "Destroy", review_path(review.id), class:"btn-mg btn-danger destroy_review_#{review.id}", method: :delete, "data-confirm" => "本当に削除していいですか?" %></td>
+                            </tr>
+                        <% end %>
+                        </tbody>
+                    <%#= paginate @reviews, class: "paginate" %>
+                    </table>
+                </div>
+            <% end %>
+        <div class="text-center"><%= paginate @products, class: "paginate" %></div>
+        </div>
+
     </div>
-
+</diV>
 </div>
-
-</div>
-<!--レイアウトは後ほど整えます-->
