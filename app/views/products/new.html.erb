@@ -1,6 +1,8 @@
 <div class='container'>
 <div class='row'>
 
+    <p id="notice"><%= flash.notice %></p>
+
     <div class='col-md-8 col-md-offset-2' style="margin-top: 50px; margin-bottom: 150px">
     <h1 style="margin-top: 10px; margin-bottom: 30px; text-align: center;">管理者ページ　新しい商品を追加</h1>
 
@@ -40,9 +42,6 @@
 <!-- productのフォーム 始まり-->
                 <div class="product_form" style="margin-top: 20px;">
                 <%= form_for(@product) do |f| %>
-
-
-
 
                     <div class="field row" style="margin-top: 20px;">
                         <%= f.label :アーティスト名 %><br>
