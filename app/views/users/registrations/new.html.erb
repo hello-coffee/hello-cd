@@ -93,10 +93,14 @@
 
 
   <div class="actions" style="text-align:center;">
-    <%= f.submit "新規登録" %>
+    <%= f.submit "新規登録", class: "btn btn-primary" %>
   </div>
 <% end %>
 
 <div style="text-align:center">
 <%= render "users/shared/links" %>
+</div>
+
+<div class="text-center" style="margin: 30px auto;">
+  <%= link_to "TOPへ移動", products_path, class: "btn btn-default" %>
 </div>

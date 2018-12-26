@@ -86,27 +86,32 @@ textarea{
             <p class="p_a">ユーザー一覧(10件表示)</p>
             <br>
             <% @all_user.each do |u| %>
+            <%= link_to user_path(@user.id) do %>
                 <div>
                 氏名：<%= u.last_name %>
                       <%= u.first_name %>
                   ID：<%= u.id %>
                 </div>
+                <% end %>
             <% end %>
+            <%= paginate @all_user, class: "paginate" %>
             <br>
         </div>
         <div class="col-md-6">
             <p class="p_a">商品一覧(10件表示)</p>
             <br>
             <% @all_product.each do |p| %>
+            <%= link_to product_path(@product.id) do %>
                 <div>
                             商品名：<%= p.title %>
                     アーティスト名：<%= p.artist_id %>
                             商品ID：<%= p.id %>
                 </div>
+                <% end %>
             <% end %>
+            <%= paginate @all_product, class: "paginate" %>
             <br>
         </div>
         
     </div>
 </div>
-    

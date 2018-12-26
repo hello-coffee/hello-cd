@@ -20,10 +20,14 @@
   <% end -%>
 
   <div class="actions">
-    <%= f.submit "ログイン" %>
+    <%= f.submit "ログイン", class: "btn btn-primary" %>
   </div>
 <% end %>
 
 <%= render "users/shared/links" %>
 
+</div>
+
+<div class="text-center" style="margin: 30px auto;">
+  <%= link_to "TOPへ移動", products_path, class: "btn btn-default" %>
 </div>
