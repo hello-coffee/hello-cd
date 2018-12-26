@@ -44,6 +44,9 @@ class ProductsController < ApplicationController
     end
 
     def edit
+        @artist = Artist.new
+        @category = Category.new
+
         @product = Product.find(params[:id])
     end
 
