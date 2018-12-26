@@ -64,7 +64,7 @@ class OrdersController < ApplicationController
   end
 
   def index
-    @order = Order.all
+    @orders = Order.all
   end
 
   private

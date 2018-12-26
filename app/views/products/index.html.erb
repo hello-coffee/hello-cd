@@ -1,38 +1,39 @@
 
-<%= render 'top/search' %>
+  <%= render 'top/search' %>
 
-<div class="col-lg-3" style="float: left;">
+<div class="container">
+  <div class="col-lg-3" style="margin-top: 30px;">
     <%= render 'top/sidebar',categories: @categories %>
-</div>
-
-
-    <div style="width: 100%;">
-      <div class="well col-lg-7 " style="margin-top: 60px;">
-        <p style="font-size: 30px; text-align: left; padding: 1px 0px 5px 5px;">NEWS</p>
-          <% @news.each do |n| %>
+  </div>
+  <div class="col-lg-9 " style="margin-top: 30px;">
+    <section style="border: 2px solid #f7f7f7;">
+      <h2 class="text-center">NEWS</h2>
+      <% @news.each do |n| %>
     		<li style="padding-left: 30px;">
     		  <%= n.body %>
-
-              <%= n.created_at.strftime("%Y-%m-%d　　%H:%M") %>
-              <%= link_to '削除', news_path(n), method: :delete %>
-
-            </li>
+          <%= n.created_at.strftime("%Y-%m-%d　　%H:%M") %>
+          <%= link_to '削除', news_path(n), method: :delete %>
+        </li>
           <% end %>
-             <%= paginate @news, class: "paginate" %>
-      </div>
-    </div>
-
-
-    <table class="col-lg-offset-3" style="margin-top: 40px; margin-bottom: 40px;">
-        <tr class="col-lg-9">
-          <% @products.each do |product| %>
-            <th class="col-lg-3">
-              <%= link_to product_path(product.id) do %>
-    		    <%= attachment_image_tag product, :image, fallback: "no_image.jpg", size: "200x200" %><br>
+          <div class="text-center">
+            <%= paginate @news, class: "paginate" %>
+          </div>
+    </section>
+      <h2 class="text-center">新着商品</h2>
+        <% @products.each do |product| %>
+          <div class="inline-block">
+            <div class="col-lg-4">
+              <div class="text-center">
+                <%= link_to product_path(product.id) do %>
+    	          <%= attachment_image_tag product, :image, fallback: "no_image.jpg", size: "200x200" %><br>
                 <%= product.title %><br>
-              <% end %>
+                <% end %>
+              </div>
+              <div class="text-center">
                 <%= link_to product.artist.artist_name, artist_path(product.artist) %>
-            </th>
-          <% end %>
-        </tr>
-    </table>
+              </div>
+            </div>
+          </div>
+        <% end %>
+  </div>
+</div>
