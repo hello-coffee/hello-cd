@@ -68,10 +68,11 @@
   <% else %>
 
     <header>
-      <%= link_to products_path, class:"nav navbar-nav navbar-left", style:"margin:0 50px;" do %>
+      <%= link_to products_path, class:"nav navbar-nav navbar-left", style:"margin-leht: 50px;" do %>
         <%= image_tag "logo.png", :size =>'170x170' %>
       <% end %>
-      <div class="container">
+      <div class="container" style="width: 100%">
+        <%= link_to "　管理者はこちらへ", admin_session_path, class:"nav navbar-nav navbar-right btn btn-default btn-md", style:"margin:110px 3px 0 0 ;"%>
         <%= link_to "購入ガイド", guide_path, class:"nav navbar-nav navbar-right btn btn-info btn-lg col-sm-2", style:"margin-top:50px;" %>
       </div>
 
