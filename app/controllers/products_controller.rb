@@ -2,7 +2,7 @@ class ProductsController < ApplicationController
 
     def index
         @products = Product.page(params[:page]).per(4).order(:id)
-        @news = News.all
+        @news = News.all.page(params[:page]).per(5).reverse_order
         @categories = Category.all
         @search = Product.ransack(params[:q])
         @results = @search.result
