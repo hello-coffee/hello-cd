@@ -1,7 +1,21 @@
+<%= render 'top/search' %>
 
-<% @results.each do |result| %>
-	<% if result.present? %>
-		<p><%= result.title %></p>
-	<% else %>
-<% end %>
-<% end %>
+<div class="col-lg-3" style="float: left;">
+    <%= render 'top/sidebar',categories: @categories %>
+</div>
+
+<table style="margin-top: 40px;">
+        <tr class="col-lg-9">
+          <% @products.each do |product| %>
+           <% if product.present? %>
+            <th class="col-lg-3">
+              <%= link_to product_path(product.id) do %>
+    		    <%= attachment_image_tag product, :image, fallback: "no_image.jpg", size: "200x200" %><br>
+                <%= product.title %><br>
+              <% end %>
+                <%= link_to product.artist.artist_name, artist_path(product.artist) %>
+            </th>
+          <% end %>
+          <% end %>
+        </tr>
+    </table>

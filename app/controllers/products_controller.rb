@@ -5,7 +5,6 @@ class ProductsController < ApplicationController
         @news = News.all
         @categories = Category.all
         @search = Product.ransack(params[:q])
-        @results = @search.result
     end
 
     def show
@@ -24,6 +23,7 @@ class ProductsController < ApplicationController
         @reviews = @product.reviews.page(params[:page]).reverse_order
 
         @favorite_artists = FavoriteArtist.all
+        @search = Product.ransack(params[:q])
 
 
     end

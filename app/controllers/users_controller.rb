@@ -5,11 +5,12 @@ class UsersController < ApplicationController
   def favorite_artists
     @user = current_user
     @favorite_artists = FavoriteArtist.where(user_id: @user.id)
+    @search = Product.ransack(params[:q])
   end
 
   def show
     @user = User.find(params[:id])
-    @orders = @user.orders.order(id: "DESC")
+    @orders = @user.orders.page(params[:page]).per(10).order(id: "DESC")
 
      if current_user.id != @user.id
           redirect_to user_path(current_user)

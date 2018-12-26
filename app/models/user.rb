@@ -10,10 +10,6 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable
 
-  	validates :password,
-  	format: { with: /\A[a-zA-Z]+\z/,
-    message: "パスワードは、英文字のみが使用できます。" }
-
     validates :post_code,
     post_code: true
     validates :email,
