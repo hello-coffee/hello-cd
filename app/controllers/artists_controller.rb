@@ -25,6 +25,7 @@ class ArtistsController < ApplicationController
   		@artist = Artist.find(params[:id])
   		@products = @artist.products.page(params[:page]).per(9).reverse_order
   		@categories = Category.all
+      @search = Product.ransack(params[:q])
   end
 
     def update

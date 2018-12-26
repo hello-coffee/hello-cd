@@ -41,9 +41,17 @@
         <td></td>
         <td></td>
         <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
       </tr>
       <tr style="border-top-style: double;">
         <th>購入内容</th>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
         <td></td>
         <td></td>
         <td></td>
@@ -58,19 +66,31 @@
           <td><%= cart_item.product.artist.artist_name %></td>
         <th>購入枚数</th>
           <td><%= cart_item.quantity %>枚</td>
-        </tr>
-    <% end %>
-      <tr>
-        <th>　小計</th>
-          <td><%= order.total_price %>円</td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
       </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <th>小計</th>
+          <td><%= cart_item.buy_price * cart_item.quantity %></td>
+        <th>( 単価</th>
+          <td><%= cart_item.buy_price %>円 )</td>
+      </tr>
+    <% end %>
       <tr style="border-top-style: double;">
         <th>合計金額</th>
           <td><%= order.total_price %>円</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
           <td></td>
           <td></td>
           <td></td>
@@ -83,6 +103,10 @@
           <td></td>
           <td></td>
           <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
       </tr>
       <tr>
         <th>ステータス</th>
@@ -91,8 +115,16 @@
           <td></td>
           <td></td>
           <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
     </table>
 
    <% end %>
 	</div>
+</div>
+
+<div style="text-align:center;">
+  <%= paginate(@orders) %>
 </div>
