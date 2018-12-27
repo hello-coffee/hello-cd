@@ -30,20 +30,20 @@
     <br>
 
     <br>
-    
+
     <div class="row">
         <div class="col-md-6">
-            
+
             <p class="p_a">ユーザー一覧(10件表示)</p>
             <br>
-            <% @all_user.each do |u| %>
-            <%= link_to user_path(u.id) do %>
+            <% @all_user.each do |user| %>
+            <%= link_to user_show_path(user) do %>
                 <div>
-                氏名：<%= u.last_name %>
-                      <%= u.first_name %>
-                  ID：<%= u.id %>
+                    <h4>ID:<%= user.id %>　氏名：<%= user.last_name %> <%= user.first_name %></h4>
                 </div>
-                <% end %>
+            <% end %>
+                 <%= link_to "編集", edit_admin_path(user), class:"btn btn-primary btn-sm" %>
+                 <%= link_to "削除", user_path(user), :method => :delete, "data-confirm" => "後悔しませんか？", class:"btn btn-danger btn-sm" %>
             <% end %>
             <%= paginate @all_user, class: "paginate" %>
             <br>
@@ -51,18 +51,18 @@
         <div class="col-md-6">
             <p class="p_a">商品一覧(10件表示)</p>
             <br>
-            <% @all_product.each do |p| %>
-            <%= link_to product_path(p.id) do %>
+            <% @all_product.each do |product| %>
+            <%= link_to product_path(product.id) do %>
                 <div>
-                            商品名：<%= p.title %>
-                    アーティスト名：<%= p.artist_id %>
-                            商品ID：<%= p.id %>
+                            商品名：<%= product.title %>
+                    アーティスト名：<%= product.artist_id %>
+                            商品ID：<%= product.id %>
                 </div>
                 <% end %>
             <% end %>
             <%= paginate @all_product, class: "paginate" %>
             <br>
         </div>
-        
+
     </div>
 </div>
