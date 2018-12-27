@@ -86,10 +86,12 @@
           <td><%= I18n.t("order_status.#{order.status}") %></td>
           <td></td>
           <td>
-            <%= form_for(order.status) do |f| %>
-                <%= f.select :status, Order.statuses.keys, method: :update %>
+            <%= form_with(model: order, local: true) do |f| %>
+                <%= f.select :status, Order.statuses.keys, :selected=>Order.statuses[order.status] %>
+                <%= f.submit 'ステータス変更', class:"btn btn-primary btn-sm", method: :patch %>
+            <% end %>
           </td>
-          <td><%= f.submit 'ステータス変更', class:"btn btn-primary btn-sm" %></td><% end %>
+          <td></td>
           <td></td>
           <td></td>
           <td></td>

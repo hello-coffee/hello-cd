@@ -7,7 +7,9 @@ class Song < ApplicationRecord
     validates :song_name, presence: true
     validates :song_sort, presence: true
 
-    validates :song_sort, numericality: true
+    validates :song_sort, numericality: {
+            only_integer: true, greater_than_or_equal_to: 0
+          }
 
 
 end

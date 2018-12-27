@@ -1,4 +1,6 @@
 class SendsController < ApplicationController
+  before_action :authenticate_user!
+
   def new
   	@address = Address.new
   	@addresses = current_user.addresses

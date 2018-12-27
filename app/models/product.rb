@@ -21,6 +21,13 @@ class Product < ApplicationRecord
     validates :price, presence: true
     validates :stock, presence: true
 
+    validates :price, numericality: {
+            only_integer: true, greater_than_or_equal_to: 0
+          }
+    validates :stock, numericality: {
+            only_integer: true, greater_than_or_equal_to: 0
+          }
+
         def posted_by?(cart)
           cart_items.where(cart_id: cart.id).exists?
         end
