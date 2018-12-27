@@ -90,7 +90,7 @@ before_action :authenticate_admin!, only: [:index, :update]
 
   def update
       @order = Order.find(params[:id])
-      @order.update(standby_params)
+      @order.update(order_params)
        redirect_to orders_path
   end
 
@@ -98,9 +98,9 @@ before_action :authenticate_admin!, only: [:index, :update]
     def order_params
       params.require(:order).permit(:user_id, :cart_id, :status, :pay, :total_price, :address)
     end
-    def standby_params
-      params.require(:standby).permit(:user_id, :cart_id, :status, :pay, :total_price, :address)
-    end
+    # def standby_params
+    #   params.require(:standby).permit(:user_id, :cart_id, :status, :pay, :total_price, :address)
+    # end
 
 end
 

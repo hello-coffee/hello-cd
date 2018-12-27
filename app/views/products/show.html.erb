@@ -11,7 +11,7 @@
     	<!-- ランキング -->
     </div>
 
-    <div class='col-lg-9' style="margin-top: 50px; margin-bottom: 150px">
+    <div class='col-lg-9' style="margin-top: 50px; margin-bottom: 50px">
 
 <!-- 商品情報 始まり-->
         <div class="disc_list row" style="margin-top: 20px; border-top: 5px solid #333333;">
@@ -254,16 +254,21 @@
     		<h2>口コミ</h2>
 
 	            <% @reviews.each do |review| %>
+	            		<div class="review_info">
+		                    <div class="col-lg-4 field row">
+		                    	<div class="review_user" style="margin-left: 10px; margin-top: 30px;">
+		                    		<h5 class="review_user">・投稿者　<%= review.user.last_name %></h5>
+		                    	</div>
+		                    </div>
+		                    <div class="col-lg-8 field row">
+		                    	<div class="review_user" style="margin-left: 10px; margin-top: 30px;">
+		       	                    <h5 class="review_subject">・件名　<%= review.subject %></h5>
+		                    	</div>
+		                    </div><br>
+		                </div>
 
-	                    <div class="col-lg-5 field row">
-	                    	<div class="review_user" style="margin: 10px;">
-	                    		<h4 class="review_user">・投稿者　<%= review.user.last_name %></h3>
-	                    	</div>
-	                    </div>
-	                    <div class="col-lg-7 field row">
-	                    	<div class="review_user" style="margin: 10px;">
-	       	                    <h4 class="review_subject">・件名　<%= review.subject %></h3>
-	                    	</div>
+		                <div class="review_time" style="margin-left: 10px; float: left;">
+	                    	<h5 class="review_subject">・投稿日時　<%= review.created_at.strftime("%Y-%m-%d  %H:%M") %></h5>
 	                    </div>
 	                    <table class="table table-striped">
 	                        <thead>
@@ -297,15 +302,14 @@
         	</div>
         	<% else %>
         	<% end %>
-
         </div>
-        <div class="" style="margin-top: 20px; text-align: center;">
+    </div>
+        <div class="" style="margin-bottom: 30px; text-align: center;">
 	        <%= link_to :back, class: 'btn btn-default' do %>
 				<i class="fa fa-arrow-left"></i>
 	 			<span>戻る</span>
 			<% end %>
 		</div>
-    </div>
 </div>
 </div>
 
