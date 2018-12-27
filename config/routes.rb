@@ -11,7 +11,7 @@ Rails.application.routes.draw do
         passwords: "users/passwords",
         registrations: "users/registrations"
     }
-    resources :admins, only: [:show]
+    resources :admins, only: [:show, :edit, :update, :destroy]
 
     resources :sends, only: [:new, :create]
 
@@ -40,6 +40,8 @@ Rails.application.routes.draw do
     get '/contact' => 'top#contact'
 
     get '/guide' => 'top#guide'
+
+    get '/user_show/:id', to: 'admins#user_show', as: 'user_show'
 
     resources :users, only: [:show, :update, :destroy, :edit]
 
