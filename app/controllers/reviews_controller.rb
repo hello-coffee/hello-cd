@@ -2,8 +2,8 @@ class ReviewsController < ApplicationController
 
 
   def index
-     @reviews = Review.all
-     @products = Product.all
+     @reviews = Review.all.page(params[:page]).per(10).reverse_order
+     @products = Product.all.page(params[:page]).per(10).reverse_order
   end
 
   def show

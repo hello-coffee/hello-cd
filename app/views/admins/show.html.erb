@@ -37,7 +37,7 @@
             <p class="p_a">ユーザー一覧(10件表示)</p>
             <br>
             <% @all_user.each do |u| %>
-            <%= link_to user_path(@user.id) do %>
+            <%= link_to user_path(u.id) do %>
                 <div>
                 氏名：<%= u.last_name %>
                       <%= u.first_name %>
@@ -52,7 +52,7 @@
             <p class="p_a">商品一覧(10件表示)</p>
             <br>
             <% @all_product.each do |p| %>
-            <%= link_to product_path(@product.id) do %>
+            <%= link_to product_path(p.id) do %>
                 <div>
                             商品名：<%= p.title %>
                     アーティスト名：<%= p.artist_id %>
