@@ -1,26 +1,15 @@
 
 <div class="container">
-
+    
     <div class="row">
-    <br>
-        <div class="col-md-1"></div>
-        <div class="col-md-2">
-            <%= link_to '商品追加', admin_path, class: 'btn btn-primary btn-lg' %>
-        </div>
-        <div class="col-md-9"></div>
-    </div>
-
-    <br>
-
-    <div class="row">
-        <p class="p_news">NEWS投稿</p>
+        <p style="font-size:40px;">NEWS投稿</p>
     </div>
     <div class="row">
         <div class="col-md-1"></div>
         <div class="col-md-10">
             <%= form_for @news,url: news_index_path  do |n| %>
-            <%= n.text_area :body %>
-            <%= n.submit "投稿 ⇧", class:"btnbtnbtn" %>
+            <%= n.text_area :body, :size => "80x3" %>
+            <%= n.submit "投稿 ⇧", :class => "btn" %>
             <% end %>
         </div>
         <div class="col-md-1"></div>
@@ -33,33 +22,35 @@
     
     <div class="row">
         <div class="col-md-6">
-            
-            <p class="p_a">ユーザー一覧(10件表示)</p>
-            <br>
+            <p style="font-size:30px;">ユーザー一覧(10件表示)</p>
+            <div>
+            <div style="border: 1px solid #000000;">
             <% @all_user.each do |u| %>
             <%= link_to user_path(u.id) do %>
                 <div>
-                氏名：<%= u.last_name %>
+                　<u>氏名：　<%= u.last_name %>
                       <%= u.first_name %>
-                  ID：<%= u.id %>
+                  　ID：　<%= u.id %></u>
                 </div>
                 <% end %>
             <% end %>
             <%= paginate @all_user, class: "paginate" %>
-            <br>
+            </div>
+        </div>
         </div>
         <div class="col-md-6">
-            <p class="p_a">商品一覧(10件表示)</p>
-            <br>
+            <p style="font-size:30px;">商品一覧(10件表示)</p>
+            <div style="border: 1px solid #000000;">
             <% @all_product.each do |p| %>
             <%= link_to product_path(p.id) do %>
-                <div>
-                            商品名：<%= p.title %>
-                    アーティスト名：<%= p.artist_id %>
-                            商品ID：<%= p.id %>
+                <div style="margin: 10px auto;">
+                            　<u>商品名：　<%= p.title %>
+                    　アーティスト名：　<%= p.artist_id %>
+                            　商品ID：　<%= p.id %></u>
                 </div>
                 <% end %>
             <% end %>
+            </div>
             <%= paginate @all_product, class: "paginate" %>
             <br>
         </div>
