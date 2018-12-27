@@ -8,13 +8,21 @@
   <div class="col-lg-9 " style="margin-top: 30px;">
     <section style="border: 2px solid #f7f7f7;">
       <h2 class="text-center">NEWS</h2>
-      <% @news.each do |n| %>
-    		<li style="padding-left: 30px;">
+        <div style="border: 1px solid #000000;">
+        <% @news.each do |n| %>
+    
+    		<li style="padding-left: 30px; font-size: 20px; text-align: center;">
     		  <%= n.body %>
           <%= n.created_at.strftime("%Y-%m-%d　　%H:%M") %>
+          
+          <% if current_admin %>
           <%= link_to '削除', news_path(n), method: :delete %>
+          <% end %>
+          
+      
         </li>
           <% end %>
+      </div>
           <div class="text-center">
             <%= paginate @news, class: "paginate" %>
           </div>
@@ -29,11 +37,12 @@
                 <%= product.title %><br>
                 <% end %>
               </div>
-              <div class="text-center">
+              <div class="text-center" style="border-top: 1px solid #000000; margin-bottom: 30px;">
                 <%= link_to product.artist.artist_name, artist_path(product.artist) %>
               </div>
             </div>
           </div>
         <% end %>
+      <%= paginate @products, class: "paginate" %>
   </div>
 </div>

@@ -41,8 +41,8 @@
 			<div class="col-md-4 col-md-offset-1"></div>
   			<h3 class="col-md-4 col-md-offset-2">合計　<%= @total_price %>円</h3>
 		<div class="row">
-			<div class="col-lg-2 col-lg-offset-5">
-				<%= link_to "戻る", products_path, class: "btn btn-default active" %>
+			<div class="col-lg-4 col-lg-offset-5">
+				<%= link_to "TOPへ戻る", products_path, class: "btn btn-default active" %>
 				<% if @cart_items.present? %>
 					<%= link_to "購入へ進む", new_send_path, class: "btn btn-default active" %>
 				<% else %>

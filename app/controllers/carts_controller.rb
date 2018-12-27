@@ -1,8 +1,14 @@
 class CartsController < ApplicationController
+  before_action :authenticate_user!
+  before_action :correct_user
 
   def show
+    @cart_a = Cart.find(params[:id])
     #下の記述のfirtstをlastに変更する(数カ所ある)
     @cart = current_user.carts.last
+            if @cart_a.id != @cart.id
+              redirect_to cart_path(current_user.carts.last)
+            end
 
     #@artist = Artist.find_by(params[:artist_id]).artist_name
     #if @cart.cart_items != nil
@@ -18,6 +24,7 @@ class CartsController < ApplicationController
     @products = Product.all
     @cart = Cart.find(params[:id])
     @cart_items = CartItem.all
+    
     end
 
     #以下は在庫数(商品詳細ページで対応することになった)
@@ -45,6 +52,13 @@ class CartsController < ApplicationController
     # render :show
     redirect_to cart_path(cart)
   end
+  
+  def correct_user
+    @cart = current_user.carts.find_by(id: params[:id])
+    unless @cart
+    redirect_to products_path
+  end
+end
 
 end
 

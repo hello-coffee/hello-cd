@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
- before_action :authenticate_user!
+
+
+ before_action :authenticate_user! ,except: [:update, :destroy]
 
   def favorite_artists
     @user = current_user
@@ -26,13 +28,21 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     @user.update(user_params)
+  if user_signed_in?
     redirect_to user_path(@user.id)
+  else
+    redirect_to admin_path(current_admin)
+  end
   end
 
   def destroy
     @user = User.find(params[:id])
     @user.destroy
+  if admin_signed_in?
+    redirect_to admin_path(current_admin)
+  else
     redirect_to products_path
+  end
   end
 
   private

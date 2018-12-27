@@ -6,4 +6,6 @@ class Order < ApplicationRecord
   	enum status:[:ordered, :standby, :shipped]
 
 
+
+	validates :pay, acceptance: true
 end
