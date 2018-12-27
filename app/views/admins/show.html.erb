@@ -1,12 +1,19 @@
 
 <div class="container">
-    
     <div class="row">
         <p style="font-size:40px;">NEWS投稿</p>
     </div>
     <div class="row">
         <div class="col-md-1"></div>
         <div class="col-md-10">
+                    <% if @news.errors.any? %>
+                        <h3>入力した内容にエラーが<%= @news.errors.count %>件あります</h3>
+                            <ul>
+                                <% @news.errors.full_messages.each do |message| %>
+                                <li><%= message %></li>
+                                <% end %>
+                            </ul>
+                    <% end %>
             <%= form_for @news,url: news_index_path  do |n| %>
             <%= n.text_area :body, :size => "80x3" %>
             <%= n.submit "投稿 ⇧", :class => "btn" %>

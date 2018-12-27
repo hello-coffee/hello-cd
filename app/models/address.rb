@@ -7,7 +7,7 @@ class Address < ApplicationRecord
 	validates :last_name_kana, presence: true, format: {with: /\A[\p{katakana}　ー－&&[^ -~｡-ﾟ]]+\z/}
 	validates :first_name_kana, presence: true, format: {with: /\A[\p{katakana}　ー－&&[^ -~｡-ﾟ]]+\z/}
 	validates :post_code, presence: true, format: {with: /\A[0-9]{3}-[0-9]{4}\z/}
-	validates :address, presence: true, uniqueness: true
+	validates :address, presence: true
 	validates :tel, presence: true, format: {with: /\A[0-9-]{,14}\z/}
 	validates :email, presence: true
 
