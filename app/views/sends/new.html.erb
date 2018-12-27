@@ -9,10 +9,18 @@
 		<div class="col-lg-6" style="margin-bottom: 50px; border: 2px solid #f7f7f7;">
 			<h3>新規配送先登録</h3>
 				<%= form_for @address, url: sends_path do |f| %>
+					<% if @address.errors.any? %>
+				    	<h3>入力した内容にエラーが<%= @address.errors.count %>件あります</h3>
+				    		<ul>
+				      			<% @address.errors.full_messages.each do |message| %>
+				        		<li><%= message %></li>
+				     			<% end %>
+				    		</ul>
+				    <% end %>
 					<h5>氏名</h5>
 					<%= f.text_field :last_name, placeholder:"姓", :size=>"25" %>
 					<%= f.text_field :first_name, placeholder:"名", :size=>"25" %>
-					<h5>カナ</h5>
+					<h5>カナ（全角）</h5>
 					<%= f.text_field :last_name_kana, placeholder:"姓（カナ）", :size=>"25" %>
 					<%= f.text_field :first_name_kana, placeholder:"名（カナ）", :size=>"25" %>
 					<h5>郵便番号</h5>

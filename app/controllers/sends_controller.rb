@@ -18,7 +18,9 @@ class SendsController < ApplicationController
   		@address = Address.new(address_params)
     		@address.user_id = current_user.id
     		unless @address.save
-    			redirect_to new_send_path
+          @addresses = current_user.addresses
+          render "new"
+    			#redirect_to new_send_path
     		else
     			@cart.address_id = @address.id
           @cart.save

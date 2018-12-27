@@ -40,7 +40,10 @@
 		<div class="row">
 			<div class="col-lg-2 col-lg-offset-5">
 				<%= link_to "戻る", products_path, class: "btn btn-default active" %>
-				<%= link_to "購入へ進む", new_send_path, class: "btn btn-default active" %>
+				<% if @cart_items.present? %>
+					<%= link_to "購入へ進む", new_send_path, class: "btn btn-default active" %>
+				<% else %>
+				<% end %>
 			</div>
 		</div>
 	</div>
