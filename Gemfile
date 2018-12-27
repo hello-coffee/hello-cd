@@ -75,4 +75,3 @@ gem 'cocoon'
 gem 'skipper'
 gem 'pry-rails'
 gem "font-awesome-rails"
-
