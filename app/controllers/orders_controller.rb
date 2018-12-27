@@ -1,5 +1,8 @@
 class OrdersController < ApplicationController
 
+before_action :authenticate_user!, except: [:index, :update]
+before_action :authenticate_admin!, only: [:index, :update]
+
   def new
 
     #@address = current_user.carts.address_id

@@ -29,11 +29,12 @@
                 <%= product.title %><br>
                 <% end %>
               </div>
-              <div class="text-center">
+              <div class="text-center" style="border-top: 1px solid #000000; margin-bottom: 30px;">
                 <%= link_to product.artist.artist_name, artist_path(product.artist) %>
               </div>
             </div>
           </div>
         <% end %>
+      <%= paginate @products, class: "paginate" %>
   </div>
 </div>

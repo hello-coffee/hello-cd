@@ -1,5 +1,7 @@
 class ReviewsController < ApplicationController
 
+before_action :authenticate_user!, except: [:index, :destroy]
+before_action :authenticate_admin!, only: [:index, :update]
 
   def index
      @reviews = Review.all.page(params[:page]).per(10).reverse_order

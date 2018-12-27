@@ -23,8 +23,9 @@
 								<div class="text-center">
 									<%= link_to product.title, product_path(product.id) %>
 							<% end %>
-									<p></p>
-									<%= link_to product.artist.artist_name, artist_path(product.artist.id) %>
+									<div class="text-center" style="border-top: 1px solid #000000; margin-bottom: 30px;">
+										<%= link_to product.artist.artist_name, artist_path(product.artist.id) %>
+									</div>
 							</div>
 						</div>
 					</div>
