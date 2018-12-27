@@ -4,11 +4,10 @@
 <div class='row'>
 
 	<div class="search_form">
-		<!-- 検索フォーム -->
 	</div>
 
     <div class='col-lg-3' style="margin-top: 50px; margin-bottom: 150px">
-    	<!-- カテゴリー一覧 -->
+    	<%= render 'top/sidebar',categories: @categories %>
     	<!-- ランキング -->
     </div>
 
@@ -161,26 +160,34 @@
 	                            </div>
 
 	                        	<% if user_signed_in? %>
-				                    <% if @product.posted_by?(current_user.carts.last) %>
-		                                <div class='col-lg-3'style="margin-top: 24px; margin-bottom: 15px; font-size: 16px; float: right; width: 30%">
-						                	<i class="fa fa-cart-arrow-down fa-2x" style="color: violet;"></i>
-						                	<span class="" style=" font-size: 20px;">カートに追加済み</span>
-						                	<i class="fa fa-cart-arrow-down fa-2x" style="color: violet;"></i>
-			                			</div>
-			            			<% else %>
+		                        	<% if current_user.carts.last.present? %>
+					                    <% if @product.posted_by?(current_user.carts.last) %>
+			                                <div class='col-lg-3'style="margin-top: 24px; margin-bottom: 15px; font-size: 16px; float: right; width: 30%">
+							                	<i class="fa fa-cart-arrow-down fa-2x" style="color: violet;"></i>
+							                	<span class="" style=" font-size: 20px;">カートに追加済み</span>
+							                	<i class="fa fa-cart-arrow-down fa-2x" style="color: violet;"></i>
+				                			</div>
+				            			<% else %>
+			                                <div class='col-lg-3'style="margin-top: 18px; margin-bottom: 15px; font-size: 16px; float: right; width: 30%">
+												<%= button_tag :type => "submit", :class =>"btn-lg btn-primary" do %>
+												    <span class="glyphicon glyphicon-shopping-cart"></span> カートに入れる <span class="glyphicon glyphicon-shopping-cart"></span>
+												<% end %>
+				                            </div>
+			                			<% end %>
+			                		<% else %>
 		                                <div class='col-lg-3'style="margin-top: 18px; margin-bottom: 15px; font-size: 16px; float: right; width: 30%">
 											<%= button_tag :type => "submit", :class =>"btn-lg btn-primary" do %>
 											    <span class="glyphicon glyphicon-shopping-cart"></span> カートに入れる <span class="glyphicon glyphicon-shopping-cart"></span>
 											<% end %>
 			                            </div>
-		                			<% end %>
+			                		<% end %>
 		                        <% elsif admin_signed_in? %>
 		                        <% else %>
-	                                <div class='col-lg-3'style="margin-top: 18px; margin-bottom: 15px; font-size: 16px; float: right; width: 30%">
-										<%= link_to new_user_session_path, class:"btn btn-primary btn-lg", method: :get do %>
-										    <span class="glyphicon glyphicon-shopping-cart"></span> カートに入れる <span class="glyphicon glyphicon-shopping-cart"></span>
-										<% end %>
-		                            </div>
+		                                <div class='col-lg-3'style="margin-top: 18px; margin-bottom: 15px; font-size: 16px; float: right; width: 30%">
+											<%= button_tag :type => "submit", :class =>"btn-lg btn-primary" do %>
+											    <span class="glyphicon glyphicon-shopping-cart"></span> カートに入れる <span class="glyphicon glyphicon-shopping-cart"></span>
+											<% end %>
+			                            </div>
 		                        <% end %>
 
                             <% elsif 10 >= @product.stock && @product.stock >= 1 %>
@@ -194,26 +201,34 @@
 	                                <%= f.select :quantity, options_for_select(ar), class: "form-control", id: "number" %> 枚
 	                            </div>
 	                        	<% if user_signed_in? %>
-				                    <% if @product.posted_by?(current_user.carts.last) %>
-		                                <div class='col-lg-3'style="margin-top: 24px; margin-bottom: 15px; font-size: 16px; float: right; width: 30%">
-						                	<i class="fa fa-cart-arrow-down fa-2x" style="color: violet;"></i>
-						                	<span class="" style=" font-size: 20px;">カートに追加済み</span>
-						                	<i class="fa fa-cart-arrow-down fa-2x" style="color: violet;"></i>
-			                			</div>
-			            			<% else %>
+		                        	<% if current_user.carts.last.present? %>
+					                    <% if @product.posted_by?(current_user.carts.last) %>
+			                                <div class='col-lg-3'style="margin-top: 24px; margin-bottom: 15px; font-size: 16px; float: right; width: 30%">
+							                	<i class="fa fa-cart-arrow-down fa-2x" style="color: violet;"></i>
+							                	<span class="" style=" font-size: 20px;">カートに追加済み</span>
+							                	<i class="fa fa-cart-arrow-down fa-2x" style="color: violet;"></i>
+				                			</div>
+				            			<% else %>
+			                                <div class='col-lg-3'style="margin-top: 18px; margin-bottom: 15px; font-size: 16px; float: right; width: 30%">
+												<%= button_tag :type => "submit", :class =>"btn-lg btn-primary" do %>
+												    <span class="glyphicon glyphicon-shopping-cart"></span> カートに入れる <span class="glyphicon glyphicon-shopping-cart"></span>
+												<% end %>
+				                            </div>
+			                			<% end %>
+			                		<% else %>
 		                                <div class='col-lg-3'style="margin-top: 18px; margin-bottom: 15px; font-size: 16px; float: right; width: 30%">
 											<%= button_tag :type => "submit", :class =>"btn-lg btn-primary" do %>
 											    <span class="glyphicon glyphicon-shopping-cart"></span> カートに入れる <span class="glyphicon glyphicon-shopping-cart"></span>
 											<% end %>
 			                            </div>
-		                			<% end %>
+			                		<% end %>
 		                        <% elsif admin_signed_in? %>
 		                        <% else %>
-	                                <div class='col-lg-3'style="margin-top: 18px; margin-bottom: 15px; font-size: 16px; float: right; width: 30%">
-										<%= link_to new_user_session_path, class:"btn btn-primary btn-lg", method: :get do %>
-										    <span class="glyphicon glyphicon-shopping-cart"></span> カートに入れる <span class="glyphicon glyphicon-shopping-cart"></span>
-										<% end %>
-		                            </div>
+		                                <div class='col-lg-3'style="margin-top: 18px; margin-bottom: 15px; font-size: 16px; float: right; width: 30%">
+											<%= button_tag :type => "submit", :class =>"btn-lg btn-primary" do %>
+											    <span class="glyphicon glyphicon-shopping-cart"></span> カートに入れる <span class="glyphicon glyphicon-shopping-cart"></span>
+											<% end %>
+			                            </div>
 		                        <% end %>
                             <% else %>
                             	<% if admin_signed_in? %>

@@ -4,4 +4,10 @@ class Song < ApplicationRecord
 
     default_scope -> { order(song_sort: :asc) }
 
+    validates :song_name, presence: true
+    validates :song_sort, presence: true
+
+    validates :song_sort, numericality: true
+
+
 end

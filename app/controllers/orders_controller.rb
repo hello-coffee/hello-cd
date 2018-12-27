@@ -51,6 +51,23 @@ class OrdersController < ApplicationController
       @cart.order_id = @order.id
       @cart.save
 
+      #1 ===============
+
+          @user = User.find(current_user[:id])
+          # @history = History.new(history_params)
+          @cc = @cart.cart_items
+          @cc.each do |cc|
+
+            if  cc.product.stock - cc.quantity <= -1
+              return redirect_to cart_path(@cart),flash: {notice: '大変申し訳ございません。売り切れの商品がございます。'}
+            else
+              cc.product.update(stock: cc.product.stock - cc.quantity)
+              # @user.cart.cd_carts.delete_all
+            end
+          end
+
+      #1 ===============
+
   		redirect_to user_path(current_user.id)
 
           @cart = Cart.new

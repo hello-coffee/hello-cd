@@ -7,4 +7,7 @@ class Disc < ApplicationRecord
 
     # songs.each{ |song| song.mark_for_destruction if song.song_name.blank? }
 
+    validates :disc_name, presence: true
+
+
 end

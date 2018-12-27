@@ -1,5 +1,7 @@
 class ProductsController < ApplicationController
 
+    before_action :authenticate_admin!, only: [:new, :edit]
+
     def index
         @products = Product.page(params[:page]).per(4).order(:id)
         @news = News.all.page(params[:page]).per(5).reverse_order
@@ -23,9 +25,9 @@ class ProductsController < ApplicationController
         @reviews = @product.reviews.page(params[:page]).reverse_order
 
         @favorite_artists = FavoriteArtist.all
+
+        @categories = Category.all
         @search = Product.ransack(params[:q])
-
-
     end
 
     def update
@@ -51,17 +53,27 @@ class ProductsController < ApplicationController
     end
 
     def new
-        @artist = Artist.new
-        @category = Category.new
-        # @product = Product.new
-        # disc = @product.discs.build
-        # @product.discs.build
-        # disc.songs.build
-        # @product.discs.songs.build #追加
 
-        @product = Product.new
-        @disc = @product.discs.build
-        @song = @disc.songs.build
+        # if @artist.present?
+
+            # @product = Product.new
+            # disc = @product.discs.build
+            # @product.discs.build
+            # disc.songs.build
+            # @product.discs.songs.build #追加
+
+            # @product = Product.new
+            # @disc = @product.discs.build
+            # @song = @disc.songs.build
+
+        # else
+            @artist = Artist.new
+            @category = Category.new
+            @product = Product.new
+            @disc = @product.discs.build
+            @song = @disc.songs.build
+        # end
+
     end
 
     def create
@@ -70,8 +82,14 @@ class ProductsController < ApplicationController
 
         @product = Product.new(product_params)
         # @product.artist_id = @artist.id
-        @product.save
-        redirect_to product_path(@product.id)
+        if @product.save
+            redirect_to product_path(@product.id), notice: "Product was successfully created."
+        else
+            @artist = Artist.new
+            @category = Category.new
+            @products = Product.all
+          render 'products/new'
+        end
     end
 
     private

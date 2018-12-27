@@ -3,10 +3,17 @@ class CategoriesController < ApplicationController
 
   def create
       @category = Category.new(category_params)
-      @category.save
-        redirect_to new_product_path
+      if @category.save
+          redirect_to new_product_path, notice: "カテゴリーが追加されました"
+      else
+          @artist = Artist.new
+          @categories = Category.all
+          @product = Product.new
+          @disc = @product.discs.build
+          @song = @disc.songs.build
+          render 'products/new'
+      end
   end
-
 
   def show
   	@category = Category.find(params[:id])

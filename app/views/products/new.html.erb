@@ -3,39 +3,100 @@
 
     <p id="notice"><%= flash.notice %></p>
 
+    <% if @product.errors.any? %>
+        <div id="error_explanation" >
+            <h3><%= pluralize(@product.errors.count, "error") %> prohibited this product from being saved:</h3>
+            <ul>
+                <% @product.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                <% end %>
+            </ul>
+        </div>
+    <% end %>
+
+    <% if @artist.errors.any? %>
+        <div id="error_explanation" >
+            <h3><%= pluralize(@artist.errors.count, "error") %> prohibited this product from being saved:</h3>
+            <ul>
+                <% @artist.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                <% end %>
+            </ul>
+        </div>
+    <% end %>
+
+    <% if @category.errors.any? %>
+        <div id="error_explanation" >
+            <h3><%= pluralize(@category.errors.count, "error") %> prohibited this product from being saved:</h3>
+            <ul>
+                <% @category.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                <% end %>
+            </ul>
+        </div>
+    <% end %>
+
     <div class='col-md-8 col-md-offset-2' style="margin-top: 50px; margin-bottom: 150px">
     <h1 style="margin-top: 10px; margin-bottom: 30px; text-align: center;">管理者ページ　新しい商品を追加</h1>
 
         <div class="form_list row" style="margin-top: 30px; margin-bottom: 20px; border-top: 1px solid #333333;"></div>
 
             <div class="nested-fields well well-compact col-md-5" style="margin: 20px; margin-bottom: 30px;" >
-                <%= form_for(@artist) do |f| %>
+<!--                 <%#= form_for(@artist) do |f| %>
 
                     <div class="form-group">
                         <div class="">
-                            <%= f.label :新規にアーティストを追加 %><br>
-                            <%= f.text_field :artist_name, class: "form-control", placeholder: "アーティスト名"%>
+                            <%#= f.label :新規にアーティストを追加 %><br>
+                            <%#= f.text_field :artist_name, class: "form-control", placeholder: "アーティスト名"%>
                         </div>
                     </div>
                     <div class="right" style="text-align: center">
-                        <%= f.submit '追加', class: 'btn btn-warning' %>
+                        <%#= f.submit '追加', class: 'btn btn-warning' %>
                     </div>
-                <% end %>
+                <%# end %> -->
+
+                <form class="new_artist" id="new_artist" action="/artists" accept-charset="UTF-8" method="post">
+                    <input name="utf8" type="hidden" value="✓">
+                    <input type="hidden" name="authenticity_token" value="">
+                    <div class="form-group">
+                        <div class="">
+                            <label for="artist_新規にアーティストを追加">新規にアーティストを追加</label><br>
+                            <input class="form-control" placeholder="アーティスト名" type="text" name="artist[artist_name]" id="artist_artist_name">
+                        </div>
+                    </div>
+                    <div class="right" style="text-align: center">
+                        <input type="submit" name="commit" value="追加" class="btn btn-warning" data-disable-with="追加">
+                    </div>
+                </form>
             </div>
 
             <div class="nested-fields well well-compact col-md-5" style="margin: 20px; margin-bottom: 30px;" >
-                <%= form_for(@category) do |f| %>
+<!--                 <%#= form_for(@category) do |f| %>
 
                     <div class="form-group">
                         <div class="">
-                            <%= f.label :新規にカテゴリーを追加 %><br>
-                            <%= f.text_field :category_name, class: "form-control", placeholder: "カテゴリー名"%>
+                            <%#= f.label :新規にカテゴリーを追加 %><br>
+                            <%#= f.text_field :category_name, class: "form-control", placeholder: "カテゴリー名"%>
                         </div>
                     </div>
                     <div class="right" style="text-align: center">
-                        <%= f.submit '追加', class: 'btn btn-warning' %>
+                        <%#= f.submit '追加', class: 'btn btn-warning' %>
                     </div>
-                <% end %>
+                <%# end %> -->
+
+                <form class="new_category" id="new_category" action="/categories" accept-charset="UTF-8" method="post">
+                    <input name="utf8" type="hidden" value="✓">
+                    <input type="hidden" name="authenticity_token" value="">
+                    <div class="form-group">
+                        <div class="">
+                            <label for="category_新規にカテゴリーを追加">新規にカテゴリーを追加</label><br>
+                            <input class="form-control" placeholder="カテゴリー名" type="text" name="category[category_name]" id="category_category_name">
+                        </div>
+                    </div>
+                    <div class="right" style="text-align: center">
+                        <input type="submit" name="commit" value="追加" class="btn btn-warning" data-disable-with="追加">
+                    </div>
+                </form>
             </div>
 
 
@@ -46,15 +107,40 @@
                     <div class="field row" style="margin-top: 20px;">
                         <%= f.label :アーティスト名 %><br>
                         <%= f.collection_select :artist_id, Artist.all, :id, :artist_name, :prompt => "アーティストを選択して下さい" %>
-
-<!--                         <input placeholder="アーティスト名を入力して下さい" type="text" name="artist[artist_name]" id="artist_artist_name" /> -->
                     </div>
 
+<!--                 <form class="new_artist" id="new_artist" action="/artists" accept-charset="UTF-8" method="post">
+                    <input name="utf8" type="hidden" value="✓">
+                    <input type="hidden" name="authenticity_token" value="">
+                    <div class="form-group">
+                        <div class="">
+                            <label for="artist_新規にアーティストを追加">新規にアーティストを追加</label><br>
+                            <input class="form-control" placeholder="アーティスト名" type="text" name="artist[artist_name]" id="artist_artist_name">
+                        </div>
+                    </div>
+                    <div class="right" style="text-align: center">
+                        <input type="submit" name="commit" value="追加" class="btn btn-warning" data-disable-with="追加">
+                    </div>
+                </form> -->
 
                     <div class="field row" style="margin-top: 20px;">
                         <%= f.label :カテゴリー名 %><br>
                         <%= f.collection_select :category_id, Category.all, :id, :category_name, :prompt => "カテゴリーを選択して下さい" %>
         　          </div>
+
+<!--                 <form class="new_category" id="new_category" action="/categories" accept-charset="UTF-8" method="post">
+                    <input name="utf8" type="hidden" value="✓">
+                    <input type="hidden" name="authenticity_token" value="">
+                    <div class="form-group">
+                        <div class="">
+                            <label for="category_新規にカテゴリーを追加">新規にカテゴリーを追加</label><br>
+                            <input class="form-control" placeholder="カテゴリー名" type="text" name="category[category_name]" id="category_category_name" id="new_category" action="/categories" accept-charset="UTF-8" method="post">
+                        </div>
+                    </div>
+                    <div class="right" style="text-align: center">
+                        <input type="submit" name="commit" value="追加" class="btn btn-warning" data-disable-with="追加">
+                    </div>
+                </form> -->
 
                     <div class="field row" style="margin-top: 20px;">
                         <%= f.label :商品名 %>
