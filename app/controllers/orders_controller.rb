@@ -64,12 +64,21 @@ class OrdersController < ApplicationController
   end
 
   def index
-    @order = Order.all
+    @orders = Order.all.page(params[:page]).per(10).order(id: "DESC")
+  end
+
+  def update
+      @order = Order.find(params[:id])
+      @order.update(standby_params)
+       redirect_to orders_path
   end
 
   private
     def order_params
       params.require(:order).permit(:user_id, :cart_id, :status, :pay, :total_price, :address)
+    end
+    def standby_params
+      params.require(:standby).permit(:user_id, :cart_id, :status, :pay, :total_price, :address)
     end
 
 end

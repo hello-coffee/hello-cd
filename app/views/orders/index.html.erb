@@ -1,31 +1,104 @@
 <div class="container" style="border: 1px solid #000000">
-    <div class="row">
-        <br>
-        <p style="font-size: 20px;">　　購入履歴一覧　(最新10件表示)</p>
+    <div class="row" style="text-align: center;"><br>
+        <p style="font-size: 30px;">　　購入履歴一覧　(最新10件表示)</p>
     </div>
-    <div class="row" style="margin: 10px 10px;">
-        <div>
-            <% @order.each do |order| %>
-                <div style="border: 1px solid #000000;">
-                氏名：<%= order.id %>
-                <br>
-                購入日時：<%= order.created_at.strftime('%Y/%m/%d') %>
-                <br>
-                <p>購入内容　　　・<%= order.cart_id %></p>
-                <p>小計　　　：円</p>
-                <br>
-                購入価格総計：<%= order.total_price %>円
-                <br>
-                送付先：<%= order.address %>
-                <br>
-                ステータス：<select>
-                    <option value><%= order.status %></option>
-                </select>
-                <br>
-                <br>
-                </div>
-                <br>
-            <% end  %>
-        </div>
+
+    <% @orders.each do |order| %>
+
+    <table class="table" style="border-style: groove; width: 90%; margin: 20px auto;">
+      <tr >
+        <th>購入日</th>
+            <th><%= order[:created_at].strftime("%Y-%m-%d　　%H:%M") %></th>
+        <th>オーダー番号</th>
+            <th><%= order.id %></th>
+        <th>ユーザー名</th>
+            <th>　<%= order.user.last_name %></th>
+            <th><%= order.user.first_name %></th>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr style="border-top-style: double;">
+        <th>購入内容</th>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+<% order.cart.cart_items.each do |cart_item| %>
+        <th>　商品名</th>
+          <td><%= cart_item.product.title %></td>
+        <th>アーティスト名</th>
+          <td><%= cart_item.product.artist.artist_name %></td>
+        <th>購入枚数</th>
+          <td><%= cart_item.quantity %>枚</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <th>小計</th>
+          <td><%= cart_item.buy_price * cart_item.quantity %></td>
+        <th>( 単価</th>
+          <td><%= cart_item.buy_price %>円 )</td>
+      </tr>
+    <% end %>
+      <tr style="border-top-style: double;">
+        <th>合計金額</th>
+            <td><%= order.total_price %>円</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+      </tr>
+      <tr>
+        <th>送付先</th>
+          <td><%= order.address %></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+      </tr>
+      <tr>
+        <th>ステータス</th>
+          <td><%= I18n.t("order_status.#{order.status}") %></td>
+          <td></td>
+          <td>
+            <%= form_for(order.status) do |f| %>
+                <%= f.select :status, Order.statuses.keys, method: :update %>
+          </td>
+          <td><%= f.submit 'ステータス変更', class:"btn btn-primary btn-sm" %></td><% end %>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+    </table>
+
+<% end  %>
+
+    <div style="text-align:center;">
+        <%= paginate(@orders) %>
     </div>
 </div>
