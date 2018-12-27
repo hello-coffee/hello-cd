@@ -9,6 +9,9 @@ class Artist < ApplicationRecord
 	has_many :favorite_artists
   	has_many :users, through: :favorite_artists
 
+    validates :artist_name, presence: true
+
+
         def favorited_by?(user)
           favorite_artists.where(user_id: user.id).exists?
         end

@@ -4,4 +4,6 @@ class Category < ApplicationRecord
     accepts_nested_attributes_for :products, allow_destroy: true
     has_many :artists, :through => :products
 
+    validates :category_name, presence: true
+
 end

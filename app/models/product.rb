@@ -14,8 +14,17 @@ class Product < ApplicationRecord
 	has_many :reviews, dependent: :destroy
 	has_many :users, :through => :reviews
 
+    validates :artist_id, presence: true
+    validates :category_id, presence: true
+    validates :title, presence: true
+    validates :label, presence: true
+    validates :price, presence: true
+    validates :stock, presence: true
+
         def posted_by?(cart)
           cart_items.where(cart_id: cart.id).exists?
         end
 
 end
+
+

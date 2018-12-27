@@ -14,11 +14,19 @@ class ArtistsController < ApplicationController
 
   def create
       @artist = Artist.new(artist_params)
-      @artist.save
-        redirect_to new_product_path, notice: "アーティストが追加されました"
+      if @artist.save
+          # @product.artist_id = @artist.id
+          # @product.save
 
-      # redirect_to artists_path, notice: ""
-
+          redirect_to new_product_path, notice: "アーティストが追加されました"
+      else
+          @artists = Artist.all
+          @category = Category.new
+          @product = Product.new
+          @disc = @product.discs.build
+          @song = @disc.songs.build
+          render 'products/new'
+      end
   end
 
   def show
