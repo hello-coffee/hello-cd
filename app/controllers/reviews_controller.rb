@@ -24,7 +24,10 @@ before_action :authenticate_admin!, only: [:index, :update]
         review.save
         redirect_to product_path(review.product.id)
       else
-        redirect_to new_product_reviews_path(review.product_id)
+        @review = Review.new(review_params)
+        @product = Product.find(params[:product_id])
+        render "new"
+        #redirect_to new_product_reviews_path(review.product_id)
       end
   end
 

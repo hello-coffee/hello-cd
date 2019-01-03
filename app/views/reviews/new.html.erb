@@ -1,35 +1,36 @@
 	<div class='container'>
 
 		<div class="row">
-			<div class="col-md-2"></div>
-			<div class="col-md-10">
-			<h2>口コミ投稿画面</h2>
-			<br>
-			<p>商品名：「<%= @product.title %>」の口コミ</p>
+			<div class="col-md-12">
+				<h1 class="text-center">口コミ投稿</h1>
+				<br>
+				<h4 class="text-center" style="margin-bottom: 30px;">商品名：「<%= @product.title %>」の口コミ</h4>
+			</div>
 		</div>
 
 		<div class="row">
-
-			<div class="col-md-4"></div>
-			<div class="col-md-6">
-			
+			<div class="col-md-12 text-center">
 				<%= form_for [@product, @review] do |f| %>
-	
-				 	<h4>件名を入力してください</h4>	
-				 		
+					<% if @review.errors.any? %>
+				    	<h3>入力した内容にエラーが<%= @review.errors.count %>件あります</h3>
+				    		<ul>
+				      			<% @review.errors.full_messages.each do |message| %>
+				        			<li><%= message %></li>
+				     			<% end %>
+				    		</ul>
+				    <% end %>
+				 	<h4>件名を入力してください</h4>
 				 		<%= f.text_field :subject, placeholder:"口コミの件名を入力してださい", :size=>"50" %>
-				 			
 				 	<h4>口コミ本文を入力してください</h4>
-				 		
 				 		<%= f.text_area :review, placeholder:"口コミの本文を入力してださい", :size=>"50" %>
-				 		<br>
-				 		<%= f.submit "投稿" %>
-				 		
-				 		
-				 <% end %>
-				 <br>
-		 </div>
-		<br>
-		<br>
-			<div class="col-md-4"></div>
+				 	<div class="text-center" style="margin-top: 30px;">
+				 		<%= f.submit "投稿", class: "btn btn-primary active" %>
+				 	</div>
+				<% end %>
+				<br>
+		 	</div>
+			<br>
+			<br>
+		</div>
+		<div class="col-md-4"></div>
 	</div>
