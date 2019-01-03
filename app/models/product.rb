@@ -28,6 +28,9 @@ class Product < ApplicationRecord
             only_integer: true, greater_than_or_equal_to: 0
           }
 
+    # default_scope -> { order(ranking: :asc) }
+
+
         def posted_by?(cart)
           cart_items.where(cart_id: cart.id).exists?
         end

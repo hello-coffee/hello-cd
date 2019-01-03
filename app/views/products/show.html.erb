@@ -6,7 +6,7 @@
 	<div class="search_form">
 	</div>
 
-    <div class='col-lg-3' style="margin-top: 50px; margin-bottom: 150px">
+    <div class='col-lg-3' style="margin-top: 50px; margin-bottom: 50px">
     	<%= render 'top/sidebar',categories: @categories %>
     	<!-- ランキング -->
     </div>
@@ -92,7 +92,7 @@
 	        <div class="track-list">
 	            <h3 class="productContent">収録内容</h3>
 	            <% @discs.each.with_index(1) do |disc, i| %>
-	                    <h3 class="productContent"><%= i %>. <%= disc.disc_name %></h3>
+	                    <h3 class="productContent">Disc <%= i %>. <%= disc.disc_name %></h3>
 	                    <table class="table table-striped">
 	                        <thead>
 	                            <tr>
@@ -253,11 +253,12 @@
         	<div class="col-lg-8">
     		<h2>口コミ</h2>
 
-	            <% @reviews.each do |review| %>
+				<% if @product.reviews.present? %>
+	            	<% @reviews.each do |review| %>
 	            		<div class="review_info">
 		                    <div class="col-lg-4 field row">
 		                    	<div class="review_user" style="margin-left: 10px; margin-top: 30px;">
-		                    		<h5 class="review_user">・投稿者　<%= review.user.last_name %></h5>
+		                    		<h5 class="review_user">・投稿者　<%= review.user.first_name %></h5>
 		                    	</div>
 		                    </div>
 		                    <div class="col-lg-8 field row">
@@ -270,6 +271,14 @@
 		                <div class="review_time" style="margin-left: 10px; float: left;">
 	                    	<h5 class="review_subject">・投稿日時　<%= review.created_at.strftime("%Y-%m-%d  %H:%M") %></h5>
 	                    </div>
+					        <% if review.user_id == current_user.id %>
+		                        <div class='' style="margin: 0 auto; float: right;">
+	                            <%= link_to review_path(review.id), "data-confirm" => "本当に消しますか?", class:"btn btn-danger destroy_review_#{review.id}", method: :delete do %>
+	                            	<span class="glyphicon glyphicon-trash"></span> 削除 <span class="glyphicon glyphicon-trash"></span>
+	                            <% end %>
+		                        </div>
+			                <% end %>
+
 	                    <table class="table table-striped">
 	                        <thead>
 	                            <tr>
@@ -282,8 +291,13 @@
 	                                </tr>
 	                        </tbody>
 	                    </table>
+		            <% end %>
+		        <% else %>
+                	<div class="review_present_no" style="margin: 30px; font-size: 16px; color: red;">
+                        <p class=""><strong>この商品に対する口コミはまだありません。</p>
+                    </div>
+		        <% end %>
 
-	            <% end %>
 
                 <div class="disc_button" style="text-align: center">
 		            <div class=''>
@@ -304,13 +318,14 @@
         	<% end %>
         </div>
     </div>
-        <div class="" style="margin-bottom: 30px; text-align: center;">
-	        <%= link_to :back, class: 'btn btn-default' do %>
-				<i class="fa fa-arrow-left"></i>
-	 			<span>戻る</span>
-			<% end %>
-		</div>
+
 </div>
+</div>
+
+<div class="" style="margin-bottom: 30px; text-align: center;">
+    <%= link_to :back, class: 'btn btn-default' do %>
+		<i class="fa fa-arrow-left"></i><span> 戻る </span>
+	<% end %>
 </div>
 
 

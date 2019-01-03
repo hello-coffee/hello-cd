@@ -4,6 +4,9 @@
 <div class="container">
   <div class="col-lg-3" style="margin-top: 30px;">
     <%= render 'top/sidebar',categories: @categories %>
+
+    <%= render 'top/ranking',product_rankings: @product_rankings %>
+
   </div>
   <div class="col-lg-9 " style="margin-top: 30px;">
     <section style="border: 2px solid #f7f7f7;">
@@ -46,3 +49,5 @@
       <%= paginate @products, class: "paginate" %>
   </div>
 </div>
+
+

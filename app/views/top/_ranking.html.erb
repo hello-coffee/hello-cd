@@ -1,0 +1,11 @@
+<div style="border-style: ridge; width:90%">
+	<div class="ranking-box" style="text-align: center; padding-bottom: 30px;">
+	  <h2>ランキング</h2>
+	   <% product_rankings.each.with_index(1)  do |product, i| %>
+	   	<% if product.ranking != nil %>
+			<h3><%= i %> 位<br><%= link_to product.title, product_path(product.id) %><br></h3>
+		<% end %>
+	   <% end %>
+	</div>
+</div>
+

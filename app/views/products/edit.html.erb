@@ -1,6 +1,17 @@
 <div class='container'>
 <div class='row'>
 
+    <% if @product.errors.any? %>
+        <div id="error_explanation" >
+            <h3><%= pluralize(@product.errors.count, "error") %> prohibited this product from being saved:</h3>
+            <ul>
+                <% @product.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                <% end %>
+            </ul>
+        </div>
+    <% end %>
+
     <div class='col-md-8 col-md-offset-2' style="margin-top: 50px; margin-bottom: 150px">
     <h1 style="margin-top: 10px; margin-bottom: 30px; text-align: center;">管理者ページ　商品を編集</h1>
 
@@ -73,13 +84,13 @@
 
 <!--  -->
             <div class="disc">
-            <h3>DISCリスト</h3>
+            <h3>Discリスト</h3>
                 <div id="discs">
                     <%= f.fields_for :discs do |disc| %>
                         <%= render 'disc_fields', f: disc %>
                     <% end %>
                     <div id="links">
-                         <%= link_to_add_association 'DISCを追加',f, :discs, class: 'btn btn-primary', role: 'button'  %>
+                         <%= link_to_add_association 'Discを追加',f, :discs, class: 'btn btn-primary', role: 'button'  %>
                     </div>
                 </div>
 
