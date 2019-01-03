@@ -91,6 +91,14 @@ ActiveRecord::Schema.define(version: 2019_01_03_055047) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "maps", force: :cascade do |t|
+    t.string "address"
+    t.float "latitude"
+    t.float "longitude"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "news", force: :cascade do |t|
     t.text "body"
     t.datetime "created_at", null: false

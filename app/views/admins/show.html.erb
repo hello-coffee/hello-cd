@@ -42,12 +42,12 @@
             <br>
             <% @all_product.each do |product| %>
             <%= link_to product_path(product.id) do %>
-                <div>
+                <div style="padding-left: 65px; text-align: left;">
                             商品名：<%= product.title %>
-                    アーティスト名：<%= product.artist_id %>
+                    アーティスト名：<%= product.artist.artist_name %>
                             商品ID：<%= product.id %>
                 </div>
-                <% end %>
+                <% end %><br>
             <% end %>
         </div>
 
