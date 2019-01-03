@@ -1,5 +1,8 @@
 class OrdersController < ApplicationController
 
+before_action :authenticate_user!, except: [:index, :update]
+before_action :authenticate_admin!, only: [:index, :update]
+
   def new
 
     #@address = current_user.carts.address_id
@@ -87,7 +90,7 @@ class OrdersController < ApplicationController
 
   def update
       @order = Order.find(params[:id])
-      @order.update(standby_params)
+      @order.update(order_params)
        redirect_to orders_path
   end
 
@@ -95,9 +98,9 @@ class OrdersController < ApplicationController
     def order_params
       params.require(:order).permit(:user_id, :cart_id, :status, :pay, :total_price, :address)
     end
-    def standby_params
-      params.require(:standby).permit(:user_id, :cart_id, :status, :pay, :total_price, :address)
-    end
+    # def standby_params
+    #   params.require(:standby).permit(:user_id, :cart_id, :status, :pay, :total_price, :address)
+    # end
 
 end
 

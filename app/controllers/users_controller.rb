@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
 
+
  before_action :authenticate_user! ,except: [:update, :destroy]
 
   def favorite_artists
