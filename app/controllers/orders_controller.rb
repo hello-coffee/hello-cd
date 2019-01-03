@@ -61,6 +61,13 @@ before_action :authenticate_admin!, only: [:index, :update]
           @cc = @cart.cart_items
           @cc.each do |cc|
 
+            if cc.product.ranking = nil?
+              cc.product.ranking = 0
+              cc.product.update(ranking: cc.product.ranking += cc.quantity)
+            else
+              cc.product.update(ranking: cc.product.ranking += cc.quantity)
+            end
+
             if  cc.product.stock - cc.quantity <= -1
               return redirect_to cart_path(@cart),flash: {notice: '大変申し訳ございません。売り切れの商品がございます。'}
             else

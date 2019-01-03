@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_25_015636) do
+ActiveRecord::Schema.define(version: 2019_01_03_055047) do
 
   create_table "addresses", force: :cascade do |t|
     t.string "last_name"
@@ -119,6 +119,7 @@ ActiveRecord::Schema.define(version: 2018_12_25_015636) do
     t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "ranking"
   end
 
   create_table "reviews", force: :cascade do |t|

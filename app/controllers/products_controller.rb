@@ -7,6 +7,12 @@ class ProductsController < ApplicationController
         @news = News.all.page(params[:page]).per(5).reverse_order
         @categories = Category.all
         @search = Product.ransack(params[:q])
+
+        #===
+        # @product_rankings = Product.all
+        @product_rankings = Product.order(ranking: "DESC").limit(3)
+
+
     end
 
     def show

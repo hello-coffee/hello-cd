@@ -1,6 +1,6 @@
 class ReviewsController < ApplicationController
 
-before_action :authenticate_user!, except: [:index, :destroy]
+before_action :authenticate_user!, except: [:index]
 before_action :authenticate_admin!, only: [:index, :update]
 
   def index
@@ -30,8 +30,13 @@ before_action :authenticate_admin!, only: [:index, :update]
 
   def destroy
     review = Review.find(params[:id])
+    @product = review.product
     review.destroy
-    redirect_to reviews_path
+    if admin_signed_in?
+      redirect_to reviews_path
+    else
+      redirect_to product_path(@product.id)
+    end
   end
 
 
