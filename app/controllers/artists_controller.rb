@@ -37,6 +37,7 @@ class ArtistsController < ApplicationController
   		@products = @artist.products.page(params[:page]).per(9).reverse_order
   		@categories = Category.all
       @search = Product.ransack(params[:q])
+      @product_rankings = Product.order(ranking: "DESC").limit(3)
   end
 
     def update

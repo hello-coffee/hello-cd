@@ -3,7 +3,7 @@ class ProductsController < ApplicationController
     before_action :authenticate_admin!, only: [:new, :edit]
 
     def index
-        @products = Product.page(params[:page]).per(9).order(:id)
+        @products = Product.page(params[:page]).per(9).order(id: "DESC")
         @news = News.all.page(params[:page]).per(5).reverse_order
         @categories = Category.all
         @search = Product.ransack(params[:q])
@@ -34,6 +34,9 @@ class ProductsController < ApplicationController
 
         @categories = Category.all
         @search = Product.ransack(params[:q])
+
+        @product_rankings = Product.order(ranking: "DESC").limit(3)
+
     end
 
     def update

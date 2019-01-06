@@ -20,6 +20,7 @@ class CategoriesController < ApplicationController
   	@products = @category.products.page(params[:page]).per(9).reverse_order
   	@categories = Category.all
     @search = Product.ransack(params[:q])
+    @product_rankings = Product.order(ranking: "DESC").limit(3)
   end
 
   private
