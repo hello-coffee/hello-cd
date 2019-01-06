@@ -9,6 +9,8 @@
     <div class='col-lg-3' style="margin-top: 50px; margin-bottom: 50px">
     	<%= render 'top/sidebar',categories: @categories %>
     	<!-- ランキング -->
+    	<%= render 'top/ranking',product_rankings: @product_rankings %>
+
     </div>
 
     <div class='col-lg-9' style="margin-top: 50px; margin-bottom: 50px">
@@ -271,13 +273,16 @@
 		                <div class="review_time" style="margin-left: 10px; float: left;">
 	                    	<h5 class="review_subject">・投稿日時　<%= review.created_at.strftime("%Y-%m-%d  %H:%M") %></h5>
 	                    </div>
-					        <% if review.user_id == current_user.id %>
-		                        <div class='' style="margin: 0 auto; float: right;">
-	                            <%= link_to review_path(review.id), "data-confirm" => "本当に消しますか?", class:"btn btn-danger destroy_review_#{review.id}", method: :delete do %>
-	                            	<span class="glyphicon glyphicon-trash"></span> 削除 <span class="glyphicon glyphicon-trash"></span>
-	                            <% end %>
-		                        </div>
-			                <% end %>
+	                    	<%# if user_signed_in? %>
+						        <%# if review.user_id == current_user.id %>
+			                        <!-- <div class='' style="margin: 0 auto; float: right;"> -->
+		                            <%#= link_to review_path(review.id), "data-confirm" => "本当に消しますか?", class:"btn btn-danger destroy_review_#{review.id}", method: :delete do %>
+		                            	<!-- <span class="glyphicon glyphicon-trash"></span> 削除 <span class="glyphicon glyphicon-trash"></span> -->
+		                            <%# end %>
+			                        <!-- </div> -->
+				                <%# end %>
+			                <%# end %>
+
 
 	                    <table class="table table-striped">
 	                        <thead>

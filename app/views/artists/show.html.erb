@@ -10,6 +10,9 @@
 	<div class="row">
 		<div class="col-lg-3">
 			<%= render 'top/sidebar',categories: @categories %>
+
+    		<%= render 'top/ranking',product_rankings: @product_rankings %>
+
 		</div>
 		<section class="col-lg-9">
 			<h1><%= @artist.artist_name %>の商品一覧</h1>
