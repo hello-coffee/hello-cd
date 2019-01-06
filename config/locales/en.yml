@@ -29,5 +29,10 @@
 # To learn more, please read the Rails Internationalization guide
 # available at http://guides.rubyonrails.org/i18n.html.
 
+
 en:
-  hello: "Hello world"
+  order_status:
+    ordered: 受付
+    standby: 商品準備中
+    shipped: 出荷済
+

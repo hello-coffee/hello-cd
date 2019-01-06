@@ -1,0 +1,106 @@
+<h2 style="text-align:center;">新規登録</h2>
+
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= devise_error_messages! %>
+
+<div class="form-inline text-center"></div>
+
+<div class="form-inline text-center">
+  <div class="form-group">
+   <div>
+    <%= f.label :last_name, "氏" %><br />
+    <%= f.text_field :last_name %>
+   </div>
+  </div>
+  <div class="form-group">
+   <div>
+    <%= f.label :first_name, "名" %><br />
+    <%= f.text_field :first_name %>
+   </div>
+  </div>
+</div>
+
+<div class="form-inline text-center">
+  <div class="form-group">
+   <div>
+    <%= f.label :last_name_kana, "氏(カナ)" %><br />
+    <%= f.text_field :last_name_kana %>
+   </div>
+  </div>
+  <div class="form-group">
+   <div>
+    <%= f.label :first_name_kana, "名(カナ)" %><br />
+    <%= f.text_field :first_name_kana %>
+   </div>
+  </div>
+</div>
+
+<div class="form-inline text-center">
+  <div class="form-group">
+   <div>
+    <%= f.label :post_code, "郵便番号" %><br />
+    <%= f.text_field :post_code %>
+   </div>
+  </div>
+  <div class="form-group">
+   <div>
+    <%= f.label :address, "住所" %><br />
+    <%= f.text_field :address %>
+   </div>
+  </div>
+</div>
+
+<div class="form-inline text-center">
+  <div class="form-group">
+   <div>
+    <%= f.label :tel, "電話番号" %><br />
+    <%= f.text_field :tel %>
+   </div>
+  </div>
+</div>
+
+<div class="form-inline text-center">
+  <div class="form-group">
+   <div>
+    <%= f.label :email, "メールアドレス" %><br />
+    <%= f.text_field :email %>
+   </div>
+  </div>
+</div>
+
+
+  <div class="form-inline text-center">
+  <div class="form-group">
+   <div>
+    <%= f.label :password, "パスワード" %>
+    <% if @minimum_password_length %>
+    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <% end %><br />
+    <%= f.password_field :password, autocomplete: "new-password" %>
+   </div>
+  </div>
+</div>
+
+<div class="form-inline text-center">
+  <div class="form-group">
+   <div>
+     <%= f.label :password_confirmation, "パスワード確認" %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+   </div>
+  </div>
+</div>
+
+
+  <div class="actions" style="text-align:center;">
+    <%= f.submit "新規登録", class: "btn btn-primary" %>
+  </div>
+<% end %>
+
+<div style="text-align:center">
+<%= render "users/shared/links" %>
+</div>
+
+<div class="text-center" style="margin: 30px auto;">
+  <%= link_to "TOPへ移動", products_path, class: "btn btn-default" %>
+</div>

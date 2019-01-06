@@ -68,6 +68,10 @@ gem 'devise'
 gem 'kaminari'
 gem "refile", require: "refile/rails", github: 'manfe/refile'
 gem "refile-mini_magick"
-gem 'jquery-rails'
-
-
+gem 'ransack'
+gem "paranoia"
+gem 'pry-byebug'
+gem 'cocoon'
+gem 'skipper'
+gem 'pry-rails'
+gem "font-awesome-rails"

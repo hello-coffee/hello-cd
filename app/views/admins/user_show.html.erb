@@ -1,0 +1,123 @@
+<div class="well well-lg">
+ 	<div style="padding-left:20px;">
+		<h1>登録情報一覧</h1>
+		<nav style="padding-right: 2%;">
+
+    <nav style="padding-right: 6%;">
+        <br>
+        <br>
+        <br>
+   	</nav>
+		<div>
+	 		<p>郵便番号　〒<%= @user.post_code %></p>
+	  		<p>住所　　　<%= @user.address %></p>
+	  		<p>氏名　　　<%= @user.last_name %><%= @user.first_name %></p>
+	  		<p>　　　　　<%= @user.last_name_kana %><%= @user.first_name_kana %></p>
+	  		<p>電話番号　<%= @user.tel %></p>
+	  		<p>メールアドレス　<%= @user.email %></p>
+		</div>
+  	</div>
+</div>
+
+
+
+<div class="well well-lg">
+	<div style="padding-left:60px;">
+		<h1>購入履歴</h1>
+    <% @orders.each do |order| %>
+
+    <table class="table" style="border-style: groove; width: 77%;">
+      <tr >
+        <th>購入日</th>
+        <th><%= order[:created_at].strftime("%Y-%m-%d　　%H:%M") %></th>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr style="border-top-style: double;">
+        <th>購入内容</th>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+    <% order.cart.cart_items.each do |cart_item| %>
+        <th>　商品名</th>
+          <td><%= cart_item.product.title %></td>
+        <th>アーティスト名</th>
+          <td><%= cart_item.product.artist.artist_name %></td>
+        <th>購入枚数</th>
+          <td><%= cart_item.quantity %>枚</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <th>小計</th>
+          <td><%= cart_item.buy_price * cart_item.quantity %></td>
+        <th>( 単価</th>
+          <td><%= cart_item.buy_price %>円 )</td>
+      </tr>
+    <% end %>
+      <tr style="border-top-style: double;">
+        <th>合計金額</th>
+          <td><%= order.total_price %>円</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+      </tr>
+      <tr>
+        <th>送付先</th>
+          <td><%= order.address %></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+      </tr>
+      <tr>
+        <th>ステータス</th>
+          <td><%= I18n.t("order_status.#{order.status}") %></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+    </table>
+
+   <% end %>
+	</div>
+</div>
+
+<div style="text-align:center;">
+  <%= paginate(@orders) %>
+</div>

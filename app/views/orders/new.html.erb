@@ -1,2 +1,91 @@
-<h1>Orders#new</h1>
-<p>Find me in app/views/orders/new.html.erb</p>
+<div class="container">
+	<div class="row">
+		<div class="col-lg-12">
+			<h4 class="text-center">買い物かご＞配送先選択＞<strong style="color: red;">決済方法選択</strong>＞購入完了</h4>
+			<h3>お届け先</h3>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-lg-12" style="margin-bottom: 30px; border: 2px solid #f7f7f7;">
+			<h4>氏名：<%= @address.last_name %>
+				<%= @address.first_name %></h4>
+			<h4>郵便番号：<%= @address.post_code %></h4>
+			<h4>住所：<%= @address.address %></h4>
+			<h4>電話番号：<%= @address.tel %></h4>
+		</div>
+	</div>
+	<div class="row">
+		<h3>決済方法</h3>
+		<div class="col-lg-4" style="border: 2px solid #f7f7f7;">
+			<h4 style="margin: 20px auto;">お支払い方法</h4>
+			<%= form_for @order, url:orders_path do |f| %>
+				<label><%= f.radio_button :pay, 0 %> カード </label><br>
+				<label style="margin: 20px auto;"><%= f.radio_button :pay, 1 %> コンビニ </label><br>
+				<label><%= f.radio_button :pay, 2 %> 代金引き換え </label><br>
+				<%= f.hidden_field :cart_id, :value => @cart.id %>
+				<%= f.hidden_field :total_price, :value => @total_price %>
+				<%= f.hidden_field :address, :value => @address.address %>
+		</div>
+		<div class="col-lg-8" style="border: 2px solid #f7f7f7;">
+			<h4 class="text-center">購入内容</h4>
+			<div class="table-responsive">
+			<table class="table">
+				<thead>
+					<tr>
+						<th></th>
+						<th></th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<% @cart.cart_items.each do |cart_item| %>
+						<tr>
+							<td class="text-center">
+								<%= cart_item.product.title %>
+								<p></p>
+								<%= cart_item.product.artist.artist_name %>
+							</td>
+							<td>
+								<h4><%= cart_item.quantity %>枚</h4>
+							</td>
+							<td>
+								<h4><%= cart_item.product.price %>円</h4>
+							</td>
+						</tr>
+					<% end %>
+						<tr>
+							<td></td>
+							<td>
+ 								<h4>商品の小計</h4>
+ 							</td>
+ 							<td>
+ 								<h4><%= @total_price %>円</h4>
+ 							</td>
+ 						</tr>
+ 						<tr>
+ 							<td></td>
+ 							<td>
+								<h4><%= "配送料・手数料" %></h4>
+							</td>
+							<td>
+								<h4><%= "0円" %></h4>
+							</td>
+						</tr>
+						<tr>
+							<td></td>
+							<td>
+								<h3>合計</h3>
+							</td>
+							<td>
+								<h3><%= @total_price %>円</h3>
+							</td>
+						</tr>
+				</tbody>
+			</table>
+			</div>
+		</div>
+	</div>
+			<%= f.submit "購入", class:"btn btn-primary btn-lg center-block" %>
+			<% end %>
+</div>
+

@@ -1,2 +1,56 @@
-<h1>Admins#show</h1>
-<p>Find me in app/views/admins/show.html.erb</p>
+
+<div class="container">
+
+    <div class="row">
+        <h1 style="margin-left: 70px;">NEWS投稿</h1>
+        <div class="col-md-offset-1 col-md-8">
+
+    </div>
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+                    <% if @news.errors.any? %>
+                        <h3>入力した内容にエラーが<%= @news.errors.count %>件あります</h3>
+                            <ul>
+                                <% @news.errors.full_messages.each do |message| %>
+                                <li><%= message %></li>
+                                <% end %>
+                            </ul>
+                    <% end %>
+          
+            <%= form_for @news,url: news_index_path  do |n| %>
+            <%= n.text_area :body, :size => "90x4" %>
+            <%= n.submit "投稿 ⇧", :class => "btn" %>
+            <% end %>
+        </div>
+    </div>
+
+    <div class="row" style="margin: 60px auto;">
+        <div class="col-md-6" style="text-align: left;">
+            <h2 class="p_a" style="padding-left: 70px;">ユーザー一覧(10件表示)</h2><br>
+                <% @all_user.each do |user| %>
+                    <%= link_to user_show_path(user) do %>
+                        <h4>ID:<%= user.id %>　氏名：<%= user.last_name %> <%= user.first_name %></h4>
+                    <% end %>
+                    <%= link_to "編集", edit_admin_path(user), class:"btn btn-primary btn-sm" %>
+                    <%= link_to "削除", user_path(user), :method => :delete, "data-confirm" => "後悔しませんか？", class:"btn btn-danger btn-sm" %>
+                <% end %>
+            <%= paginate @all_user, class: "paginate" %>
+            </div>
+        <div class="col-md-6" style="text-align: right;">
+            <h2 class="p_a" style="padding-right: 100px;">商品一覧(10件表示)</h2>
+            <br>
+            <% @all_product.each do |product| %>
+            <%= link_to product_path(product.id) do %>
+                <div style="padding-left: 65px; text-align: left;">
+                            商品名：<%= product.title %>
+                    アーティスト名：<%= product.artist.artist_name %>
+                            商品ID：<%= product.id %>
+                </div>
+                <% end %><br>
+            <% end %>
+        </div>
+
+            <%= paginate @all_product, class: "paginate" %>
+            <br>
+</div>

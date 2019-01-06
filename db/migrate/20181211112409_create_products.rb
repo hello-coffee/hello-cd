@@ -3,7 +3,7 @@ class CreateProducts < ActiveRecord::Migration[5.2]
     create_table :products do |t|
       t.integer :artist_id
       t.string :title
-      t.string :image
+      t.string :image_id
       t.integer :price
       t.string :label
       t.integer :category_id
@@ -14,3 +14,4 @@ class CreateProducts < ActiveRecord::Migration[5.2]
     end
   end
 end
+

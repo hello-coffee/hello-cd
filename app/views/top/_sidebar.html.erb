@@ -1,0 +1,10 @@
+<div style="border-style: ridge; width:90%">
+	<div style="text-align: center; padding-bottom: 20px;">
+	  <h2>カテゴリ</h2>
+	   <% categories.each do |category| %>
+		<h3><%= link_to category.category_name, category_path(category.id) %><br></h3>
+	   <% end %>
+	</div>
+
+</div>
+

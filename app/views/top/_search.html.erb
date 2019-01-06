@@ -1,0 +1,15 @@
+<div class="container">
+	<div class="row">
+		<div class="col-lg-10 col-lg-offset-2">
+			<%= search_form_for @search, url: searches_path do |f| %>
+  			  <%= f.label :title_cont, "商品検索" %>
+  			  <%= f.search_field :title_cont, placeholder: "商品名を入力してください", :size => 8.5*8.5 %>
+			  <div style="display:inline-flex">
+  			  <div class="actions">
+  				<%= f.submit "検索", class:"btn btn-default active" %>
+  			  </div>
+			<% end %>
+			  </div>
+		</div>
+	</div>
+</div>

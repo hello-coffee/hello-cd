@@ -1,2 +1,41 @@
-<h1>Searches#search</h1>
-<p>Find me in app/views/searches/search.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+      <%= render 'top/search' %>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-3">
+      <%= render 'top/sidebar',categories: @categories %>
+
+      <%= render 'top/ranking',product_rankings: @product_rankings %>
+
+    </div>
+
+    <section class="col-lg-9">
+      <h1>検索結果</h1>
+        <% @products.each do |product| %>
+          <div class="inline-block">
+            <div class="col-lg-4">
+              <% if product.present? %>
+                <%= link_to product_path(product.id) do %>
+                  <div class="text-center">
+    		            <%= attachment_image_tag product, :image, fallback: "no_image.jpg", size: "200x200" %><br>
+                  </div>
+                  <div class="text-center">
+                    <%= product.title %><br>
+                <% end %>
+                    <div class="text-center" style="border-top: 1px solid #000000; margin-bottom: 30px;">
+                      <%= link_to product.artist.artist_name, artist_path(product.artist) %>
+                    </div>
+                  </div>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+    </section>
+  </div>
+</div>

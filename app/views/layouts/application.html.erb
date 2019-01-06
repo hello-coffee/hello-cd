@@ -7,9 +7,122 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link href='https://fonts.googleapis.com/css?family=Raleway:400,600,700' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'>
+    <link href="./font-awesome.css" rel="stylesheet">
   </head>
 
+
   <body>
-    <%= yield %>
+
+  <% if user_signed_in? %>
+
+    <header>
+      <%= link_to products_path, class:"nav navbar-nav navbar-left", style:"margin:0 50px;" do %>
+        <%= image_tag "logo.png", :size =>'170x170' %>
+      <% end %>
+      <div class="container">
+        <nav class="nav navbar-nav well well-sm  col-sm-offset-4 col-sm-6" style="margin:43px 0 0 70px;">
+          <h1 style="text-align: center;">ようこそ<%= current_user.last_name %>さん!</h1>
+        </nav>
+        <%= link_to "購入ガイド", guide_path, class:"nav navbar-nav navbar-right btn btn-info btn-lg col-sm-2", style:"margin-top:50px;" %>
+      </div>
+
+      <div class="container well well-md" style="width:100%;">
+        <nav style="padding-right: 10%;">
+            <%= link_to "　ログアウト", destroy_user_session_path, method: :delete, class:"nav navbar-nav navbar-right btn btn-default btn-lg" %>
+            <%= link_to "　マイページ", user_path(current_user), class:"nav navbar-nav navbar-right btn btn-default btn-lg" %>
+            <%= link_to "　お気に入り", favorite_artists_path, class:"nav navbar-nav navbar-right btn btn-default btn-lg" %>
+                <% if current_user.carts.last.present? %>
+                    <%= link_to "　　カート　", cart_path(current_user.carts.last), class:"nav navbar-nav navbar-right btn btn-default btn-lg" %>
+                <% else %>
+                <% end %>
+        </nav>
+      </div>
+    </header>
+
+
+
+  <% elsif admin_signed_in? %>
+
+    <header>
+      <%= link_to products_path, class:"nav navbar-nav navbar-left", style:"margin:0 50px;" do %>
+        <%= image_tag "logo.png", :size =>'170x170' %>
+      <% end %>
+      <div class="container">
+        <nav class="nav navbar-nav well well-sm  col-sm-offset-4 col-sm-6" style="margin:43px 0 0 70px;">
+          <h1 style="text-align: center;">ようこそ管理者さん!</h1>
+        </nav>
+      </div>
+
+      <div class="container well well-md" style="width:100%;">
+        <nav style="padding-right: 10%;">
+          <%= link_to "　ログアウト", destroy_admin_session_path, method: :delete, class:"nav navbar-nav navbar-right btn btn-default btn-lg" %>
+          <%= link_to "　マイページ", admin_path(current_admin), class:"nav navbar-nav navbar-right btn btn-default btn-lg" %>
+        </nav>
+      </div>
+    </header>
+
+
+
+  <% else %>
+
+    <header>
+      <%= link_to products_path, class:"nav navbar-nav navbar-left", style:"margin-leht: 50px;" do %>
+        <%= image_tag "logo.png", :size =>'170x170' %>
+      <% end %>
+      <div class="container" style="width: 100%">
+        <%= link_to "　管理者はこちらへ", admin_session_path, class:"nav navbar-nav navbar-right btn btn-default btn-md", style:"margin:110px 3px 0 0 ;"%>
+        <%= link_to "購入ガイド", guide_path, class:"nav navbar-nav navbar-right btn btn-info btn-lg col-sm-2", style:"margin-top:50px;" %>
+      </div>
+
+      <div class="container well well-md" style="width:100%;">
+        <nav style="padding-right: 10%;">
+            <%= link_to "　新規登録", new_user_registration_path, class:"nav navbar-nav navbar-right btn btn-default btn-lg" %>
+            <%= link_to "　ログイン", new_user_session_path, class:"nav navbar-nav navbar-right btn btn-default btn-lg" %>
+  <% end %>
+        </nav>
+      </div>
+    </header>
+
+
+  <%= yield %>
+
   </body>
+
+
+  <footer>
+
+<% if admin_signed_in? %>
+
+      <div class="container well well-md" style="width:100%;">
+        <div class="row" style="height: 50px;">
+            <%= link_to "管理者ページへ",admin_path(current_admin), class:"col-sm-3 btn btn-default btn-lg" %>
+            <%= link_to "購入情報一覧ページへ", orders_path, class:"col-sm-3 btn btn-info btn-lg" %>
+            <%= link_to "口コミ管理ページへ", reviews_path, class:"col-sm-3 btn btn-primary btn-lg" %>
+            <%= link_to "商品追加", new_product_path, class:"col-sm-3 btn btn-danger btn-lg" %>
+        </div>
+      </div>
+
+<% else %>
+
+    <div class="container well well-sm" style="width:100%;">
+        <nav class="nav navbar-nav navbar-left nav-pills nav-stacked col-sm-1" style="padding-top:30px;">
+          <div class="btn btn-default"><%= image_tag "2.jpg", :size =>'100x100' %></div>
+          <h4>　Hello CD</h4>
+        </nav>
+        <nav class="nav navbar-nav navbar-left"  style="margin-left:25px; padding-top:30px;">
+          <p><br>アクセス<br>東京都渋谷区<br>神南1丁目19-10<br>tel: 0120-123-456<br>email: aaa@aaa<br></p>
+        </nav>
+        <nav style="padding-right: 50px; padding-top: 40px;">
+          <%= link_to "　問い合わせ", contact_path, class:"nav navbar-nav navbar-right btn btn-warning btn-lg", style:"height: 80px; text-align: center; line-height:350%;" %>
+        </nav>
+    </div>
+
+<% end %>
+
+    <div class="container well well-sm" style="width:100%; text-align: center;">© 2018 hello!coffee. All Rights Reserved.
+    </div>
+
+   </footer>
 </html>
